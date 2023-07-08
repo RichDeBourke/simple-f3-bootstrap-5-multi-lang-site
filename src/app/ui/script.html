@@ -1,0 +1,11 @@
+
+<check if="{{ @highlighterJavaScript }}">
+    <!-- Code highlighter -->
+    <script src="{{ @schemeHost }}/js/highlight.min.js?{{ @cacheUpdate }}"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</check>
+<check if="{{ @pageJavaScript }}">
+<include href="{{ @pageJavaScript }}" />
+</check>

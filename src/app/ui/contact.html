@@ -1,0 +1,101 @@
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <style>
+            .svg-container {
+                fill: var(--bs-alert-color);
+            }
+
+            .svg-symbol-fill {
+                stroke: var(--bs-alert-bg);
+                fill: var(--bs-alert-bg);
+            }
+
+            .svg-symbol-no-fill {
+                stroke: var(--bs-alert-bg);
+                fill: none;
+            }
+        </style>
+        <symbol id="alert-success" viewBox="0 0 56 56">
+            <circle class="svg-container" cx="28" cy="28" r="28" stroke="0" />
+            <polyline class="svg-symbol-no-fill" points="15 28, 25.5 37, 42 18"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="6"
+                stroke-miterlimit="6" ></polyline>
+        </symbol>
+        <symbol id="alert-warning" viewBox="0 0 56 56">
+            <circle class="svg-container" cx="28" cy="28" r="28" />
+            <path class="svg-symbol-fill" d="M 28.00,11.00 C 28.00,11.00 32.00,11.00 32.00,15.00 32.00,15.00 31.00,30.00 31.00,30.00 31.00,33.00 28.00,33.00 28.00,33.00 25.00,33.00 25.00,30.00 25.00,30.00 25.00,30.00 24.00,15.00 24.00,15.00 24.00,11.00 28.00,11.00 28.00,11.00 Z" />
+            <circle class="svg-symbol-fill" cx="28" cy="41" r="4" />
+        </symbol>
+    </svg>
+    
+    <section id="content" role="main" class="contact-us hide-for-ie">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class=" col-12 col-sm-10 col-md-8 col-lg-7">
+                    <h1>{{ @dictContact01 }}</h1>
+                    <div class="collapse" id="collapseAlert">
+                        <div id="contact-result" class="alert alert-success alert-dismissible d-flex" role="alert" aria-label="Success" >
+                            <svg class="exclamation-triangle-fill flex-shrink-0 me-4" role="img" style="width: 56px; height: 56px;"><use href="#alert-success"></use></svg>
+                            <div class="flex-grow-1">
+                                <p></p>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-toggle="collapse" data-bs-target="#collapseAlert" aria-label="Close"></button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="contact-card-block">
+                            <form id="contact-form" action="{{ @schemeHost.@PATH }}" method="post">
+                                <fieldset>
+                                    <legend>{{ @dictContact02 }}</legend>
+                                    <!-- Name input-->
+                                    <div class="row mb-3">
+                                        <label class="col-md-3 mb-2" for="name">{{ @dictContact03 }}&nbsp;<span class="contact-required" aria-hidden="true">*</span></label>
+                                        <div class="col-md-9">
+                                            <input id="name" name="name" type="text" placeholder="{{ @dictContact04 }}" value="" class="form-control" required="required">
+                                        </div>
+                                    </div>
+
+                                    <!-- E-mail input-->
+                                    <div class="row mb-3">
+                                        <label class="col-md-3 mb-2" for="email">{{ @dictContact05 }}&nbsp;<span class="contact-required" aria-hidden="true">*</span></label>
+                                        <div class="col-md-9">
+                                            <input id="email" name="email" type="email" placeholder="{{ @dictContact06 }}" value="" class="form-control" required="required">
+                                        </div>
+                                    </div>
+
+                                    <!-- Subject -->
+                                    <div class="row mb-3">
+                                        <label class="col-md-3 mb-2" for="subject">{{ @dictContact07  }}&nbsp;<span class="contact-required" aria-hidden="true">*</span></label>
+                                        <div class="col-md-9">
+                                            <input id="subject" name="subject" type="text" placeholder="{{ @dictContact08 }}" value="" class="form-control" required="required" maxlength="75">
+                                        </div>
+                                    </div>
+
+                                    <!-- Message body -->
+                                    <div class="row mb-3">
+                                        <label class="col-md-3 mb-2 pe-0" for="message">{{ @dictContact09 }}&nbsp;<span class="contact-required" aria-hidden="true">*</span></label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" id="message" name="message" placeholder="{{ @dictContact10 }}..." rows="5" maxlength="{{ @contactMessageLimit }}" required="required"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form actions -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-9 offset-md-3 text-left">
+                                            <button type="submit" class="btn btn-primary btn-lg">{{ @dictContact11 }}</button>
+                                            <p class="characters-remaining">{{ @contactMessageLimit }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-12">
+                                            <p class="mb-0" aria-hidden="true"><span class="contact-required">*</span>&nbsp;{{ @dictContact12 }}</p>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

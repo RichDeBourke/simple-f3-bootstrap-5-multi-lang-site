@@ -1,0 +1,170 @@
+<head>
+    <meta charset="utf-8">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+
+    <title>{{ @pageTitle }}</title>
+    <meta name="description" content="{{ @pageDescription }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<check if="{{ @googleNoIndex }}">
+    <meta name="robots" content="noindex,nofollow">
+</check>
+
+<check if="{{ !@googleNoIndex }}">
+    <link rel="canonical" href="{{ @schemeHost }}{{ urldecode(@PATH) }}">
+</check>
+
+    <!-- Page microdata for use by search engines -->
+    <meta itemprop="url" content="{{ @schemeHost }}{{ urldecode(@PATH) }}">
+    <meta itemprop="name" content="{{ @pageTitle }}">
+    <meta itemprop="description" content="{{ @pageDescription }}">
+    <meta itemprop="image primaryImageOfPage" content="{{ @schemeHost }}/images/{{ @socialMedia.ogImage1 }}">
+    <meta property="og:type" content="website">
+
+    <!-- Metadata for social media -->
+    <meta property="og:title" content="{{ @pageTitle }}">
+    <meta property="og:description" content="{{ @pageDescription }}">
+    <meta property="og:url" content="{{ @schemeHost }}{{ urldecode(@PATH) }}">
+    <meta property="og:site_name" content="{{ @siteName }}">
+    <meta property="og:image" content="{{ @schemeHost }}/images/{{ @socialMedia.ogImage1 }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ @socialMedia.ogImage1alt }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image" content="{{ @schemeHost }}/images/{{ @socialMedia.ogImage2 }}">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="400">
+    <meta property="og:image:alt" content="{{ @socialMedia.ogImage2alt }}">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="summary">
+<check if="{{ @socialMedia.twitterID != 'none' }}">
+    <meta name="twitter:site" content="@{{ @socialMedia.twitterID }}">
+</check>
+    <meta name="twitter:description" content="{{ @pageDescription }}">
+    <meta name="twitter:title" content="{{ @siteOwner }} – {{ @pageTitle }}">
+    <meta name="twitter:image" content="{{ @schemeHost }}/images/{{ @socialMedia.twitterImage }}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+        var gaScript;
+        var googleAnalyticsID = "{{ @googleAnalyticsID }}";
+        gaScript = document.createElement("script");
+        gaScript.async = true;
+        gaScript.src = "https://www.googletagmanager.com/gtag/js?id=" + googleAnalyticsID;
+
+        // Until Google Tagmanager has been loaded, this code will have no effect
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', googleAnalyticsID, {
+            "cookie_flags": "SameSite=None;"
+        });
+
+        if (document.cookie.indexOf("eu-cookie-notice=true") > -1) {
+            // User has accepted the terms, so load analytics (not opted out).
+            document.head.appendChild(gaScript);
+        }
+    </script>
+
+    <!-- Site microdata for use by search engines -->
+    <script type='application/ld+json'>
+        {
+            "@context": "http://www.schema.org",
+            "@type": "WebSite",
+            "name": "{{ @siteName }}",
+            "description": "Building a frontend / backend setup for a simple, multi-language website using Bootstrap 4 with the Fat-Free PHP framework.",
+            "url": "http://sbf-testing.byethost7.com",
+            "creator": {
+                "@type": "organization",
+                "name": "{{ @siteOwner }}"
+            }
+        }
+    </script>
+
+    <link rel="preload" as="image" imagesrcset="
+        ../images/site-logo-sm-dark.webp 1x,
+        ../images/site-logo-lg-dark.webp 2x"
+        media="(prefers-color-scheme: dark)">
+    <link rel="preload" as="image" imagesrcset="
+        ../images/site-logo-sm.webp 1x,
+        ../images/site-logo-lg.webp 2x"
+        media="not (prefers-color-scheme: dark)">
+
+<check if="{{ @isHomePage }}">
+    <link rel="preload" as="image" imagesrcset="
+        ../images/Site-hero-360x480-80.webp 360w, 
+        ../images/Site-hero-390x520-80.webp 390w, 
+        ../images/Site-hero-720x960-50.webp 720w, 
+        ../images/Site-hero-780x1040-50.webp 780w" imagesizes="100vw" media="(max-width: 575.98px)">
+
+    <link rel="preload" as="image" imagesrcset="
+        ../images/Site-hero-768x614-80.webp 768w, 
+        ../images/Site-hero-1024x819-80.webp 1024w, 
+        ../images/Site-hero-1536x1229-50.webp 1536w, 
+        ../images/Site-hero-2048x1638-50.webp 2048w" imagesizes="100vw" media="(min-width: 576px) and (max-width: 1199.98px)">
+
+    <link rel="preload" as="image" imagesrcset="
+        ../images/Site-hero-1349x691-80.webp 1349w, 
+        ../images/Site-hero-1423x729-80.webp 1423w, 
+        ../images/Site-hero-1583x811-80.webp 1583w, 
+        ../images/Site-hero-1903x975-80.webp 1903w,
+        ../images/Site-hero-2543x1303-80.webp 2543w" imagesizes="100vw" media="(min-width: 1200px)">
+        
+</check>
+    <script src="{{ @schemeHost }}/js/main.min.js?{{ @cacheUpdate }}" defer></script>
+
+    <meta name="color-scheme" content="light dark">
+
+    <style>
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #12161a;
+            }
+        }
+    </style>
+
+    <link href="{{ @schemeHost }}/css/style.min.css?{{ @cacheUpdate }}" rel="stylesheet">
+
+<check if="{{ @pageCSS }}">
+    <include href="{{ @pageCSS }}" />
+</check>
+
+    <script>
+        var ieCSS;
+        var ieJS;
+
+        if (navigator.userAgent.indexOf("MSIE") > -1 || navigator.userAgent.indexOf("Trident") > -1) {
+            ieCSS = document.createElement("link");
+            ieCSS.rel = "stylesheet";
+            ieCSS.href = "../css/ie_overrides.min.css";
+            document.getElementsByTagName("head")[0].appendChild(ieCSS);
+            ieJS = document.createElement("script")
+            ieJS.src = "../js/ie_overrides.js";
+            
+            if (document.addEventListener) {
+                window.addEventListener("load", function() {
+                    document.body.appendChild(ieJS);
+                });
+            } else {
+                document.attachEvent("load", function() {
+                    document.body.appendChild(ieJS);
+                });
+            }
+        }
+    </script>
+
+    <!-- Favicon / Mobile icons -->
+    <link rel="icon" href="{{ @schemeHost }}/favicon.ico" sizes="any"><!-- 32×32 -->
+    <link rel="icon" href="{{ @schemeHost }}/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{{ @schemeHost }}/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="manifest" href="{{ @schemeHost }}/manifest.webmanifest">
+    
+    <script>
+        /*to prevent Firefox FOUC*/
+        var FF_FOUC_FIX;
+    </script>
+
+</head>

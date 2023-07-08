@@ -1,0 +1,169 @@
+        <header id="{{ @loadID(@mainMenu,0) }}" class="w-100 mx-auto">
+            <div class="header-fixed-background">
+                <div class="header-background hide-for-ie">
+                    <picture>
+                        <!-- monitors - no hi-density -->
+                        <source srcset="
+                            ../images/Site-hero-1349x691-80.webp 1349w,
+                            ../images/Site-hero-1423x729-80.webp 1423w,
+                            ../images/Site-hero-1583x811-80.webp 1583w,
+                            ../images/Site-hero-1903x975-80.webp 1903w,
+                            ../images/Site-hero-2543x1303-80.webp 2543w" 
+                            sizes="100vw" type="image/webp" media="(min-width: 1200px)"
+                            width="1349" height="691">
+        
+                        <!-- tablets - 1x and 2x -->
+                        <source srcset="
+                            ../images/Site-hero-768x614-80.webp 768w,
+                            ../images/Site-hero-1024x819-80.webp 1024w,
+                            ../images/Site-hero-1536x1229-50.webp 1536w,
+                            ../images/Site-hero-2048x1638-50.webp 2048w" sizes="100vw" type="image/webp" 
+                            media="(min-width: 576px)" width="768" height="614">
+        
+                        <!-- smart phones -->
+                        <source srcset="
+                            ../images/Site-hero-360x480-80.webp 360w,
+                            ../images/Site-hero-390x520-80.webp 390w,
+                            ../images/Site-hero-720x960-50.webp 720w,
+                            ../images/Site-hero-780x1040-50.webp 780w" sizes="100vw" type="image/webp" 
+                            width="360" height="432">
+                        <img src="../images/Site-hero-1024x525.jpg" alt="Worker(s) erecting steel for a new building" loading="eager" decoding="sync">
+                    </picture>
+                </div>
+                <div id="content" class="header-text text-center">
+                    <h1>
+                        <span class="h3">Constructing a website with</span><br>
+                        <span class="">Bootstrap 5 <br class="d-sm-none"> and the <br class="d-sm-none"> Fat‑Free Framework</span>
+                    </h1>
+                    <a class="github-link btn btn-outline-dark btn-lg" href="https://github.com/RichDeBourke/simple-f3-bootstrap-5-multi-lang-site" role="button">查看
+                        GitHub
+                        上的代码
+                    </a>
+                </div>
+                <div class="hide-for-ie">
+                    <a href="https://www.flickr.com/photos/timobeamo/9029364224/in/album-72157634089791347/" class="attribution" title="Image used under a 2.0 Creative Commons license">Image: Timo Goodrich, Flickr</a>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <h2>中文内容/翻译说明 | Chinese content / Translation note</h2>
+                        <p>本站的中文和韩文版本只是为了演示多语言功能。 英文版是唯一包含所有内容的版本。</p>
+                        <p>此页面是使用Google Translate从英文版本翻译而来演示中文版本。 尚未检查翻译的准确性或正确性。</p>
+                        <p>The Chinese and Korean versions of this site are just to demonstrate multi-language functionality. The English version is the only version with all of the content.</p>
+                        <p>This page was translated from the English version using Google Translate to demonstrate a Chinese version. The translation has not been checked for accuracy or correctness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+                    <div class="col mb-4">
+                        <div class="card h-100 p-3">
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                <h2 class="card-title text-center">学习</h2>
+                            </div>
+                            <div class="text-center card-img-top mt-3">
+                                <picture>
+                                    <source srcset="../images/home-card-learn-dark.webp, ../images/home-card-learn-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                                    <source srcset="../images/home-card-learn.webp, ../images/home-card-learn-lg.webp 2x" type="image/webp">
+                                    <img src="../images/home-card-learn.png" alt="学习——三本编程教科书的计算机生成图形" width="180" height="180" loading="lazy">
+                                </picture>
+                            </div>
+                            <div class="card-body h-100">
+                                <p>我建立了这个网站，以获得Bootstrap 5和Fat-Free Framework的体验。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="card h-100 p-3">
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                <h2 class="card-title text-center">Bootstrap 5</h2>
+                            </div>
+                            <div class="text-center card-img-top mt-3">
+                                <picture>
+                                    <source srcset="../images/home-card-bootstrap-dark.webp, ../images/home-card-bootstrap-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                                    <source srcset="../images/home-card-bootstrap.webp, ../images/home-card-bootstrap-lg.webp 2x" type="image/webp">
+                                    <img src="../images/home-card-bootstrap.png" alt="Bootstrap – Bootstrap 标志" width="180" height="180" loading="lazy">
+                                </picture>
+                            </div>
+                            <div class="card-body h-100">
+                                <p>Bootstrap是用于构建响应式网站的流行前端框架。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="card h-100 p-3">
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                <h2 class="card-title text-center">Fat-Free Framework</h2>
+                            </div>
+                            <div class="text-center card-img-top mt-3">
+                                <picture>
+                                    <source srcset="../images/home-card-fatfree-dark.webp, ../images/home-card-fatfree-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                                    <source srcset="../images/home-card-fatfree.webp, ../images/home-card-fatfree-lg.webp 2x" type="image/webp">
+                                    <img src="../images/home-card-fatfree.png" alt="无脂肪——无脂肪标志" width="180" height="180" loading="lazy">
+                                </picture>
+                            </div>
+                            <div class="card-body h-100">
+                                <p>Fat-Free排名前十的PHP框架。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="{{ @loadID(@mainMenu,1) }}" role="main">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-8 col-lg-6">
+                            <h2>概观</h2>
+                            <p>使用 WordPress 或其他内容管理系统 (CMS) 创建具有专业外观的网站很容易，但如果您希望您的网站看起来与普通主题略有不同，则必须自定义设计。 这可能会变得复杂。 （我发现直接修改 HTML 代码比修改 WordPress 主题更容易。）</p>
+                            <p>如果您正在创建电子商务网站，或需要用户登录，那么 WordPress 是一个不错的选择，因为它包含您需要的安全性。</p>
+                            <p>但是，如果您需要与用户进行的最复杂的交互是联系表单，并且您希望使用共享模板、干净的 URL、自动语言选择以及站点设计中的更多灵活性来构建页面，那么此处演示的设置可能是一个很好的解决方案 .</p>
+                            <p>我在详细信息部分提供了有关如何设置站点的说明，并且我的所有文件都在<a href="https://github.com/RichDeBourke/simple-f3-bootstrap-5-multi-lang-site">GitHub上</a>。</p>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section id="{{ @loadID(@mainMenu,2) }}">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <h2>Bootstrap</h2>
+                        <p><a href="https://getbootstrap.com/" title="访问 Bootstrap 网站了解更多信息">Bootstrap 框架提供了</a>一个响应式网格，可以在不同的显示尺寸之间进行调整，并且由于它的流行，互联网上有大量的代码片段可用。</p>
+                        <p>2021 年，Bootstrap 发布了该框架的第 5 版，它利用了 CSS 属性，例如变量 (<code>--sc-navbar-bg: #0024a7;</code>)、计算函数 (<code>width: calc(100% - 80px);</code>)，以及许多 伪类（<code>:is(section, article, aside, nav)</code>）。 CSS 变量对于支持 <a href="https://getbootstrap.com/docs/5.3/customize/color-modes/" title="支持颜色模式的新 Bootstrap 版本">Bootstrap 5.3</a> 中的暗模式特别有用。</p>
+                        <p>在切换到使用较新的 CSS 属性时，Bootstrap 放弃了对不支持这些属性的 Microsoft Internet Explorer (IE) 的支持。 对 IE 的支持变得不那么重要了，因为在 2022 年，微软终止了对 IE 的支持，并在 2023 年第一季度开始在某些版本的 Windows 10 上<a href="https://techcommunity.microsoft.com/t5/windows-it-pro-blog/internet-explorer-11-desktop-app-retirement-faq/ba-p/2366549" title="微软IE公告">永久禁用 Internet Explorer</a>。</p>
+                        永久禁用 Internet Explorer
+                        <p>在全球范围内，仍有超过 8000 万个运行 Windows 7 或 Windows XP 的桌面系统可能正在使用 Internet Explorer。 对于需要支持这些用户的站点，<a href="https://getbootstrap.com/docs/4.6/getting-started/introduction/" title="Bootstrap 4 文档">Bootstrap 4</a> 仍然可用。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="{{ @loadID(@mainMenu,3) }}">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <h2>Fat-Free</h2>
+                        <p>虽然<a href="https://fatfreeframework.com/" title="Visit Fat-Free&rsquo;s website for more information">Fat-Free</a>不是最<a href="http://www.ifourtechnolab.com/blog/top-10-free-php-frameworks-of-2018-for-web-development" title="Article on the top 10 free PHP frameworks of 2018 for web development">流行的PHP框架</a>（可能是<a href="https://laravel.com/" title="Visit Laravel&rsquo;s website for more information">Laravel</a>） ，但它确实适用于共享主机方案（Laravel<a href="https://coderseye.com/best-php-frameworks-for-web-developers/#What_are_the_Top_Rated_PHP_Frameworks_of_2018" title="Review of PHP frameworks">不能</a>，至少不容易），而Fat-Free被认为具有快速的学习曲线</p>
+                        <p>我正在使用的主要无脂组件是：</p>
+                        <ul>
+                            <li class="mb-3"><strong>路由引擎</strong> &ndash; 将用户的请求路由到适当的控制功能。</li>
+                            <li class="mb-3"><strong>模板引擎</strong> &ndash; 将HTML模板与存储在Fat-Free的“hive”中的数据相结合，内存中的数组以键/值对的形式保存变量，以形成网页。</li>
+                            <li class="mb-3"><strong>多语言支持</strong> &ndash; Fat-Free通过使用键/值对的字典查找功能支持多种语言。 每种语言的字典文件都位于dict目录中，Fat-Free根据模板中的标记和LANGUAGE设置从字典文件中选择所需的语言字符串。<ul>
+                                    <li>我对所有页面中相同的内容（例如，滚动到顶部按钮）或对所有语言都有共同且文本有限的页面（例如，联系页面）使用无Fat语言支持。</li>
+                                </ul></li>
+                            <li class="mb-3"><strong>语言检测</strong> Fat-Free从用户的<code>GET</code>请求中捕获<code>Accept-Language</code>字符串，用于在用户请求根目录时选择适当的语言子目录 。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    

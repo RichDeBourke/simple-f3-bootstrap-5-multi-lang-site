@@ -1,0 +1,58 @@
+    <nav class="navbar fixed-top navbar-expand-md ">
+        <div class="container-lg">
+            <a id="logo" class="navbar-brand" href="{{ @schemeHost }}{{ @langSubdirectory.'_home' | alias }}">
+                <picture>
+                    <source srcset="{{ @schemeHost }}/images/site-logo-sm-dark.webp, {{ @schemeHost }}/images/site-logo-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                    <source srcset="{{ @schemeHost }}/images/site-logo-sm.webp, {{ @schemeHost }}/images/site-logo-lg.webp 2x" type="image/webp">
+                    <img class="d-inline-block align-top w-auto" src="{{ @schemeHost }}/images/site-logo-sm.png" alt="{{ @dictLogoAltText }}" width="188" height="62" loading="eager">
+                </picture>
+            </a>
+            <button class="navbar-toggler hide-for-ie" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-navbar" aria-controls="offcanvas-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="visually-hidden">({{ @dictMenuToggle }})</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="offcanvas offcanvas-md offcanvas-end flex-grow-1 px-4" id="offcanvas-navbar" tabindex="-1" aria-labelledby="bdNavbarOffcanvasLabel" data-bs-focus="false">
+                <div class="offcanvas-header justify-content-between">
+                    <p class="offcanvas-title text-white h5" id="bdNavbarOffcanvasLabel">Site Construction</p>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body pt-2 pt-md-0">
+                    <div id="main-nav" class="nav navbar-nav justify-content-end flex-grow-1">
+<check if="{{ @isHomePage }}"><true>
+    <repeat group="@mainMenu" key="@slug" value="@title">
+                    <a class="nav-link" href="#{{ @slug }}"><span data-bs-dismiss="offcanvas">{{ @title }}</span></a>
+    </repeat>
+    </true>
+    <false>
+    <repeat group="@mainMenu" key="@slug" value="@title">
+                    <a class="nav-link" href="{{ @schemeHost }}{{ @langSubdirectory.'_home' | alias }}#{{ @slug }}"><span data-bs-dismiss="offcanvas">{{ @title }}</span></a>
+    </repeat>
+    </false>
+</check>
+                        <div class="nav-item dropdown">
+                            <button class="btn btn-link nav-link dropdown-toggle border-0{{ @isDetailPage ? ' active' : ''  }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ @dictNavDetails }}
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end slide-in">
+<repeat group="@dropdownMenu" key="@slug" value="@title">
+                                <a class="dropdown-item offcanvas-menu-item{{ substr(urldecode(@PATH),4) === @slug ? ' active' : '' }}"{{ substr(urldecode(@PATH),4) === @slug ? ' aria-current="page"' : '' }} href="{{ @schemeHost }}/{{ @langSubdirectory }}/{{ @slug }}"><span data-bs-dismiss="offcanvas">{{ @title }}</span></a>
+</repeat>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown navbar-nav lang-dropdown hide-for-ie">
+                <button class="btn btn-link nav-link dropdown-toggle border-0" type="button" id="navbarDropdownLanguageMenu" data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{ @dictNavLanguage }}">
+                    <span class="flag-icon flag-icon-lg flag-icon-{{ @langSubdirectory }}"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-start dropdown-menu-md-end slide-in">
+<repeat group="@languageLinks" value="@link">
+                    <a class="dropdown-item {{ @link[1]===@langSubdirectory ? ' current-language' : '' }}" href="{{ @schemeHost }}{{ @link[0] | alias }}">
+                        <span class="flag-icon flag-icon-{{ @link[1] }}"></span>{{ @link[3] }}</a>
+</repeat>
+                </div>
+            </div>
+        </div>
+    </nav>

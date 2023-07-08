@@ -1,0 +1,60 @@
+    <div id="overlay"></div>
+    
+    <a href="#top" id="scroll-to-top" title="{{ @dictScrollTitleValue }}" aria-label="{{ @dictScrollTitleValue }}">
+        <svg viewBox="0 0 116 116">
+            <style>
+                rect {
+                    fill: #0024a7;
+                }
+                 @media (prefers-color-scheme: dark) {
+                    rect {
+                        fill: #808080;
+                    }
+                }
+            </style>
+            <rect x="0" y="0" width="116" height="116" rx="15" ry="15"
+                fill-opacity="0.5" ></rect>
+            <polyline points="20 80, 58 40, 96 80" fill="none" stroke="#fff"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="10"
+                stroke-miterlimit="10" ></polyline>
+        </svg>
+    </a>
+    
+    <footer class="footer text-white mt-auto py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 about-site">
+                    <h2 class="text-center">{{ @dictFooterHeading1 }}</h2>
+                    <p>{{ @dictFooterContent1 | raw }}</p>
+                </div>
+                <div class="col-12 col-md-4 order-md-first about-me">
+                    <h2 class="text-center">{{ @dictFooterHeading2 }}</h2>
+                    <p>{{ @dictFooterContent2 | raw }}</p>
+                </div>
+                <div class="col-12 col-md-4 contact">
+                    <h2 class="text-center">{{ @dictFooterHeading3 }}</h2>
+                    <p>{{ @dictFooterContent3a | raw }}<span>
+                        <script>
+                            var name = "{{ @emailName | raw }}";
+                            var host = "{{ @emailHost | raw }}";
+                            var linktext;
+                            var subject = "?subject=Inquiry%20via%20Website";
+                            linktext = name + "&#64;" + host + subject;
+                            document.write('<a class="email break-all" title="{{ @dictFooterContent3c | raw }}" href="' + 'mai' + 'lto:' + linktext + '">' + name + "&#64;" + host + '</a>');
+                        </script>
+                    </span>{{ @dictFooterContent3b | raw }}</p>
+                </div>              
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3 terms-link">
+                    <p class="text-center mb-0"><a href="{{ @schemeHost}}{{ @langSubdirectory.'_termsx' | alias }}" title="{{ @dictFooterTermsTitle }}">{{ @dictFooterTerms}}</a></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3 ie-copyright">
+                    <!-- To get the date, the F3 template engine accepts the PHP date function -->
+                    <p class="m-0 text-center small">&copy; {{ date('Y') === @yearBuilt ? @yearBuilt : @yearBuilt.'~'.date('Y')  }} &ndash; <a href="https://www.sbwfc.co.kr" title="{{ @dictFooterCopyrightTitle }}">{{ @siteOwner }}</a></p>
+                </div> 
+            </div>  
+        </div>
+    </footer>

@@ -1,0 +1,30 @@
+    <div class="ie-warning show-for-ie" aria-hidden="true">
+        <p>Our site does not support Microsoft Internet Explorer. We apologize for the inconvenience.</p>
+    </div>
+
+<check if="{{ @pageContent=='terms.html' }}">
+<false>    <!-- EU Cookie Notice Modal -->
+    <div class="modal fade hide-for-ie" id="euCookieModal" tabindex="-1" aria-labelledby="euCookieModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title fs-5 h1" id="euCookieModalLabel">{{ @dictNoticeEUcookie1 }}</p>
+                </div>
+                <div class="modal-body">
+                    <p>{{ @dictNoticeEUcookie2 | raw }}</p>
+                    <p>{{ @dictNoticeEUcookie3 | raw }}</p>
+                    <p>{{ @dictNoticeEUcookie4a | raw }}<a href="{{ @schemeHost }}{{ @langSubdirectory.'_termsx' | alias }}" title="{{ @dictNoticeEUcookie4b }}">{{ @dictNoticeEUcookie4c }}</a>{{ @dictNoticeEUcookie4d }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cookie-accept" class="btn btn-success" title="{{ @dictNoticeEUcookie5a }}">{{ @dictNoticeEUcookie5b }}</button>
+                    <button type="button" id="btn-cookie-opt-out" class="btn btn-danger" title="{{ @dictNoticeEUcookie6a }}">{{ @dictNoticeEUcookie6b }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</false>
+</check>
+    <a id="skippy" class="visually-hidden-focusable hide-for-ie" href="#content">
+        <span class="skiplink-text">{{ @dictNoticeSkipLink }}</span>
+    </a>
+

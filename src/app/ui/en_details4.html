@@ -1,0 +1,182 @@
+        <header id="content" class="detail-first-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h1>Putting the pages together</h1>
+                        <p>The Fat-Free Framework pulls together template files to create the pages:</p>
+                        <ul>
+                            <li><a href="#layout" class="same-page-link">layout.html</a> &ndash; primary template that pulls in the other templates:<ul>
+                                <li><a href="#head" class="same-page-link">head.html</a> &ndash; the HTML head section &ndash; same template for all pages</li>
+                                <li><a href="#notifications" class="same-page-link">notifications.html</a> &ndash; conditional text for unsupported browser (i.e. Internet Explorer) &amp; the EU cookie notice &ndash; same template for all pages</li>
+                                <li><a href="#navigation" class="same-page-link">navigation.html</a> &ndash; logo and navbar &ndash; same template for all pages</li>
+                                <li><a href="#page-content" class="same-page-link"><em>content</em>.html</a> &ndash; page content and layout is supplied in these files (each page has a unique content file with a <em>unique file name</em>)</li>
+                                <li><a href="#footer" class="same-page-link">footer.html</a> &ndash; same template for all pages</li>
+                                <li><a href="#script" class="same-page-link">scripts.html</a> &ndash; same template for all pages</li>
+                            </ul></li>
+                            <li><a href="#sitemap" class="same-page-link">sitemap.xml</a></li>
+                        </ul>
+                        <p>The head, notifications, navigation, and script sections are all generic and receive their information from the Fat-Free <em>hive</em> via the controllers (data is stored before calling layout.html). The footer content is supplied from the dict files (it&rsquo;s the same content, just translated). The content sections are specific to each page.</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="layout">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h2>layout template</h2>
+                        <p>The layout template sets up the html page and calls the other templates:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html>
+&lt;html lang="&#123;&#123; @langCode &#125;&#125;" id="top" class="h-100" prefix="og: http://ogp.me/ns#"
+itemscope itemtype="http://schema.org/WebPage">
+
+&lt;include href="head.html" />
+&lt;body id="page-top" class="d-flex flex-column h-100"
+    &#123;&#123; @isHomePage ? ' data-bs-spy="scroll" data-bs-target="#main-nav"
+        data-bs-root-margin="0px 0px -40%"' : '' &#125;&#125;
+    &#123;&#123; @isHomePage ? 'data-sc-page-type="home"' :
+        (@isContactPage ? 'data-sc-page-type="contact"' :
+        (@isTermsPage ? 'data-sc-page-type="terms"' :
+        (@isErrorPage ? 'data-sc-page-type="error"' :
+        'data-sc-page-type="detail"'))) &#125;&#125;>
+&lt;include href="notifications.html" />
+&lt;include href="navigation.html" />
+
+&lt;include href="&#123;&#123; @pageContent &#125;&#125;" />
+    
+&lt;include href="footer.html" />
+&lt;include href="script.html" />
+&lt;/body>
+&lt;/html></code></pre>
+                        <p>Layout includes the setup for Bootstrap 5&rsquo;s Scrollspy for the home page, and adds a data attribute to identify the page type (home, contact, terms, error, or detail). The page type is used for page-specific JavaScript functions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="head">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h2>head template</h2>
+                        <p>The head template sets up:</p>
+                        <ul>
+                            <li>dns-prefetch for Google Analytics</li>
+                            <li>Site meta data</li>
+                            <li>Google analytics</li>
+                            <li>Preload the hero image</li>
+                            <li>Loading the main JavaScript file using <code>defer</code></li>
+                            <li>Loading the CSS files</li>
+                            <li>Loading the icons</li>
+                        </ul>
+                        <p>The dns-prefetch contacts the Domain Name System to obtain the IP address to download the Google Analytics JavaScript file, <em>if</em> analytics is enabled. Doing a dns-prefetch <em>does not</em> make contact with the Google server, so there is no violation of the user&rsquo;s privacy. The Google Analytics JavaScript file is only loaded if the user has accepted cookies.</p>
+                        <p>For the home page, the appropriate hero image is loaded using preload with imagesrcset, imagesizes, and media attributes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="notifications">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h2>notifications template</h2>
+                        <p>The notifications template has a notice for Internet Explorer, the EU cookie/privacy notice, and the skip-link:</p>
+                        <ul>
+                            <li>IE: Displays a notice that the site does not support Internet Explorer although the content is visible.</li>
+                            <li>EU cookie/privacy: Notice to comply with the European requirement to let users know that the site uses cookies. The notice includes a way to opt-out of Google Analytics and a link to the Terms of Use/Privacy page.</li>
+                            <li>Skip-link: Link for users that are navigating with the tab key to skip over the navigation links and go directly to the content (for accessibility).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+           
+        <section id="navigation">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h2>navigation template</h2>
+                        <p>The navigation template works for four types of pages:</p>
+                        <ul>
+                            <li>Home page: https://www.mysite.com/<wbr>en/home &ndash; has a single page structure</li>
+                            <li>Detail pages: https://www.mysite.com/<wbr>en/fatfree &ndash; have a multiple page structure</li>
+                            <li>Terms page: the Terms of use page</li>
+                            <li>Error pages: 404 and 5XX pages &ndash; the directory will vary</li>
+                        </ul>
+                        <p>All addresses (href and src) use absolute links as it avoids any problem with being in the wrong directory for a relative link to work (e.g. the 404 response page).</p>
+                        <p>One complication – when on the home page, the home page links need to be in the form <code>href=&quot;#overview&quot;</code> (just the page links). They can&rsquo;t be <code>href=&quot;../en/home#overview&quot;</code> or <code>href=&quot;https://www.mysite.com/en/home#overview&quot;</code> as Bootstrap 4&rsquo;s <a href="https://getbootstrap.com/docs/4.1/components/scrollspy/" title="Bootstrap 4 Scrollspy component">Scrollspy</a> seems to have a problem with anything other than just the page link. When on any other page, the home page links should be absolute links in the form <code>href=&quot;https://www.mysite.com/en/home#overview&quot;</code>.</p>
+                        <p>My solution is to set in index.php a hive variable, <code>schemeHost</code>, for the scheme and the host together (e.g. http:// <em>and</em> www.mysite.com) that I use for links to things like CSS files and images, and I assemble that value with the langSubdirectory variable (set in the language controllers) to form a base address for the language pages. When assembling addresses for the home pages, I use the isHomePage flag to control how the addresses are handled.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h2><em>content</em> templates</h2>
+                        <p>For most sites, data is in a database. For a website with five pages in three languages that won&rsquo;t change much, a database seems like overkill. Using files is a simpler solution, with the primary place for information being a unique content template for each page.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="footer">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h2>footer template</h2>
+                        <p>The footer includes:</p>
+                        <ul>
+                            <li>Transition overlay to darken the screen (or lighten in dark mode) to indicate something is happening after clicking a menu link to another page.</li>
+                            <li>Scroll-to-top button</li>
+                            <li>Three footer sections (About this site, Contact, and About me) &ndash; the content for the sections comes from the language dictionary.</li>
+                            <li>Link to the Terms of Use &ndash; the address for the related language terms page is assembled in the footer template. (<em>Note: As I use the English terms page for all three languages, the routes.ini file points to the same controller, but it could be different</em>.)</li>
+                            <li>Copyright notice &ndash; the notice uses a PHP function to compare the current year to the yearBuilt value in config.ini for echoing the copyright string (using a function eliminates the need to update the copyright string each New Year&rsquo;s Eve).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="script">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h2>script template</h2>
+                        <p>The script template loads any additional JavaScript files that are not used on every page, such as the code highlighter.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sitemap">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h2>sitemap template</h2>
+                        <p>The sitemap is based on the route aliases. To not include pages in the sitemap (e.g. the contact pages), I add an x to the end of the route name (e.g. en_contactx) and filter out those routes from Fat-Free&rsquo;s ALIASES variable before passing the route names and paths to the sitemap template.</p>
+
+                        <p>The sitemap template loops through each route name, using an anonymous function connected to a framework variable to get the date the content template for that route was last modified.</p>
+                        <p>The anonymous function to get the file date:</p>
+<pre><code class="language-php">$f3-&gt;set(&apos;fdate&apos;,
+    function($fileName) {
+        if (file_exists(&apos;app/ui/&apos;.$fileName.&apos;.html&apos;)) {
+            return date (&apos;Y-m-d&apos;, filemtime(&apos;app/ui/&apos;.$fileName.&apos;.html&apos;));
+            } else {
+                return &apos;Error&apos;;
+            }
+    }
+);</code></pre>
+                        <p>Calling the function from the sitemap template:</p>
+<pre><code class="language-php">&lt;lastmod&gt;&#123;&#123; @fdate(@route_name) &#125;&#125;&lt;/lastmod&gt;</code></pre>
+                        <p>For each route, the template loops through the array of languages from config.ini and generates a list of all of the alternate languages for that route (including the route itself per <a href="https://support.google.com/webmasters/answer/189077?visit_id=0-636678457351003097-4051720032&rd=1" title="Google info from Webmaster forum">Google&rsquo;s information on sitemaps</a>).</p>
+                        <p>The sitemap control function is in the UtilitiesController rather than the CommonPageController as the sitemap function calls its own instance for the Fat-Free Framework render function.</p>
+                        <p><em>Note: Google (and other search engines) will be able to locate the pages I&rsquo;m leaving off of the sitemap as there will be links to those pages in the navigation menu and the footer, but as those pages all have the tag</em> <code>&lt;meta name="robots" content="noindex,nofollow"&gt;</code><em>, Google will not index those pages. (Google is polite about complying with the robots meta tag, but not all search engines may be as nice.)</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>

@@ -1,0 +1,46 @@
+/* Styles for contact page */
+$sc-contact-error-color: #d14;
+$sc-contact-error-color-dark: #FFA1A1;
+
+.contact-us {
+    --sc-contact-error: #{$sc-contact-error-color};
+    margin-top: 0;
+    padding: 6rem 0;
+    background-clip: content-box;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    flex-shrink: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .contact-us {
+        --sc-contact-error: #{$sc-contact-error-color-dark};
+    }
+    .form-control {
+        background-color: #{$sc-sub-level-bg-dark};
+    }
+}
+
+.contact-card-block {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.contact-error, .contact-count-alert {
+	color: var(--sc-contact-error);
+}
+
+.contact-required {
+	color: var(--sc-contact-error);
+    font-size: 2rem;
+    line-height: 0.5rem;
+    vertical-align: middle;
+}
+
+.characters-remaining {
+    float: right;
+    margin-top: -0.75rem;
+}

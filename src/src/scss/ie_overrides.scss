@@ -1,0 +1,74 @@
+// Override styles for Internet Explorer
+$ie-warning-yellow: #fdf2ab;
+$gray-500: #adb5bd;
+
+body.d-flex {
+    display: block !important;
+}
+
+.show-for-ie {
+    display: block;
+}
+
+.hide-for-ie {
+    display: none;
+}
+
+#skippy {
+    display: none;
+}
+
+.ie-warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: medium;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    background-color: $ie-warning-yellow;
+    border-bottom: solid 1px $gray-500;
+    z-index: 100;
+}
+
+.ie-warning p {
+    display: table;
+    margin: 0 auto;
+    margin-bottom: 0 !important;
+    line-height: 48px !important;
+    padding-left: 32px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAP1BMVEXGAADdZEf1zpLYUEjJCQfLFA4AAAD98qv////fcE/omoLRMCj++vrheXn54p/vs37yxMT67Ozgcl/22dnqpKR9wlXlAAAAsElEQVQoz43S2w6EIAwE0Cm02gUVRf//W7dI1PWyifNkctKMbUD7J3gBJEJPQLDQHZIUkHSFgYFxBHi4gAeyagb8GRJDJtVJwOkEVrBo0+hiNb+QGV4LqAfnAxyD5wqzfbodItBrBe2BuEFgxG6DLoJDhcGaR91AbRkZVqC1eYfSTwVcXeFIWcYZSG0+Jkq/tLCjcneGzu5GsIGglwQbwXrtewT0DGR/9XmIe/UYzvkCIZEN+VfxBfgAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+
+body {
+    padding-top: 56px;
+}
+
+section {
+    background-color: white;
+}
+
+.fixed-top {
+    position: relative;
+}
+
+.nav-link {
+    padding: 8px;
+}
+
+.dropdown-menu-end {
+    right: 0;
+}
+
+.header-text {
+    position: relative;
+    top: 0;
+}
+
+footer {
+    color: white;
+}

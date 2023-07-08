@@ -1,0 +1,137 @@
+header {
+    position: relative;
+    padding-top: 3.375rem;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+header.detail-first-section {
+    padding-top: 6rem;
+    padding-bottom: 4.5rem;
+}
+
+.header-background {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 2560px;
+    max-height: calc(100vh - 76px);
+
+    & img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.header-text {
+	display: block;
+	color: #000000;
+    position: absolute;
+    top: 6rem;
+    left: 0;
+    width: 100%;
+    & h1 {
+        padding: 0 1rem;
+    }
+}
+
+header .btn-outline-dark {
+    margin-top: 0.5rem;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.attribution {
+	position: absolute;
+	left: 0.5rem;
+	bottom: 1rem;
+	color: #{$md-full-white-text};
+	font-size: 0.75rem;
+	border: 1px solid #{$md-full-white-text};
+	border-radius: 1rem;
+	background-color: rgba(0,0,0,0.54);
+    padding: 0 0.5rem;
+    z-index: 20;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    &:hover {
+        color: #{$md-strong-white-text};
+    }
+}
+
+.small-logo .attribution {
+    opacity: 0;
+}
+
+@include media-breakpoint-up(sm) {
+    .github-link {
+		margin-top: 1rem;
+        white-space: pre-line;
+	}
+}
+
+@include media-breakpoint-up(md) {
+    header {
+        padding-top: 3.75rem;
+    }
+
+    .header-background {
+        max-height: calc(100vh - 82px);
+    }
+	
+}
+
+@include media-breakpoint-up(xl) {
+    .header-background {
+        height: 51.24vw;
+        max-height: calc(100vh - 60px);
+
+        & img {
+            position: fixed;
+            z-index: -1;
+            
+        }
+    }
+    .github-link {
+		margin-top: 1rem;
+        white-space: normal;
+        line-height: 1.25rem;
+	}
+}
+
+@media (min-width: 2560px) {
+    .header-background {
+        width: 2543px;
+        height: 1303px;
+
+        & img {
+            width: 2543px;
+        }
+    }
+}
+
+@include color-mode(dark) {
+    .header-background img {
+        filter: brightness(0.5);
+    }
+
+    .header-text {
+        color: #fff;
+    }
+
+    header .btn-outline-dark {
+        color: #fff;
+        background-color: #24282c;
+        border-color: #000;
+    }
+
+    header .btn-outline-dark:hover {
+        background-color: #2f3337;
+        border-color: #24282c;
+    }
+
+    header .btn-outline-dark:not(:disabled):not(.disabled):active {
+        color: #fff;
+        background-color: #2f3337;
+        border-color: #24282c;
+    }
+}

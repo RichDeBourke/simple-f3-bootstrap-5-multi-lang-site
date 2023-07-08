@@ -1,0 +1,68 @@
+/* skippy for skipping navbar and go direct to the content */
+#skippy {
+    z-index: 1085;
+    position: absolute;
+    display: block;
+    padding: 1em;
+    color: #fff;
+    background-color: $dark;
+    outline: 0;
+
+    .skiplink-text {
+        padding: .5em;
+        outline: 1px dotted;
+    }
+}
+
+// overlay to darken (or lighten) the screen when switching to a different URL to show something is happening.
+#overlay {
+    position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 98;
+    transition: opacity .25s ease-out;
+}
+
+@include color-mode(dark) {
+    #overlay {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+}
+
+#overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#scroll-to-top {
+	position: fixed;
+	right: 32px;
+	bottom: 32px;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out, bottom 0.25s ease-in-out;
+	width: 3.625rem;
+    height: 3.615rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+    border-radius: 8px;
+    z-index: 20;
+}
+
+/* Button focus fix (Bootstrap changes the focus indicator to a shadow) */
+
+.navbar .btn:focus-visible {
+    outline: auto;
+    box-shadow: none;
+}
+
+.ms-5rem {
+    margin-left: 5rem;
+}
+
+.break-all {
+    word-break: break-all;
+}

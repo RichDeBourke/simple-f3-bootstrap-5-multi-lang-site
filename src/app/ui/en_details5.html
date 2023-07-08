@@ -1,0 +1,668 @@
+    <header id="content" class="detail-first-section">
+        <div class="container">
+            <div class="row  justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h1>Site details</h1>
+                    <p>Things that make the site better:</p>
+                    <ul>
+                        <li><a class="same-page-link" href="#sitemap">Sitemap generation</a></li>
+                        <li><a class="same-page-link" href="#fonts">Fonts</a></li>
+                        <li><a class="same-page-link" href="#social">Social networking support</a></li>
+                        <li><a class="same-page-link" href="#scroll-button">Scroll-to-top button</a></li>
+                        <li><a class="same-page-link" href="#reduced-motion">Prefers reduced motion</a></li>
+                        <li><a class="same-page-link" href="#dark-mode">Dark mode</a></li>
+                        <li><a class="same-page-link" href="#overlay-image-carousel">Overlay image carousel</a></li>
+                        <li><a class="same-page-link" href="#images">Images</a></li>
+                        <li><a class="same-page-link" href="#hero-img">Hero image</a></li>
+                        <li><a class="same-page-link" href="#user-tracking">Privacy, IP addresses, and Google analytics</a></li>
+                        <li><a class="same-page-link" href="#email-obfuscation">Email obfuscation</a></li>
+                        <li><a class="same-page-link" href="#contact-page">Contact page</a></li>
+                        <li><a class="same-page-link" href="#error-pages">Error response pages</a></li>
+                        <li><a class="same-page-link" href="#highlighter">Syntax highlighter</a></li>
+                        <li><a class="same-page-link" href="#language-flags">Language flags</a></li>
+                        <li><a class="same-page-link" href="#ie-support">Internet Explorer support</a></li>
+                        <li><a class="same-page-link" href="#firefox">Firefox flash of unstyled content</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="sitemap">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Sitemap</h2>
+                    <p>The sitemap is generated dynamically through the Fat-Free Framework and includes xhtml:links for alternate language information.</p>
+                    <p>To make the sitemap more readable, I include an XSL stylesheet based on one from <a href="https://github.com/pedroborges/xml-sitemap-stylesheet" title="XML sitemap stylesheet by Pedro Borges">GitHub</a>.</p>
+                    <!-- The stylesheet is provided under an MIT license - the license is referenced in the style sheet -->
+                    <p>I provide alternate language (hreflang) information only in the sitemap. Previously, I had also included hreflang links in the page head sections, but the major search engines, <a href="https://support.google.com/webmasters/answer/2620865" title="Google international sitemap help">Google</a>, <a href="https://webmaster.yandex.ru/blog/15326" title="Yendex support for multilingual sites">Yendex</a>, and <a href="https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a" title="Bing Webmaster Guidelines">Bing</a> support hreflang links in the sitemap, so there is no point in using both (wastes bandwidth to include the links on every page). The Chinese search engine, Baidu, <a href="https://martinkura.com/baidu-international-websites-hreflang-geographic-target-meta-language-tag/" title="Baidu only focuses on Mandarin Chinese websites">focuses on Chinese websites</a> (sites where the primary language for <em>the domain</em> is Chinese, not just sub-folders), so they&rsquo;re not a concern. The value of a Chinese hreflang is so the other search engines know there is a Chinese site available (i.e. there are pages with the lang attribute on the html tag set to zh-CN).</p>
+                    <p>x-default &ndash; I haven&rsquo;t designated one page as the x-default version as x-default appears <a href="https://moz.com/learn/seo/hreflang-tag" title="General Targeting with x-default">to be used</a> to designate a page with multiple languages or a <a href="https://productforums.google.com/forum/#!topic/webmasters/L0g73tLsHvA" title="Correct usage of hreflang=x-default">language selection page</a>.</p>
+                    <p>One complication for creating XML files is some servers are configured to use short tags &ndash; <code>&lt;?</code> in place of <code>&lt;?php</code>. This causes the server to misinterpret the first part of an <code>&lt;?xml</code> tag as being for PHP rather than XML. Some servers will accept the command, <code>php_flag short_open_tag on</code>, in the .htaccess file, and others (like this site&rsquo;s server) want <code>short_open_tag = Off</code> added to a Custom php.ini section in the Environment section.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fonts">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Fonts</h2>
+                    <p>I use system fonts for displaying most of the text (I use a system monospaced font for code samples). System fonts are the fonts the operating system uses for displaying text, so they work well with the device and users are generally comfortable with the font. System fonts are specified by using the <a href="https://caniuse.com/font-family-system-ui" title="system-ui value for font-family is supported by most modern browsers (not IE)">system-ui</a> font-family value. The main advantage for using system fonts is the fonts are already present on the device, so there is no waiting for an external font to download.</p>
+                    <h3>San Serif font</h3>
+                    <pre><code class="language-css">body {
+    font-family: system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}</code></pre>
+                    <div class="table-responsive">
+                        <table class="font-table ms-5 mb-5">
+                            <tr>
+                                <th>Font</th>
+                                <th>System</th>
+                            </tr>
+                            <tr>
+                                <td>system-ui</td>
+                                <td>Default system font</td>
+                            </tr>
+                            <tr>
+                                <td>Segoe UI</td>
+                                <td>Windows</td>
+                            </tr>
+                            <tr>
+                                <td>Roboto</td>
+                                <td>Android</td>
+                            </tr>
+                            <tr>
+                                <td>Helvetica</td>
+                                <td>Older Apple versions</td>
+                            </tr>
+                            <tr>
+                                <td>Arial</td>
+                                <td>Older Windows</td>
+                            </tr>
+                            <tr>
+                                <td>sans-serif</td>
+                                <td>generic fallback</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h3>Monospaced font</h3>
+                    <pre><code class="language-css">body {
+    font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+        "Roboto Mono", "Courier New", monospace;
+}</code></pre>
+                    <div class="table-responsive">
+                        <table class="font-table ms-5 mb-5">
+                        <tr>
+                            <th>Font</th>
+                            <th>System</th>
+                        </tr>
+                        <tr>
+                            <td>ui-monospace</td>
+                            <td>Default system font (Apple only)</td>
+                        </tr>
+                        <tr>
+                            <td>Menlo</td>
+                            <td>Older Apple devices</td>
+                        </tr>
+                        <tr>
+                            <td>Monaco</td>
+                            <td>Older Apple devices</td>
+                        </tr>
+                        <tr>
+                            <td>"Cascadia Mono"</td>
+                            <td>Newer Windows</td>
+                        </tr>
+                        <tr>
+                            <td>"Segoe UI Mono"</td>
+                            <td>Windows</td>
+                        </tr>
+                        <tr>
+                            <td>"Roboto Mono"</td>
+                            <td>Android</td>
+                        </tr>
+                        <tr>
+                            <td>"Courier New"</td>
+                            <td>Older Windows</td>
+                        </tr>
+                        <tr>
+                            <td>monospace</td>
+                            <td>generic fallback</td>
+                        </tr>
+                        </table>
+                    </div>
+                    <h3>Google Noto fonts</h3>
+                    <p>I previously used Google fonts, but as an EU court (<a class="same-page-link" href="#user-tracking" title="See the section on IP address privacy for information on the EU decision">see below for more information</a>) has ruled against sharing users&rsquo; IP addresses with third-parties (such as Google fonts), I stopped.</p>
+                    <p>It is possible to self-host fonts from Google. Fonts, such as the Noto family of fonts, which includes fonts for Chinese, Japanese, and Korean (CJK) characters, are available under a <a href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL" title="SIL license page">SIL International Open Font License</a>. The problem is the stylesheets. Many of the fonts have been subsetted (broken into a number of files, referenced by character Unicode values). The separate font files and the stylesheets with the unicode-range make it possible for a browser to download just the font files needed for a webpage. Those font files and stylesheets are only available from Google&rsquo;s font API (they are not included under the Open Font License).</p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="social">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Social networking</h2>
+                    <p>Social networking sites and apps check how a page should be referenced if someone shares a link to the page.</p>
+                    <h3>Open Graph</h3>
+                    <p>Most social networking apps support Open Graph:</p>
+                    <ul>
+                        <li>og:type &ndash; website</li>
+                        <li>og:title &ndash; page title with the company name</li>
+                        <li>og:description &ndash; description of the page content
+                        <li>og:url &ndash; URL for the current page</li>
+                        <li>og:site_name &ndash; the name of the site</li>
+                        <li>og:image &ndash; image when displaying a link to this page (keeps messaging apps from grabbing the logo to use as the representative image for the site) &ndash; recommended size is 1200px by 630px, but should look good when scaled down to 250px by 128px</li>
+                        <li>og:image &ndash; second image, 400px by 400px, for applications that prefer a square image</li>
+                    </ul>
+                    <h3>Twitter Card</h3>
+                    <p>Twitter has their own set of tags:</p>
+                    <ul>
+                        <li>twitter:card &ndash; defines the type of card (Twitter has four types, <em>Summary</em>, <em>Summary with large image</em>, <em>Player card</em>, and <em>App card</em> &ndash; Summary is the best type for a business website)</li>
+                        <li>twitter:description &ndash; description of the page content
+                        <li>twitter:title &ndash; title for the page</li>
+                        <li>twitter:image &ndash; Twitter includes a 144x144 image when displaying a tweet that references the page</li>
+                        <li>twitter:site &ndash; Twitter address for the company (@twittername) &ndash; this is optional</li>
+                    </ul>
+                    <p>Note: I&rsquo;m using the page title and description variables (&#123;&#123; &#64;siteOwner &#125;&#125; – &#123;&#123; &#64;pageTitle &#125;&#125; &amp; &#123;&#123; &#64;pageDescription &#125;&#125;) for the social network / twitter title and description. If a different title and/or description is desired, it would be easy to add separate variables to the page controller.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="scroll-button">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Scroll-to-top button</h2>
+                    <p>I provide a button in the lower-right portion of the page that is displayed after the page has scrolled past the header section. If the button is clicked or tapped, it will scroll the page back to the top.</p>
+                    <p>After the page scrolls back to the top, focus is applied to the page using JavaScript, which enables a keyboard user to navigate the page from the beginning.</p>
+                    <pre><code class="language-js">doc.documentElement.tabIndex = 0;
+doc.documentElement.focus();</code></pre>
+                    <p>I include the tabIndex line for the documentElement as it&rsquo;s needed for <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=467043" title="Chrome bug report on applying focus to the html element">Chrome</a>. Firefox doesn&rsquo;t require the extra step, but it doesn&rsquo;t hurt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reduced-motion">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Prefers reduced motion</h2>
+                    <p>Prefers reduced motion is a system setting (for Windows, it is the <em>Show animations in Windows</em> setting and for Mac, it is the <em>Reduce Motion</em> setting) to aid people who are afflicted with vestibular disorders and could experience problems with animated content. When reduced motion is enabled, CSS transition/animation effects are disabled or overridden.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dark-mode">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Dark mode</h2>
+                    <p>More than 80% of smartphone users, according to <a href="https://earthweb.com/how-many-people-use-dark-mode/" title="How Many People Use Dark Mode in 2022?,">one website</a>,  use dark mode, and these users expect websites to have a dark theme. While 80% seems high, it is clear that sites do need to consider having two modes, light and dark.</p>
+                    <p>I&rsquo;ve implemented dark mode by using CSS custom properties (variables). CSS custom properties wasn&rsquo;t an option before as Internet Explorer did not support them. Now that Microsoft is no longer supporting Internet Explorer, there is less of a need to fully support the older browser. For more details on how I&rsquo;m implementing dark mode, please see the <a href="{{ @schemeHost }}{{ 'en_details1' | alias }}#dark-mode" title="Dark mode implementation details">Dark mode section</a> on the Bootstrap 5 details page.</p>
+                    <h3>Dark mode design</h3>
+                    <p>I've based my dark mode design on Google&rsquo;s Material Design concept &mdash; starting from a dark gray background (#121212) and use increasingly lighter shades of gray for secondary <em>surfaces</em> (e.g. dropdown menus). While Material Design suggests pure grays, I&rsquo;ve gone with a more steel-blue color (#16191c).</p>
+                    <h3>Color scheme</h3>
+                    <p>I include a meta element in the head that specifies the color scheme that tells the browser how to style scrollbars to match the page display.</p>
+                    <pre><code class="language-html">&lt;meta name="color-scheme" content="light dark">
+</code></pre>
+                    <h3>Dark mode switch</h3>
+                    <p>A number of websites (including Bootstrap) provide a switch for users to switch between light and dark modes (with the page using local storage to remember the user&rsquo;s selection for their next visit). I don&rsquo;t think a switch is needed unless a page has the potential for users to visit multiple times and the users need to interact with the page (not just read information). The user has already made their preference for light or dark mode known, through the setting in the OS.</p>
+                    <h3>Dark mode favicon</h3>
+                    <p class="mb-1">Favicons are important for a website as they&rsquo;re used for identifying the site on the:</p>
+                    <ul>
+                        <li>Page tab</li>
+                        <li>Favorites menubar &amp; dropdown</li>
+                        <li>Address bar</li>
+                    </ul>
+                    <p>If there are more than ten or fifteen tabs open in a browser, the title in the tab becomes shorter, making the favicon the primary way to visually locate a tab.</p>
+                    <p>In light mode, the color for tabs (active, idle, or hover) and for bookmark lists runs from white (#ffffff) to a light-gray (#d6d6d6). In dark mode, the colors run from #444547 to #1c1b22. Designing a favicon that works well against light <em>and</em> dark backgrounds and matches with the site branding is not easy.</p>
+                    <p>The original favicon for this site was a person wearing a hardhat (in keeping with the construction theme). The hardhat was black and the person was yellow with a black outline. This works with light backgrounds, but isn&rsquo;t as good against dark backgrounds</p>
+                    <p><img class="border border-medium" src="../images/Favicon-ico-background-comparison.png" width="256" height="64" alt="Original favicon on different backgrounds" loading="lazy"></p>
+                    <p>To have the icon more visible against light and dark backgrounds, I changed the outline from black (#000000) to gray (#808080) in the favicon.ico file.</p>
+                    <p><img class="border border-medium" src="../images/Favicon-ico-background-comparison-gray.png" width="256" height="64" alt="Favicon using a gray outline for better visibility against dark backgrounds" loading="lazy"></p>
+                    <p>For browsers that use an SVG favicon file (i.e., modern browsers except Safari), I provide a favicon.svg file that has two versions, one with a black outline and one with a white outline for light and dark mode.</p>
+                    <p><img class="border border-medium" src="../images/Favicon-ico-background-comparison-both.png" width="256" height="64" alt="SVG favicon showing better visibility against light and dark backgrounds" loading="lazy"></p>
+                    <h3>Touch icons</h3>
+                    <p>I include touch icons for Apple &amp; Android mobile devices. While most users will likely not save the site to their home screen, I like having the option available (especially for company employees if it&rsquo;s a business website).</p>
+                    <p><img src="../apple-touch-icon.png" width="128" height="128" alt="Example of a touch icon for use on a mobile device" loading="lazy"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="overlay-image-carousel">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Overlay image carousel</h2>
+                    <p>I have a <a href="{{ @schemeHost }}{{ 'en_details2' | alias }}#structure-carousel-container" title="Overlay image slider for the site structure">Bootstrap image carousel</a> using transparent overlays positioned over a background graphic of the site&rsquo;s structure. The site structure graphic is positioned <code>absolute</code> and the carousel is position <code>relative</code>.</p>
+                    <p>I use transparent graphics to reduce the total file size of the images. While this does use five images (one background graphic and four overlays) at a total of 24.5kb, it is smaller than four solid images, which would be around 72kb.</p>
+                    <p>Bootstrap&rsquo;s standard is to fade up the new slide&rsquo;s opacity while keeping the prior slide at full opacity, and then switch the prior slide&rsquo;s opacity to 0. This works for solid images, but not for transparent overlays.</p>
+                    <p>To have both the prior and new slides fading at the same time, I override the transition for the prior slide from <code>transition: opacity 0s .6s;</code> (0.6 second delay and 0 second transition time) to <code>transition: .6s</code> (no delay) so the prior content fades to 0 at the same rate the new content fades to 1.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="images">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Images</h2>
+                    <p>I use a combination of WebP and, to reduce number of server requests, inline SVG and Base64 encoded PNG images. I do provide JPEG and PNG files as backup images for browsers that do not support WebP formats.</p>
+                    <p>For creating images, I use <a href="https://www.gimp.org/" title="Free and Open Source Image Editor">GIMP</a>, a free &amp; open source image editor. When saving images in WebP format, I use lossless, 100% quality for graphic images, lossy, 80% quality for photographs to be displayed at standard resolution, and lossy, 50% quality for photographs to be displayed at high resolution (2X or greater pixel density).</p>
+                    <p>I use a picture element that specifies the image file to use for light or dark mode and for standard and high resolutions.</p>
+                    <pre><code class="language-html">&lt;picture>
+    &lt;source srcset="../images/home-card-learn-dark.webp,
+        ../images/home-card-learn-lg-dark.webp 2x"
+        type="image/webp" media="(prefers-color-scheme: dark)">
+    &lt;source srcset="../images/home-card-learn.webp,
+        ../images/home-card-learn-lg.webp 2x" type="image/webp">
+    &lt;img src="../images/home-card-learn.png"
+        alt="Learning – computer generated graphic of three textbooks on programming"
+        width="180" height="180" loading="lazy">
+&lt;/picture></code></pre>
+                    <p>SVG images are included either in the HTML file or in the CSS file. Some image files are included in the CSS file as <a href="http://freeonlinetools24.com/base64-image" title="Online image-to-base64 converter">Base64</a> files (e.g. the flag icons for the language selector). Embedding the image files makes them available as soon as the page is loaded.</p>
+                    <p>Images that normally do not show when the page is first loaded have the loading attribute set to <code>lazy</code>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+                            
+    <section id="hero-img">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Hero image</h2>
+                    <p>Having a large image (<em>a hero image</em>) is a popular front page design.</p>
+                    <p>The problems with a hero image is the file size is large (hero images usually take up the most of the browser window) and it takes a while for the browser to recognize it needs an image and then to request the image from the server. While the image is being downloaded, the browser displays an empty space (just the background color). Even worse, if the image is a CSS background image (which seems to be the most common method for hero images) rather than an embedded image, browsers will request it later in the load cycle, increasing the time the empty space is shown.</p>
+                    <p>To reduce the delay for showing an image:</p>
+                    <ul>
+                        <li>Preload the image:<ul>
+                            <li>Use a preload link in the head section to download the appropriate image.</li>
+                            <li class="pb-3"><em>I preload the hero and logo images to avoid any delay in their being displayed.</em></li>
+                        </ul></li>
+                        <li>Reduced the image file size:<ul>
+                            <li>WebP file types &ndash; WebP are smaller than PNG and JPEG images (AVIF files are even smaller, but Microsoft Edge does not, as yet, support the file type, <a href="https://stackoverflow.com/a/75513738/1011984" title="Stackoverflow answer on AVIF files">reportedly due to a licensing issue</a>).</li>
+                            <li>Provide different image sizes &ndash; use the <code>picture</code> element to source different image sizes and formats:<ul>
+                                <li>Provide different images for smartphones, tablets, and laptop / monitors. </li>
+                                <li>Provide different sizes based on generally available display sizes.<ul>
+                                    <li><em>There is a tool, <a href="https://ausi.github.io/respimagelint/" title="Bookmarklet for checking a webpage's images">RespImageLint</a> &ndash; Linter for Responsive Images that can be used to evaluate the images on a webpage, although you do need to use your own judgement as to what recommendations you should follow.</em></li>
+                                </ul></li>
+                            </ul></li>
+                        </ul></li>
+                    </ul>
+                    
+                    
+                    <p><code>preload</code> in the head gives the browser the available image files from which to select the file to load:</p>
+                    <pre><code class="language-html">&lt;link rel="preload" as="image" imagesrcset="
+    ../images/Site-hero-360x480-80.webp 360w, 
+    ../images/Site-hero-390x520-80.webp 390w, 
+    ../images/Site-hero-720x960-50.webp 720w, 
+    ../images/Site-hero-780x1040-50.webp 780w"
+    imagesizes="100vw" media="(max-width: 575.98px)">
+
+&lt;link rel="preload" as="image" imagesrcset="
+    ../images/Site-hero-768x614-80.webp 768w, 
+    ../images/Site-hero-1024x819-80.webp 1024w, 
+    ../images/Site-hero-1536x1229-50.webp 1536w, 
+    ../images/Site-hero-2048x1638-50.webp 2048w"
+    imagesizes="100vw" media="(min-width: 576px) and (max-width: 1199.98px)">
+
+&lt;link rel="preload" as="image" imagesrcset="
+    ../images/Site-hero-1349x691-80.webp 1349w, 
+    ../images/Site-hero-1423x729-80.webp 1423w, 
+    ../images/Site-hero-1583x811-80.webp 1583w, 
+    ../images/Site-hero-1903x975-80.webp 1903w,
+    ../images/Site-hero-2543x1303-80.webp 2543w"
+    imagesizes="100vw" media="(min-width: 1200px)"></code></pre>
+                    <p>And <code>srcset</code> lists the same images for the browser to select which image to display:</p>
+                    <pre><code class="language-html">&lt;picture>
+&lt;!-- monitors - no hi-density -->
+&lt;source srcset="
+    ../images/Site-hero-1349x691-80.webp 1349w,
+    ../images/Site-hero-1423x729-80.webp 1423w,
+    ../images/Site-hero-1583x811-80.webp 1583w,
+    ../images/Site-hero-1903x975-80.webp 1903w,
+    ../images/Site-hero-2543x1303-80.webp 2543w" 
+    sizes="100vw" type="image/webp" media="(min-width: 1200px)"
+    width="1349" height="691">
+
+&lt;!-- tablets - 1x and 2x -->
+&lt;source srcset="
+    ../images/Site-hero-768x614-80.webp 768w,
+    ../images/Site-hero-1024x819-80.webp 1024w,
+    ../images/Site-hero-1536x1229-50.webp 1536w,
+    ../images/Site-hero-2048x1638-50.webp 2048w" sizes="100vw" type="image/webp" 
+    media="(min-width: 576px)" width="768" height="614">
+
+&lt;!-- smart phones -->
+&lt;source srcset="
+    ../images/Site-hero-360x480-80.webp 360w,
+    ../images/Site-hero-390x520-80.webp 390w,
+    ../images/Site-hero-720x960-50.webp 720w,
+    ../images/Site-hero-780x1040-50.webp 780w" sizes="100vw" type="image/webp" 
+    width="360" height="432">
+&lt;img src="../images/Site-hero-1024x525.jpg"
+    alt="Worker(s) erecting steel for a new building"
+    loading="eager" decoding="sync">
+&lt;/picture></code></pre>
+                    <p>The largest supported display size is 2560 x 1440. On a larger monitor, such as a 3440 x 1440, the hero image's width will be fixed at 2543px. The max width of navbar and footer content is set by the max-width of the Bootstrap container &ndash; 1320px.</p>
+                    <p><em>Note: The hero image used on the demo site is used under a Creative Commons license. The image used for the <a href="https://github.com/RichDeBourke/simple-f3-bootstrap-5-multi-lang-site" title="Demo source files on GitHub">GitHub</a> files is a graphic to emulate the image.</em></p>
+                    <h3>Hero image and modals</h3>
+                    <p>When Bootstrap displays a modal, it disables the scrollbars for the page by adding <code>overflow: hidden</code> and <code>padding-right</code> to the body. <em>The amount of padding depends on the browser.</em></p>
+                    <p>This additional space can cause an image set to <code>width: 100%</code> to expand. If the <code>is-fixed</code> class is added to the image, Bootstrap adds <code>padding-right</code> to the image, which stops the image from changing size.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="user-tracking">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Privacy and tracking users</h2>
+                    <p>The European Union&rsquo;s General Data Protection Regulation (GDPR) defines how internet users&rsquo; personal data is to be handled by organizations that have European offices as well as non-European organizations that target European users for free or paid goods or services.</p>
+                    <p>You should consult with your legal advisor on whether or not you need a cookie notice, a <a href="{{ @schemeHost}}{{ @langSubdirectory.'_termsx' | alias }}" title="The privacy statement for this site">privacy statement</a>, and/or a way for users to opt-out of tracking.</p>
+                    <h3>IP address privacy</h3>
+                    <p>In 2016, the Court of Justice of the European Union held that, in certain circumstances, <a href="https://curia.europa.eu/juris/document/document.jsf?text=&docid=184668&pageIndex=0&doclang=EN&mode=lst&dir=&occ=first&part=1&cid=1328710" title="Court judgement on InfoCuria">IP addresses are personal data</a>.</p>
+                    <p>This was followed in early 2022 by a decision from a <a href="https://www.theregister.com/2022/01/31/website_fine_google_fonts_gdpr/" title="Website fined by German court for leaking visitor's IP address via Google Fonts">court in Munich</a> that linking to a third-party without prior consent, such as to Google to use Google fonts, violated the EU privacy law.</p>
+                    <p>Based on the prohibition against sharing a user&rsquo;s IP address, I have:</p>
+                    <ul>
+                        <li>switched from using Google fonts to using system fonts;</li>
+                        <li>switched from sourcing framework and library files (i.e. Bootstrap and jQuery JavaScript) from content delivery networks (i.e. cdnjs) to self-hosting the files;</li>
+                        <li>and switched to downloading the JavaScript file for Google Analytics only if the user has agreed to accept tracking cookies.</li>
+                    </ul>
+                    <h3>Google analytics</h3>
+                    <p>I use <a href="https://analytics.google.com/analytics/web/" title="Google Analytics homepage">Google Analytics</a> (along with <a href="https://search.google.com/search-console/about" title="What used to be Google Webmaster Tools and is now Google Search Console">Google Search Console</a>) to understand how my sites are being used. Previously, to enable users to opt-out of their data being sent to Google, I used Google&rsquo;s <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/user-opt-out" title="Google Analytics User Opt-out">ga-disable cookie</a> method, <em>but</em> that method still required the browser to download a JavaScript file <em>from</em> Google to read the cookie that said whether the user had opted out or not. The browser was still sending the user&rsquo;s IP address to Google in order to get the JavaScript file.</p>
+                    <p>I switched from using Google&rsquo;s ga-disable cookie method to using either my own cookie or a sessionStorage value. When someone visits the site for the first time, they are presented with a cookie notice where they can either accept cookies (and allow the use of Google Analytics) or they can opt-out.</p>
+                    <p>If the visitor accepts the use of cookies (and the use of Google Analytics), I create a cookie, valid for one year, to record their choice. After that, when they visit the site, the page reads the cookie and does not display the cookie notice.</p>
+                    <p>If  the visitor rejects the use of cookies (and the use of Google Analytics), I store a value in sessionStorage to record their choice. After that, when the visitor views any other site page during the current browser session (the browser and the tab remain open), the pages will read the sessionStorage value and not display the cookie notice. If the visitor returns to the site in a different session, they will again be shown the cookie notice.</p>
+                    <p>To make this work, I use three JavaScript code components to manage user tracking. The first is in the head section of the page:</p>
+                    <pre><code class="language-php">var gaScript;
+var googleAnalyticsID = "UA-11155712-3";
+gaScript = document.createElement("script");
+gaScript.async = true;
+gaScript.src = "https://www.googletagmanager.com/gtag/js?id=UA-11155712-3";
+
+// Until Google Tagmanager has been loaded, this code will have no effect
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-11155712-3', { "anonymize_ip": true });
+
+if (document.cookie.indexOf("eu-cookie-notice=true") > -1) {
+    // User has accepted the terms, so load analytics (not opted out).
+    document.head.appendChild(gaScript);
+}</code></pre>
+                    <p>This code creates a script tag to load the Google Tag Manager JavaScript, and, if the user has previously accepted cookies, the script tag is appended to the page head. This code also sets up a dataLayer array for Google tag information. If the user has or does accept cookies, the tracking information will be sent to Google. If the user rejects tracking, the Google JavaScript will not be downloaded and the tracking information will never be sent.</p>
+                    <p>The second component is in the <a href="{{ @schemeHost }}/js/js-functions.js" target="_blank" title="JavaScript file - link opens in a new tab">js-functions</a> file and handles the cookie notice:</p>
+                    <pre><code class="language-php">// Show the EU cookie modal (if it's the first time to the site or a new session)
+if (document.cookie.indexOf("eu-cookie-notice") &lt; 0) { // no cookie
+    if (window.sessionStorage.getItem("eu-opt-out") !== "true") { // no session item
+        //Cookie not found and no current session, so show the modal
+        const options = {
+            "backdrop": "static",
+            "keyboard": false
+        };
+
+        // Don't show the modal on the terms page
+        // Don't show the modal on the terms page
+        if (typeof termsPage === "undefined") {
+            const euModal = new Modal(document.getElementById("euCookieModal"),
+                options);
+            euModal.show();
+        }
+
+        document.getElementById("btn-cookie-accept")
+            .addEventListener("click", function() {
+            let date = new Date();
+            date.setTime(date.getTime() + 31536000000);
+            document.cookie = "eu-cookie-notice=true;
+                expires=" + date.toGMTString() + ";path=/";
+            euModal.hide();
+        }, {
+            passive: true
+        });
+
+        document.getElementById("btn-cookie-opt-out")
+            .addEventListener("click", function() {
+            try {
+                window.sessionStorage.setItem("eu-opt-out", "true");
+            } catch (error) {
+                console.error(error);
+            }
+            euModal.hide();
+        }, {
+            passive: true
+        });
+    }
+}</code></pre>
+                    <p>This code checks whether a visitor is new to the site, and if so, shows a modal with information about the site using cookies and provides two buttons, one for the user to accept cookies and the other for the user to opt-out of tracking.</p>
+                    <p>Accepting cookies stores a cookie that the user has accepted, hides the notice, and triggers Google tracking for this visit. The cookie is good for one year, after which the user will need to reaccept cookies.</p>
+                    <p>Opting out of cookies stores a session variable that the user has opted out and hides the notice.</p>
+                    <p>The third JavaScript component is on the <a href="{{ @schemeHost}}{{ @langSubdirectory.'_termsx' | alias }}" title="The privacy statement for this site">Terms of Use</a> page, which includes privacy information and its own allow and opt-out buttons with JavaScript code:</p>
+                    <pre><code class="language-php">/* similar button functions as on the EU Cookie modal */
+document.getElementById("btn-cookie-accept").addEventListener("click", function() {
+    try {
+        let date = new Date();
+        date.setTime(date.getTime() + 31536000000);
+        document.cookie = "eu-cookie-notice=true;
+            expires=" + date.toGMTString() + ";path=/";
+        // Just in case the user had opted out, but has changed their mind.
+        window.sessionStorage.removeItem("eu-opt-out");
+        alert("Thank you for allowing us to learn how this site is being used");
+    } catch (error) {
+        console.error(error);
+    }
+}, {passive: true});
+
+document.getElementById("btn-cookie-opt-out").addEventListener("click", function() {
+    try {
+        window.sessionStorage.setItem("eu-opt-out", "true");
+        // Just in case the user previously accepted, but now wants to opt out,
+        // delete the cookie
+        document.cookie = "eu-cookie-notice=;
+            expires= Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+        alert("We will not track how you use our site.");
+    } catch (error) {
+        console.error(error);
+    }
+}, {passive: true});</code></pre>
+                    <p>The opt-out button stores a session variable that the user has opted out. If the cookie notice is visible, it is hidden, and if there was a cookie, it is removed.</p>
+                    <p>Tracking (and the associated cookies) are not applied to Internet Explorer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="email-obfuscation">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Email obfuscation</h2>
+                    <p>Including an email address on a webpage runs the risk that email spammers could harvest the address and start sending spam and phishing emails. To make it a little more difficult for spammers to harvest an email address, I obfuscate the address by:</p>
+                    <ul>
+                        <li>Encoding the email address using HTML entities &ndash; while a browser will convert HTML entities to their text equivalent (e.g. <span class="break-all">&amp;#103;&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#46;&amp;#99;&amp;#111;&amp;#109;</span> converts to <em>gmail.com</em>), a spammer would need to include the conversion step in their process.</li>
+                        <li>Assembling the email address using JavaScript &ndash; the spammer would need to visit a page on my site, process the page&rsquo;s JavaScript, <em>and then</em> look for an email address. This method won&rsquo;t stop a spammer, but it will require more work on their part.</li>
+                    </ul>
+                    <p>To include an email address in the pages, the address is defined in the <code>config.ini</code> file and then stored in Fat-Free&rsquo;s hive as HTML entities in the <code>Controller.php</code> file:</p>
+                    <pre><code class="language-php">From config.ini
+; address for displaying on the footer and for messages from the contact form
+contactAddress = "contact1@yourdomain.com"
+
+From Controller.php
+function loadEmail($f3) {
+    $email = preg_split('/[\s,]+/', $f3->get('contactAddresses'))[0];
+    $email = preg_split('/[@]+/',$email);
+    $f3->set('emailName',mb_encode_numericentity($email[0],
+        array(0x000000, 0x10ffff, 0, 0xffffff), 'UTF-8'));
+    $f3->set('emailHost',mb_encode_numericentity($email[1],
+        array(0x000000, 0x10ffff, 0, 0xffffff), 'UTF-8'));
+}</code></pre>
+                    <p>The email information is added to the page using a <code>&lt;script></code> tag that uses <code>document.write</code> to add the code to the page.</p>
+                    <pre><code class="language-js">&lt;span>
+    &lt;script>
+        var name = "&#123;&#123; @emailName | raw &#125;&#125;";
+        var host = "{{ @emailHost | raw }}";
+        var linktext;
+        var subject = "?subject=Inquiry%20via%20Website";
+        linktext = name + "&#64;" + host + subject;
+        document.write('&lt;a class="email break-all"
+            title="&#123;&#123; @dictFooterContent3c | raw &#125;&#125;"
+            href="' + 'mai' + 'lto:' + linktext + '">' + name + "&#64;" + host + '&lt;/a>');
+    &lt;/script>
+&lt;/span></code></pre>
+                    <p>I use <code>var</code> rather than <code>const</code> so the email address will show in Internet Explorer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Contact page</h2>
+                    <h3>HTML form</h3>
+                    <p>The HTML form uses the <code>post</code> method to send contact requests to the server (to the same URL as the contact page). Each of the fields are set to <code>required="required"</code>, so the PHP controller should receive a full set of data.</p>
+                    <p>The contact page does validate the email address, but only to check that the address has a username, an asperand (the &#64; character) and a domain name. The browser does not check that the domain name includes both a top level domain (e.g. .com) and a domain name.</p>
+                    <p>JavaScript code on the contact page listens for the form submit event and uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/fetch" title="fetch() global function">fetch()</a> function to submit the form data and process the resulting JSON data from the server.</p>
+                    <p>A Bootstrap alert is used to display the status from the server in response to submitting the contact form (the alert is displayed using the Bootstrap collapse function).</p>
+                    <h3>PHP controller</h3>
+                    <p>The Fat-Free routes.ini file includes a <code>POST contact</code> route for each language. The routes connect to the UtilitiesController&rsquo;s <code>contactPost</code> function, which checks for three potential error conditions. Based on the results of the checks, the message is either sent via email to the site owner or rejected back to the user. For suspicious messages (potential hacking attempts), the IP and email addresses are recorded in a log file on the server.</p>
+                    <p>The checks are:</p>
+                    <ul>
+                        <li><strong>$inputFieldsValid</strong> &ndash; All four fields (name, email address, subject, and message) exist and have <em>some</em> content.<ul>
+                            <li><em>The browser shouldn&rsquo;t omit a field nor submit an empty field.</em></li>
+                            <li><em>If this occurs, the message will be rejected with the explanation: &ldquo;We experienced an unknown problem with submitting your message. Please send your request using our email address below.&rdquo;</em></li>
+                            <li><em>The user&rsquo;s submitted email and IP address will be recorded in a log file.</em></li>
+                        </ul></li>
+                        <li class="pt-3"><strong>$validEmailAddress</strong> &ndash; The email address is valid.<ul>
+                            <li><em>Uses Fat-Free&rsquo;s <a href="http://fatfreeframework.com/3.8/audit#email" title="email method">email audit</a> function, which uses </em>PHP&rsquo;s FILTER_VALIDATE_EMAIL<em> to verify the address is properly formed and </em>PHP&rsquo;s getmxrr<em> function to verify the hostname is valid (the function does not check whether the recipient&rsquo;s name is valid, just the host name).</em></li>
+                            <li><em>If the email address is invalid, the message will be rejected with the explanation: &ldquo;Our server is not able to process your email address as entered.&rdquo;</em></li>
+                            <li><em>The user&rsquo;s email address (after sanitizing) and IP address will be logged.</em></li>
+                        </ul></li>
+                        <li class="pt-3"><strong>$goodInputData</strong> &ndash; The name and subject do not contain malicious content (e.g. html tags).<ul>
+                            <li><em>The name and subject are checked for the text strings 'content-type', 'bcc:', 'to:', 'cc:', 'href', 'src=', and '&lt;'. If any of the listed strings are found, the strings are sanitized, the email message is sent with a flag in the subject line, and the email and IP addresses are logged.</em></li>
+                            <li><em>The body of the message is not checked, but it is sanitized using the PHP function</em> htmlspecialchars <em>before being sent.</em></li>
+                        </ul></li>
+                    </ul>
+                    <h3>Fat-Free SMTP</h3>
+                    <p>Contact messages are sent using Fat-Free&rsquo;s <a href="https://fatfreeframework.com/3.8/smtp#send" title="Fat-Free SMTP function">SMTP class</a> to send the contact information using <code>tls</code> (ssl wouldn't work with my host&rsquo;s current setup). The PHP mail function could also be used to email a contact request.</p>
+                    <h3>Logging unusual contact requests</h3>
+                    <p>As noted above, anytime there is something unusual with a contact request, the email address and the user&rsquo;s IP address (retrieved using <code>$f3->get('IP') function</code>) are saved to a log file so there is a record of possible issues.</p>
+                    <p>Logging the IP address does not go against the Privacy Terms as the terms state a user&rsquo;s info can be recorded if they contact us. I just can't share it with someone else.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="error-pages">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Error response pages</h2>
+                    <p>I created custom error pages for <a href="{{ @schemeHost }}/404" title="Page not found page" rel="nofollow">404 Page not found</a> and <a href="{{ @schemeHost }}/error" title="Error page" rel="nofollow">500 server errors</a> that fit with the theme of the site.</p>
+                    <p><em>And just for fun, the 404 page includes an animation while the error page includes scrolling text (as in &ldquo;I&rsquo;m busy checking the code at that very moment.&rdquo;)</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="highlighter">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        <h2>Syntax highlighter</h2>
+                        <p>I&rsquo;m using <a href="https://highlightjs.org/" title="Syntax highlighting for the Web">highlight.js</a> to highlight the code examples. Highlight.js&rsquo;s <a href="https://highlightjs.org/download/" title="Highlight.js download page">download page</a> builds a JavaScript file specific to the types of code to be highlighted, and includes all of the available CSS files in the download file (I went with the GitHub style with a few changes).</p>
+                        <p>The class names for the code types that I included in my build are:</p>
+                        <ul>
+                            <li>php</li>
+                            <li>apache</li>
+                            <li>http</li>
+                            <li>ini</li>
+                            <li>css</li>
+                            <li>xml</li>
+                            <li>javascript</li>
+                        </ul>
+                        <p>I did convert the Highlight.js CSS file to Sass so I could include it in the Sass build for the site.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+    <section id="language-flags">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Language flags</h2>
+                    <p>The websites I work with need two or more languages (at least English and Korean), which means a language switcher, and I wanted an indication near the top of the page that other languages are available (instead of in the footer).</p>
+                    <p>The easiest way to indicate the current language is to display a country flag (but be careful about implying that Taiwan or Hong Kong are countries). The source I use for flags is <a href="https://github.com/gosquared/flags" title="GitHub page for GoSquare">GoSquare&rsquo;s Flag Icon Set GitHub site</a>. GoSquare makes a complete set of flags available under the MIT license.</p>
+                    <p>I compressed the PNG files and converted them to Base64 so the images can be embedded in the CSS file as background images.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ie-support">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Internet Explorer support</h2>
+                    <p>There are people who still use Microsoft Internet Explorer. While Microsoft has started <a href="https://techcommunity.microsoft.com/t5/windows-it-pro-blog/internet-explorer-11-desktop-app-retirement-faq/ba-p/2366549" title="Microsoft IE announcement">permanently disabling Internet Explorer</a> on some versions of Windows 10, globally there are more than 80 million desktop systems running Windows 7 or Windows XP that may be using Internet Explorer.</p>
+                    <p>While Bootstrap 5 does not support Internet Explorer, it is possible to provide some functionality:</p>
+                    <ul>
+                        <li><strong>IE Notice</strong> &ndash; at a minimum, let users know that the site does not support IE.</li>
+                    </ul>
+                    <div class="ie-notice">
+                        <svg viewBox="0 0 24 20">
+                            <style>
+                                rect.notice {
+                                    fill: #000;;
+                                }
+                            </style>
+                            <polygon points="12 1.5, 22.5 18.5, 1.5 18.5" fill="#fff" stroke="#c60000"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                stroke-miterlimit="10" ></polygon>
+                            <polyline points="12 7, 12 13" stroke="#000" stroke-linecap="butt" stroke-width="2"></polyline>
+                            <rect class="notice" x="11" y="14" width="2" height="2"/>
+                        </svg>
+                        Our site does not support Microsoft Internet Explorer. We apologize for the inconvenience.
+                    </div>
+                    <ul class="mt-3">
+                        <li><strong>Add IE only CSS</strong> &ndash; I add a separate CSS file for IE that:
+                        <ul>
+                            <li>Shows content that is specific to IE (e.g. the IE notice)</li>
+                            <li>Hides content that is not necessary or doesn&rsquo;t work on IE</li>
+                            <li>Adds or changes styles to work with IE</li>
+                        </ul></li>
+                        <li><strong>Add IE only JavaScript</strong> &ndash; I add a separate JS file, <code>js/ie_overrides.js</code> for IE that enables dropdowns to work for IE11.</li>
+                    </ul>
+                    <p>Microsoft Edge&rsquo;s Internet Explorer mode can be used to check pages.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="firefox">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Firefox flash of unstyled content</h2>
+                    <p>I use the Firefox browser as I like its separate search bar. Firefox was showing a <em>flash of unstyled content (FOUC)</em> if I loaded the page with an empty cache. To fix the problem, I applied the hack from this <a href="https://stackoverflow.com/a/64158043/1011984">Stackoverflow answer</a> at the end of the head section to resolve the issue:</p>
+                    <pre><code class="language-css">&lt;script&gt;
+    /*to prevent Firefox FOUC*/
+    var FF_FOUC_FIX;
+&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>

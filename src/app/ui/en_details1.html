@@ -1,0 +1,401 @@
+    <header id="content" class="detail-first-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h1>Bootstrap 5</h1>
+                    <p>This site uses the general Bootstrap layout (i.e. navbar at the top and, with Bootstrap 5, off-canvas navigation).</p>
+                    <p>The site specific appearance is generated through Sass:</p>
+                    <ul>
+                        <li><a href="#sass-development" class="same-page-link">Development setup</a></li>
+                        <li><a href="#sass" class="same-page-link">Sass organization</a></li>
+                    </ul>
+                    <p>The site uses Bootstrap 5.3&rsquo;s dark mode using CSS variables.</p>
+                    <ul>
+                        <li><a href="#dark-mode" class="same-page-link">Dark mode</a></li>
+                    </ul>
+                    <p>Changes to Bootstrap 5:</p>
+                    <ul>
+                        <li><a href="#nav-changes" class="same-page-link">Nav changes</a></li>
+                        <li><a href="#modal-support" class="same-page-link">Modal support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="sass-development">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Development setup</h2>
+                    <p>For reference, I use the following for building Bootstrap/Fat-Free websites:</p>
+                    <p><strong>Windows PC</strong> &ndash; supports Chrome, Firefox, Edge, and Opera browsers. I borrow a Mac, iPhone, and iPad to test with Safari.</p>
+                    <p><strong>Microsoft Edge</strong> &ndash; I use Edge to review <a href="{{ @schemeHost }}{{ 'en_details5' | alias }}#ie-support" title="Partial support for Internet Explorer">site operation with Internet Explorer</a>.</p>
+                    <p>To use Edge to review pages in Internet Explorer:</p>
+                    <ol>
+                        <li>Open the page in Edge</li>
+                        <li>Reload the page in <a href="https://microsoftedgewelcome.microsoft.com/en-us/mb03?form=M10004&slide=ie-mode" title="Information on Edge needs to be opened with Edge">Internet Explorer mode</a> using Edge&rsquo;s menu or button</li>
+                        <li>To open IE&rsquo;s Developer Tools:
+                            <ol type="i">
+                                <li>Open the Run command window (hold down the Windows key and press R)</li>
+                                <li>Enter <span class="font-monospace fs-6">%systemroot%\system32\f12\IEChooser.exe</span></li>
+                                <li>Select which tab to use with Developer Tools</li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <p><strong>Samsung Galaxy smart&shy;phone</strong> &ndash; for testing mobile browsers. I use <a href="https://developer.android.com/studio/releases/platform-tools" title="Platform-Tools download site">SDK Platform-Tools</a> on my PC, which includes the Android Debug Bridge (adb) that connects Chrome on my PC to Chrome on my phone for <a href="https://developer.chrome.com/docs/devtools/remote-debugging/" title="Chrome developer tools site">Remote Debugging</a>.</p>
+                    <p><em>Note: The Android debug bridge needs to be started first by opening a command window, going to the platform-tools directory, and running</em> <code>adb devices</code><em>.</em></p>
+                    <p><strong><a href="http://www.wampserver.com/en/" title="WampServer website">WAMP software stack</a></strong> &ndash; localhost using Apache, MySQL, and PHP (I don&rsquo;t use the database) &ndash; Apache &amp; PHP are needed for Fat-Free.</p>
+                    <p><strong><a href="https://www.npmjs.com/" title="JavaScript Package Manager">Node.js / npm package manager</a></strong> &ndash; for installing packages (see the package.json file on GitHub for all of the packages):</p>
+                    <p><strong><a href="https://code.visualstudio.com/" title="Open source code editor">Visual Studio Code</a></strong> &ndash; (A.K.A. VS Code) for writing the code.</p>
+                    <p><strong><a href="https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass" title="Sass compiler for VS Code.">Live Sass Compiler</a></strong> &ndash; Glenn Marks&rsquo; VS Code extension for compiling Sass code into CSS during development. </p>
+                    <p><strong><a href="https://webpack.js.org/" title="Module bundler">Webpack 5</a></strong> &ndash; for bundling multiple JavaScript files into a single file and for compiling production versions of the Sass to CSS file (file size is smaller). The Webpack files are available on GitHub.</p>
+                    <h3>Development file structure</h3>
+                    <!-- https://www.htmlsymbols.xyz/box-drawing/light-lines -->
+                    <pre><code class="hljs language-plaintext">/
+&nbsp;&#9500;&#9472;&#9472; .vscode
+&nbsp;&#9500;&#9472;&#9472; app
+&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; ui
+&nbsp;&#9500;&#9472;&#9472; css
+&nbsp;&#9500;&#9472;&#9472; dict
+&nbsp;&#9500;&#9472;&#9472; js
+&nbsp;&#9500;&#9472;&#9472; images
+&nbsp;&#9500;&#9472;&#9472; lib
+&nbsp;&#9500;&#9472;&#9472; node_modules
+&nbsp;&#9500;&#9472;&#9472; src
+&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; js
+&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; sass
+&nbsp;&#9492;&#9472;&#9472; tmp</code></pre>
+                    <h3>Production file structure</h3>
+                    <pre><code class="hljs language-plaintext">/
+&nbsp;&#9500;&#9472;&#9472; app
+&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; ui
+&nbsp;&#9500;&#9472;&#9472; css
+&nbsp;&#9500;&#9472;&#9472; dict
+&nbsp;&#9500;&#9472;&#9472; js
+&nbsp;&#9500;&#9472;&#9472; images
+&nbsp;&#9492;&#9472;&#9472; tmp</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sass">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Sass organization</h2>
+                    <p>I use a common CSS file across all three languages I use for the site as the text can be displayed using a system <a href="{{ @schemeHost }}/en/details#fonts" title="Section on system fonts">font-family</a>. For Korean language pages, I set <code>word-break: keep-all;</code> using the lang attribute. I use only the Bootstrap Sass files that I need.</p>
+                    <pre><code class="language-css">style.scss
+
+    @import "../../node_modules/bootstrap/scss/functions";
+
+    // 2. Include any default variable overrides here
+    @import "../scss/site_variables";
+
+    // 3. Include remainder of required Bootstrap stylesheets (including any 
+        separate color mode stylesheets)
+    @import "../../node_modules/bootstrap/scss/variables";
+    @import "../../node_modules/bootstrap/scss/variables-dark";
+
+    // 4. Include any default map overrides here - not applicable
+
+    // 5. Include remainder of required parts
+    @import "../../node_modules/bootstrap/scss/maps";
+    @import "../../node_modules/bootstrap/scss/mixins";
+    @import "../../node_modules/bootstrap/scss/utilities";
+
+    // 6. Optionally include any other parts as needed
+    @import "../../node_modules/bootstrap/scss/root";
+    @import "../../node_modules/bootstrap/scss/reboot";
+    @import "../../node_modules/bootstrap/scss/type";
+    @import "../../node_modules/bootstrap/scss/images";
+    @import "../../node_modules/bootstrap/scss/containers";
+    @import "../../node_modules/bootstrap/scss/grid";
+    @import "../../node_modules/bootstrap/scss/forms";
+    @import "../../node_modules/bootstrap/scss/buttons";
+    @import "../../node_modules/bootstrap/scss/transitions";
+    @import "../../node_modules/bootstrap/scss/dropdown";
+    @import "../../node_modules/bootstrap/scss/nav";
+    @import "../../node_modules/bootstrap/scss/navbar";
+    @import "../../node_modules/bootstrap/scss/card";
+    @import "../../node_modules/bootstrap/scss/alert";
+    @import "../../node_modules/bootstrap/scss/list-group";
+    @import "../../node_modules/bootstrap/scss/close";
+    @import "../../node_modules/bootstrap/scss/modal";
+    @import "../../node_modules/bootstrap/scss/carousel";
+    @import "../../node_modules/bootstrap/scss/offcanvas";
+    @import "../../node_modules/bootstrap/scss/placeholders";
+
+    // Helpers
+    @import "../../node_modules/bootstrap/scss/helpers";
+
+    // 7. Optionally include utilities API last to generate classes 
+        based on the Sass map in `_utilities.scss`
+    @import "../../node_modules/bootstrap/scss/utilities/api";
+
+    // 8. Add additional custom code here
+    @import "../scss/site_styles";
+        @import "../scss/flag_icons";
+        @import "../scss/header";
+    @import "../scss/eu_cookie";
+    @import "../scss/utilities";
+    @import "../scss/ie_explorer";
+    @import "../scss/github";
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dark-mode">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Dark mode</h2>
+                    <p>Bootstrap 5.3 includes support for color modes (one of which can be dark mode) using either <code>data-bs-theme="dark"</code> attributes (Bootstrap&rsquo;s primary method) by setting <code>$color-mode-type: data;</code> in the SCSS file, or using <code>@media (prefers-color-scheme: dark)</code> media queries by setting <code>$color-mode-type: media-query;</code> in the SCSS file.</p>
+                    <pre><code>$color-mode-type: media-query;
+
+:root, [data-bs-theme=light] {
+    --bs-body-color: #212529;
+    --bs-body-bg: #fff;
+}
+
+@media (prefers-color-scheme: dark)
+:root {
+    --bs-body-color: #adb5bd;
+    --bs-body-bg: #212529;
+}
+
+@include color-mode(dark) {
+    .element {
+        color: var(--bs-body-color);
+        background-color: var(--bs-body-bg);
+    }
+}</code></pre>
+                    <p>I use the media queries method for setting the color mode as:</p>
+                    <ul>
+                        <li>I use media queries in picture / source tags (I&rsquo;m not sure how to select an image based on a parent&rsquo;s data attribute)</li>
+                        <li>I don&rsquo;t anticipate needing more than two themes (light &amp; dark)</li>
+                        <li>I want to use a visitor&rsquo;s preferred theme (light or dark), so being able to switch to a theme isn&rsquo;t necessary.</li>
+                    </ul>
+                    <h3>CSS variables</h3>
+                    <p>I override Bootstrap&rsquo;s standard colors by redefining the CSS variables:</p>
+                    <div class="table-responsive">
+                        <table class="sc-table fs-6">
+                            <thead>
+                                <tr>
+                                    <th>var</th>
+                                    <th colspan="2">Bootstrap</th>
+                                    <th colspan="2">Site Construction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mode</td>
+                                    <td>Light</td>
+                                    <td>Dark</td>
+                                    <td>Light</td>
+                                    <td>Dark</td>
+                                </tr>
+                                <tr>
+                                    <td>--bs-body-color</td>
+                                    <td>#212529;</td>
+                                    <td>#ADB5BD;</td>
+                                    <td>#212529;</td>
+                                    <td style="white-space: pre-line;">rgba(255, 255,
+                                        255, 0.6);</td>
+                                </tr>
+                                <tr>
+                                    <td>--bs-body-bg</td>
+                                    <td>#FFFFFF;</td>
+                                    <td>#212529;</td>
+                                    <td>#FFFFFF;</td>
+                                    <td>#16191C;</td>
+                                </tr>
+                                <tr>
+                                    <td>--bs-secondary-bg</td>
+                                    <td>#E9ECEF;</td>
+                                    <td>#343A40;</td>
+                                    <td>#E9ECEF;</td>
+                                    <td>#2F3337;</td>
+                                </tr>
+                                <tr>
+                                    <td>--bs-tertiary-bg</td>
+                                    <td>#F8F9FA;</td>
+                                    <td>#2B3035;</td>
+                                    <td>#F8F9FA;</td>
+                                    <td>#414549;</td>
+                                </tr>
+                                <tr>
+                                    <td>--bs-link-color</td>
+                                    <td>#0D6EFD</td> <!-- BS Light -->
+                                    <td>#6EA8FE;</td> <!-- BS Dark -->
+                                    <td>#0000EE;</td> <!-- SC Light -->
+                                    <td>#00D2FC;</td> <!-- SC Dark -->
+                                </tr>
+                                <tr>
+                                    <td>--bs-link-hover-color</td>
+                                    <td>#0A58CA;</td>
+                                    <td>#8BB9FE;</td>
+                                    <td>#0000EE;</td>
+                                    <td>#00D2FC;</td>
+                                </tr>
+                                <tr>
+                                    <td>--sc-link-visited-color</td>
+                                    <td colspan="2">Not defined</td>
+                                    <td>#551A8B;</td>
+                                    <td>#D8B1FA;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>When hovering, Bootstrap switches to a lighter color &ndash; I keep the color the same, and Bootstrap does not use a different color for links that have previously been visited.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nav-changes">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Nav changes</h2>
+                    <h3>Offcanvas modifications</h3>
+                    <p>Bootstrap 5 supports an <a href="https://getbootstrap.com/docs/5.3/components/navbar/#offcanvas">offcanvas drawer</a> that can be used for navigation using a hamburger-style button to display the navigation menu. Bootstrap does not automatically close the menu directly nor does it set focus to the destination for same-page links (offcanvas works fine for navigation if all of the links are to different pages).</p>
+                    <p><em>Note: For a single-page application, it would be best to always show the menu choices, rather than hiding them behind a hamburger-style button, but that&rsquo;s not always an option.</em></p>
+                    <p>I modified Bootstrap&rsquo;s setup to include:</p>
+                    <ul>
+                        <li>Closing the offcanvas menu when a same-page link is clicked:</li>
+                    </ul>
+                    <p class="ms-5">Bootstrap uses a toggle button on the navbar to open an offcanvas menu and there is a separate toggle button on the menu to close it.</p>
+                    <p class="ms-5">To close the menu when a same-page link is clicked, I add a <code>date-bs-dismiss="offcanvas"</code> attribute to the link in a <code>span</code> tag. Bootstrap ignores data attributes associated with an <code>&lt;a></code> tag, but it will process attributes associated with a <code>&lt;span></code> tag.</p>
+                    <pre class="ms-5"><code class="language-html">&lt;a class="nav-link active" href="#home">
+    &lt;span data-bs-dismiss="offcanvas">Home&lt;/span>
+&lt;/a></code></pre>
+                    <p class="ms-5">The <code>date-bs-dismiss="offcanvas"</code> attribute triggers Bootstrap to close the parent offcanvas element.</p>
+                    <p class="ms-5"><em>Note: It&rsquo;s also possible to close the menu using JavaScript by getting the offcanvas instance when a link is clicked. The instance can be used to hide the menu.</em></p>
+                    <ul>
+                        <li>Setting focus to the section a same-page link points to, rather than to the offcanvas toggle button:</li>
+                    </ul>
+                    <p class="ms-5">When an offcanvas component is closed, Bootstrap&rsquo;s default action is to return focus to the button that opened the component. This is the default behavior for modals, and offcanvas is based on Bootstrap&rsquo;s modal. This causes two problems:</p>
+                    <ol class="ms-5">
+                        <li class="mb-3">First is that, after the user has selected to move to a different position on the page, the tab position (for using the tab key) will not be associated with the new position. It will, instead, be pointing to the button for opening the menu.</li>
+                        <li>Second is that on Chromium based browsers (Google Chrome &amp; MS Edge), setting the focus to an element on the page terminates any scroll animations that are in process. Firefox will complete the scroll. (I do not have information on Safari.)</li>
+                    </ol>
+                    <p class="ms-5">To change what element is focused, I modified the offcanvas JavaScript source file to: 1) include a fourth config value (focus); and 2) move the on-end event handler (EventHandler.one is the function that sets focus to the button that triggered the offcanvas display) from the start of the click handler to the end (after the config values are available) and to not call the on-end event handler if the focus value is set to false.</p>
+                    <h4 class="ms-5 mt-5">offcanvas.js changes</h4>
+                    <p class="ms-5"><em>I have submitted a <a href="https://github.com/twbs/bootstrap/pull/38514" title="Pull request 38514">pull request</a>, which is pending approval.</em></p>
+                    <ol class="ms-5">
+                        <li>Add a fourth boolean config value, <code>focus</code>. The default value is true, which cause offcanvas to operate as before.</li>
+                    </ol>
+                    <pre class="ms-5rem"><code class="language-js">const Default = {
+    backdrop: true,
+    keyboard: true,
+    scroll: false,
+    focus: true
+}
+    
+const DefaultType = {
+    backdrop: '(boolean|string)',
+    keyboard: 'boolean',
+    scroll: 'boolean',
+    focus: 'boolean'
+}</code></pre>
+                    
+                    <ol class="ms-5" start="2">
+                        <li>Move the on-end event handler and only call if needed</li>
+                    </ol>
+                    <p class="ms-5rem">The offcanvas on-end event handler sets focus to the button that original triggered showing the offcanvas menu and is currently position near the start of the event handler:</p>
+                    <pre class="ms-5rem"><code class="language-js">// Current Bootstrap code
+EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE,
+    function (event) {
+        const target = SelectorEngine.getElementFromSelector(this)
+        
+        if (['A', 'AREA'].includes(this.tagName)) {
+            event.preventDefault()
+        }
+        
+        if (isDisabled(this)) {
+            return
+        }
+        
+        EventHandler.one(target, EVENT_HIDDEN, () => {
+            // focus on trigger when it is closed
+            if (isVisible(this)) {
+                this.focus()
+            }
+        })</code></pre>
+                    <p class="ms-5rem">Moving the on-end handler to after the data variable gets set to the offcanvas instance makes the config values available.</p>
+                    <pre class="ms-5rem"><code class="language-js">// Revised code
+const data = Offcanvas.getOrCreateInstance(target)
+if (data._config.focus) {
+    EventHandler.one(target, EVENT_HIDDEN, () => {
+        // focus on trigger when it is closed
+        if (isVisible(this)) {
+            this.focus({ preventScroll: true })
+        }
+    })
+}
+
+data.toggle(this)</code></pre>
+                    <h4 class="ms-5 mt-5">Using data-bs-focus</h4>
+                    <p class="ms-5">When there are menu links to the same page, set data-bs-focus to false:</p>
+                    <pre class="ms-5"><code class="language-html">&lt;div class="offcanvas offcanvas-md offcanvas-end flex-grow-1 px-4"
+    id="offcanvas-navbar"
+    tabindex="-1"
+    aria-labelledby="bdNavbarOffcanvasLabel"
+    data-bs-focus="false">
+&lt;/div></code></pre>
+                    <p class="ms-5">If data-bs-focus is set to false, focus is not restored to the hamburger button, which enables:</p>
+                    <ul class="ms-5">
+                        <li>Smooth scroll to the target section completes (on Chromium based browsers)</li>
+                        <li>The targeted section will have the focus</li>
+                    </ul>
+                    <h3 class="mt-5">Nav text alignment</h3>
+                    <p>As configured by Bootstrap, the text for the links in the navbar and the text for dropdown menus are off vertically by one pixel.</p>
+                    <picture>
+                        <source srcset="../images/bootstrap-navbar-changes-1.webp" type="image/webp">
+                        <source srcset="../images/bootstrap-navbar-changes-1.jpg" type="image/jpg">
+                        <img class="mb-3 mw-100 h-auto" src="../images/bootstrap-navbar-changes-1.jpg" alt="Navbar text alignment for buttons before and after removing border" width="319" height="133" loading="lazy">
+                    </picture>
+                    <p>Adding <code>border-0</code> class to the buttons for dropdowns fixes the alignment.</p>
+
+                    <pre><code class="language-html">&lt;div class="nav-item dropdown"&gt;
+    &lt;button class="btn btn-link nav-link dropdown-toggle border-0" 
+        type="button" data-bs-toggle="dropdown" 
+        aria-expanded="false"&gt;
+        Details
+    &lt;/button&gt;
+    &lt;div class="dropdown-menu dropdown-menu-end slide-in"&gt;
+        &lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;
+        &lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;
+        &lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    <h3 class="mt-5">Nav button focus styling</h3>
+                    <p>Bootstrap&rsquo;s styling for buttons when focused is to have a shadow around the button. This is different from the default browser styling, which for Firefox is a white and a black line around the button.</p>
+                    <picture>
+                        <source srcset="../images/bootstrap-navbar-changes-2.webp" type="image/webp">
+                        <source srcset="../images/bootstrap-navbar-changes-2.jpg" type="image/jpg">
+                        <img class="mb-3 mw-100 h-auto" src="../images/bootstrap-navbar-changes-2.jpg" alt="Navbar focus styling for buttons" width="205" height="135" loading="lazy">
+                    </picture>
+                    <p>I&rsquo;ve overridden the Bootstrap styling for buttons in the navbar so the buttons, when they have focus, are highlighted similarly to the other links in the navbar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modal-support">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Modal support</h2>
+                    <p>On large displays, I&rsquo;m using <code>position: fixed</code> for the hero image. Bootstrap, to prevent the page from scrolling while the modal is showing, sets the page to <code>overflow: hidden</code>, which removes the scrollbar. Bootstrap adds padding to the body and the navbar to fill the space left by no scrollbar, but initially, my fixed image was expanding to fill the space.</p>
+                    <p>By adding the class <code>is-fixed</code> to the img, Bootstrap will also add padding to the image. I&rsquo;m not sure why Bootstrap has this option as it&rsquo;s not in the documentation, but it works.</p>
+                    <p>From the <a href="https://github.com/twbs/bootstrap/blob/main/js/src/util/scrollbar.js" title="Bootstrap scrollbar.js file on GitHub">scrollbar.js</a> file:</p>
+                    <pre><code class="language-js">const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>

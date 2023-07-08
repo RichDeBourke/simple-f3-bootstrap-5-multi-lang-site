@@ -1,0 +1,29 @@
+{
+    "short_name": "Site Demo",
+    "name": "Site Construction",
+    "icons": [{
+            "src": "https://sbf-bootstrap5.alwaysdata.net/icon-196.png",
+            "type": "image/png",
+            "sizes": "196x196",
+            "purpose": "any"
+        },
+        {
+            "src": "https://sbf-bootstrap5.alwaysdata.net/icon-196.png",
+            "type": "image/png",
+            "sizes": "196x196",
+            "purpose": "maskable"
+        },
+        {
+            "src": "https://sbf-bootstrap5.alwaysdata.net/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ],
+    "id": "https://sbf-bootstrap5.alwaysdata.net/en/home",
+    "start_url": "https://sbf-bootstrap5.alwaysdata.net/en/home",
+    "background_color": "#0024a7",
+    "display": "browser",
+    "scope": "/",
+    "description": "Building a frontend / backend setup for a simple, multi-language website using Bootstrap 5 with the Fat-Free PHP framework, but no database."
+}

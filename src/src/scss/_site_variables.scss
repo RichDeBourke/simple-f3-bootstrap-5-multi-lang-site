@@ -1,0 +1,48 @@
+$color-mode-type: media-query; // Bootstrap's preferred method is data, 
+
+// new values I created
+$sc-theme-light: #0024a7;
+$sc-navbar-bg-light: $sc-theme-light;
+$sc-navbar-dropdown-hover-light: #809BFF;
+$sc-navbar-dropdown-border: #aaaaaa;
+$sc-navbar-bg-dark: #2f3337;
+
+$sc-general-bg-dark: #16191c;   // General dark background
+$sc-sub-level-bg-dark: #040608; // Sunken dark background
+$sc-raised-bg-1-dark: #2f3337;  // Raised dark background
+$sc-raised-bg-2-dark: #414549;  // Higher dark background (too light for anchor link colors)
+
+$sc-raised-bg-1-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+$sc-raised-bg-2-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+$md-full-white-text: #ffffff;
+$md-strong-white-text: rgba(255,255,255,0.87);  // md - Google Material Design guidelines
+$md-med-strong-white-text: rgba(255,255,255,0.70);
+$md-medium-white-text: rgba(255,255,255,0.60);
+$md-disabled-white-text: rgba(255,255,255,0.38);
+
+$md-full-black-text: #ffffff;
+$md-strong-black-text: rgba(0,0,0,0.87);  // md - Google Material Design guidelines
+$md-med-strong-black-text: rgba(0,0,0,0.70);
+$md-medium-black-text: rgba(0,0,0,0.60);
+$md-disabled-black-text: rgba(0,0,0,0.38);
+
+// for overriding BS rgb values, just provide the values (no rgb())
+$sc-link-color: #0000EE;
+$sc-link-color-rgb: 0,0,238;
+$sc-link-visited-color: #551A8B;
+
+
+$sc-link-color-dark: #00D2FC;
+$sc-link-color-dark-rgb: 0,210,252;
+$sc-link-visited-color-dark: #D8B1FA;
+
+
+// value overrides
+$body-color-dark: rgba(255,255,255,0.60);
+//$body-secondary-color-dark
+//$body-tertiary-color-dark
+
+$body-bg-dark: #16191c;
+$body-secondary-bg-dark: #2f3337;
+$body-tertiary-bg-dark: #414549;

@@ -1,0 +1,265 @@
+        <section id="content" role="main" class="detail-first-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <h1>Webpack</h1>
+                        <p class="mb-5"><em>This Webpack information is not referenced from the general menu as it&rsquo;s supplemental information not directly related to Fat-Free or Bootstrap (the purpose for this site). It is linked from the <a href="{{ @schemeHost}}{{ 'en_webpack' | alias }}#sass-development">Development</a> section.</em></p>
+                        <p>While I don&rsquo;t use <a href="https://webpack.js.org/" title="Module bundler">Webpack 5&rsquo;s</a> capability for things like templates for building single-page webapps, I do use it in this and other projects to:</p>
+                        <ul>
+                            <li>combine JavaScript files into a single, minified file</li>
+                            <li>combine CSS into a single, minified file</li>
+                            <li>process SCSS files into a single, minified CSS file</li>
+                        </ul>
+                        <p>For this site, I use Webpack to combine jQuery, the jQuery easing plugin, Bootstrap, and a site-specific JavaScript file into a single, minified JavaScript file with source map and I use Glenn Marks&rsquo; <a href="https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass" title="Sass compiler for VS Code.">Live Sass Compiler</a> extension for VS Code to process the SCSS.</p>
+                        <p class="alert">What I want is one setup with three script commands in the <code>package.json</code> file to process JavaScript, SCSS, and CSS (rather than using online minifiers, which don't have maps).</p>
+                        <h2>Note on running scripts</h2>
+                        <p>Some Webpack videos on YouTube use <code>npm start</code> while others use <code>npm run start</code> to run the start script in package.json.</p>
+                        <p>If there isn&rsquo;t a  start script in package.json (or there isn&rsquo;t a package.json file) then <code>npm start</code> is a short-cut for running <code>node server.js</code>.  If there is a start script in package.json, then npm runs that script.</p>
+                        <p>Executing <code>npm run start</code> also runs the start script, using the <code>run-script</code> command (run is an alias for run-script) to run the script.</p>
+                        <p>It&rsquo;s probably simplest to always use <code>npm run <em>script-name</em></code>.</p>
+                        <h2>Installing stuff for Webpack</h2>
+                        <p>Install the following:</p>
+                        <ul>
+                          <li><code>npm install --save-dev webpack webpack-cli</code></li>
+                          <li><code>npm install --save-dev babel-loader @babel/core @babel/preset-env</code></li>
+                          <li><code>npm install --save-dev expose-loader</code></li>
+                          <li><code>npm install --save jquery</code></li>
+                          <li><code>npm install --save-dev style-loader css-loader</code></li>
+                          <li><code>npm install --save-dev sass sass-loader</code>
+                            <ul>
+                              <li>I think sass is the new one (dart sass)</li>
+                            </ul>
+                          </li>
+                          <li><code>npm install --save-dev mini-css-extract-plugin</code></li>
+                          <li><code>npm install --save-dev css-minimizer-webpack-plugin</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h3>Site Construction</h3>
+                        <p>package.json</p>
+                        <pre><code class="language-js" style="font-size: 0.75rem;">{
+  "name": "f3-multi-lang-site",
+  "version": "1.0.0",
+  "description": "A simple, multi-language site
+      using Bootstrap & F3",
+  "main": "index.php",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "test": "echo \"Error: no test
+        specified\" && exit 1"
+  },
+  "author": "Rich DeBourke",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "autoprefixer": "^9.8.4",
+    "babel-loader": "^8.2.5",
+    "exports-loader": "^4.0.0",
+    "expose-loader": "^4.0.0",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "bootstrap": "4.6.2",
+    "jquery": "^3.6.0",
+    "jquery.easing": "^1.4.1",
+    "popper.js": "^1.16.1"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "ie >= 10"
+    ]
+}</code></pre>
+                    </div>
+                    <div class="col-lg-4">
+                        <h3>webpack-1</h3>
+                        <p>package.json</p>
+                        <pre><code class="language-js" style="font-size: 0.75rem;">{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bootstrap": "^5.2.2",
+    "css-loader": "^6.7.1",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}</code></pre>
+                    </div>
+                    <div class="col-lg-4">
+                        <h3>webpack-7</h3>
+                        <p>package.json</p>
+                        <pre><code class="language-js" style="font-size: 0.75rem;">{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":
+      "webpack --config webpack.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bootstrap": "^5.2.2",
+    "css-loader": "^6.7.1",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h3>Site Construction</h3>
+                        <p>webpack.config.js</p>
+                        <pre><code class="language-js" style="font-size: 0.75rem;">const path = require('path');
+
+module.exports = {
+  devtool: "source-map",
+  entry: './js/app.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'js')
+  },
+  target: ['web', 'es5'],
+  module: {
+    rules: [{
+      test: /\.m?js$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            ['@babel/preset-env', {
+              targets: "defaults"
+            }]
+          ]
+        }
+      }
+  }]
+  }
+};</code></pre>
+                    </div>
+                    <div class="col-lg-4">
+                        <h3>webpack-1</h3>
+                        <p>webpack.config.js</p>
+                        <pre><code class="language-js" style="font-size: 0.75rem;">const path = require("path");
+const { ModuleFilenameHelpers } =
+    require("webpack");
+
+module.exports = {
+  mode: "development",
+  entry: "./src/index.js",
+  output: {
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist")
+  },
+  module: {
+    rules: [
+      // {
+      //   test: /\.css$/,
+      //   use: ["style-loader", "css-loader"]
+      // },
+      {
+        test: /\.css$/,
+        use: ["style-loader",
+              "css-loader",
+              "sass-loader"]
+      }
+    ]
+  }
+};</code></pre>
+                    </div>
+                    <div class="col-lg-4">
+                        <h3>webpack-7</h3>
+                        <p>webpack.config.js</p>
+                        <pre><code class="language-js" style="font-size: 0.75rem;">const path = require("path");
+module.exports = {
+  mode: "development",
+  devtool: false,
+  entry: "./src/index.js",
+  output: {
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist")
+  },
+  module: {
+  rules: [
+    {
+      test: /\.scss$/,
+      use: [
+        "style-loader", //3. Inject styles
+        "css-loader", //2. css into commonjs
+        "sass-loader" //1. sass into css
+      ]
+    }
+  ]
+}
+};</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h3>Site Construction</h3>
+                        <p>babelrc.js</p>
+                        <pre><code class="language-js" style="font-size: 0.75rem;">module.exports = function(api) {
+  api.cache(true);
+
+  const presets = ['@babel/preset-env'];
+
+  return {
+    presets,
+  };
+};</code></pre>
+                    </div>
+                    <div class="col-lg-4">
+                        <h3>webpack-1</h3>
+                        <p>babelrc.js</p>
+                        <pre><code class="language-js" style="font-size: 0.75rem;">
+                        
+                        
+</code></pre>
+                    </div>
+                    <div class="col-lg-4">
+                        <h3>webpack-7</h3>
+                        <p>babelrc.js</p>
+                        <pre><code class="language-js" style="font-size: 0.75rem;">
+                        
+                        
+</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>

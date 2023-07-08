@@ -1,0 +1,168 @@
+        <header id="{{ @loadID(@mainMenu,0) }}" class="w-100 mx-auto">
+            <div class="header-fixed-background">
+                <div class="header-background hide-for-ie">
+                    <picture>
+                        <!-- monitors - no hi-density -->
+                        <source srcset="
+                            ../images/Site-hero-1349x691-80.webp 1349w,
+                            ../images/Site-hero-1423x729-80.webp 1423w,
+                            ../images/Site-hero-1583x811-80.webp 1583w,
+                            ../images/Site-hero-1903x975-80.webp 1903w,
+                            ../images/Site-hero-2543x1303-80.webp 2543w" 
+                            sizes="100vw" type="image/webp" media="(min-width: 1200px)"
+                            width="1349" height="691">
+        
+                        <!-- tablets - 1x and 2x -->
+                        <source srcset="
+                            ../images/Site-hero-768x614-80.webp 768w,
+                            ../images/Site-hero-1024x819-80.webp 1024w,
+                            ../images/Site-hero-1536x1229-50.webp 1536w,
+                            ../images/Site-hero-2048x1638-50.webp 2048w" sizes="100vw" type="image/webp" 
+                            media="(min-width: 576px)" width="768" height="614">
+        
+                        <!-- smart phones -->
+                        <source srcset="
+                            ../images/Site-hero-360x480-80.webp 360w,
+                            ../images/Site-hero-390x520-80.webp 390w,
+                            ../images/Site-hero-720x960-50.webp 720w,
+                            ../images/Site-hero-780x1040-50.webp 780w" sizes="100vw" type="image/webp" 
+                            width="360" height="432">
+                        <img src="../images/Site-hero-1024x525.jpg" alt="Worker(s) erecting steel for a new building" loading="eager" decoding="sync">
+                    </picture>
+                </div>
+                <div id="content" class="header-text text-center">
+                    <h1>
+                        <span class="h3">Constructing a website with</span><br>
+                        <span class="">Bootstrap 5 <br class="d-sm-none"> and the <br class="d-sm-none"> Fat‑Free Framework</span>
+                    </h1>
+                    <a class="github-link btn btn-outline-dark btn-lg" href="https://github.com/RichDeBourke/simple-f3-bootstrap-5-multi-lang-site" role="button">GitHub의
+                        코드
+                        보기
+                    </a>
+                </div>
+                <div class="hide-for-ie">
+                    <a href="https://www.flickr.com/photos/timobeamo/9029364224/in/album-72157634089791347/" class="attribution" title="Image used under a 2.0 Creative Commons license">Image: Timo Goodrich, Flickr</a>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <h2>한국어 콘텐츠 / 번역노트 | Korean content / Translation note</h2>
+                        <p>이 사이트의 한국어 및 중국어 버전은 다국어 기능을 보여주기 위한 것입니다. 영어 버전은 모든 콘텐츠가 포함된 유일한 버전입니다.</p>
+                        <p>이 페이지는 한국어 버전을 시연하기 위해 Google 번역을 사용하여 영어 버전에서 번역되었습니다. 번역의 정확성이나 정확성을 검사하지 않았습니다.</p>
+                        <p>The Korean and Chinese versions of this site are just to demonstrate multi-language functionality. The English version is the only version with all of the content.</p>
+                        <p>This page was translated from the English version using Google Translate to demonstrate a Korean version. The translation has not been checked for accuracy or correctness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+                    <div class="col mb-4">
+                        <div class="card h-100 p-3">
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                <h2 class="card-title text-center">배우기</h2>
+                            </div>
+                            <div class="text-center card-img-top mt-3">
+                                <picture>
+                                    <source srcset="../images/home-card-learn-dark.webp, ../images/home-card-learn-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                                    <source srcset="../images/home-card-learn.webp, ../images/home-card-learn-lg.webp 2x" type="image/webp">
+                                    <img src="../images/home-card-learn.png" alt="학습 – 프로그래밍에 관한 세 가지 교과서의 컴퓨터 생성 그래픽" width="180" height="180" loading="lazy">
+                                </picture>
+                            </div>
+                            <div class="card-body h-100">
+                                <p>Bootstrap 5 및 Fat-Free Framework에 대한 경험을 얻기 위해이 사이트를 만들었습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="card h-100 p-3">
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                <h2 class="card-title text-center">Bootstrap 5</h2>
+                            </div>
+                            <div class="text-center card-img-top mt-3">
+                                <picture>
+                                    <source srcset="../images/home-card-bootstrap-dark.webp, ../images/home-card-bootstrap-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                                    <source srcset="../images/home-card-bootstrap.webp, ../images/home-card-bootstrap-lg.webp 2x" type="image/webp">
+                                    <img src="../images/home-card-bootstrap.png" alt="부트스트랩 – 부트스트랩 로고" width="180" height="180" loading="lazy">
+                                </picture>
+                            </div>
+                            <div class="card-body h-100">
+                                <p>부트 스트랩은 반응 형 웹 사이트를 구축하기위한 널리 사용되는 프론트 엔드 프레임 워크입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="card h-100 p-3">
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                <h2 class="card-title text-center">Fat-Free Framework</h2>
+                            </div>
+                            <div class="text-center card-img-top mt-3">
+                                <picture>
+                                    <source srcset="../images/home-card-fatfree-dark.webp, ../images/home-card-fatfree-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                                    <source srcset="../images/home-card-fatfree.webp, ../images/home-card-fatfree-lg.webp 2x" type="image/webp">
+                                    <img src="../images/home-card-fatfree.png" alt="무지방 – 무지방 로고" width="180" height="180" loading="lazy">
+                                </picture>
+                            </div>
+                            <div class="card-body h-100">
+                                <p>Fat-Free는 상위 10 개 PHP 프레임 워크에서 선정되었습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="{{ @loadID(@mainMenu,1) }}" role="main">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-8 col-lg-6">
+                            <h2>개요</h2>
+                            <p>WordPress 또는 기타 콘텐츠 관리 시스템(CMS)을 사용하여 전문적인 느낌의 웹사이트를 만드는 것은 쉽지만 스톡 테마와 조금 다르게 사이트를 보이게 하려면 디자인을 사용자 지정해야 합니다. 복잡해질 수 있습니다. (WordPress 테마를 수정하는 것보다 직선 HTML 코드를 수정하는 것이 더 쉽다는 것을 알았습니다.)</p>
+                            <p>전자 상거래 사이트를 만들거나 사용자가 로그인해야 하는 경우 WordPress는 원하는 보안 기능을 포함하므로 좋은 옵션입니다.</p>
+                            <p>그러나 사용자와의 가장 복잡한 상호 작용이 문의 양식이고 공유 템플릿, 깔끔한 URL, 자동 언어 선택 및 사이트 디자인의 더 많은 유연성으로 페이지를 구축하려는 경우 여기에 설명된 설정이 좋은 솔루션이 될 수 있습니다.</p>
+                            <p>세부 섹션에서 사이트 설정 방법에 대한 설명을 제공했으며 모든 파일은 <a href="https://github.com/RichDeBourke/simple-f3-bootstrap-5-multi-lang-site">GitHub에</a> 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section id="{{ @loadID(@mainMenu,2) }}">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <h2>Bootstrap</h2>
+                        <p><a href="https://getbootstrap.com/" title="자세한 내용은 Bootstrap 사이트를 방문하십시오.">Bootstrap</a>는 다양한 디스플레이 크기에 걸쳐 조정되는 반응형 그리드를 제공하며, 그 인기로 인해 인터넷에서 사용할 수 있는 많은 코드 스니펫이 있습니다.</p>
+                        <p>2021년 Bootstrap은 변수(<code>--sc-navbar-bg: #0024a7;</code>), 계산 함수(<code>width: calc(100% - 80px);</code>) 및 많은 CSS 속성을 활용하는 프레임워크 버전 5를 출시했습니다. 가상 클래스(<code>:is(section, article, aside, nav)</code>). CSS 변수는 <a href="https://getbootstrap.com/docs/5.3/customize/color-modes/" title="컬러 모드를 지원하는 새로운 Bootstrap 릴리스">Bootstrap 5.3에서</a> 다크 모드를 지원하는 데 특히 유용합니다.</p>
+                        <p>최신 CSS 속성을 사용하도록 전환하면서 Bootstrap은 속성을 지원하지 않는 Microsoft Internet Explorer(IE)에 대한 지원을 중단했습니다. IE에 대한 지원은 2022년에 Microsoft가 IE에 대한 지원을 종료하고 2023년 1분기에 일부 Windows 10 버전에서 <a href="https://techcommunity.microsoft.com/t5/windows-it-pro-blog/internet-explorer-11-desktop-app-retirement-faq/ba-p/2366549" title="마이크로소프트 IE 발표">Internet Explorer를 영구적으로 비활성화하기</a> 시작했기 때문에 덜 중요해지고 있습니다.</p>
+                        <p>전 세계적으로 Internet Explorer를 사용하고 있을 수 있는 Windows 7 또는 Windows XP를 실행하는 데스크톱 시스템이 여전히 8천만 대 이상 있습니다. 이러한 사용자를 지원해야 하는 사이트의 경우 <a href="https://getbootstrap.com/docs/4.6/getting-started/introduction/" title="Bootstrap 4 설명서">Bootstrap 4를</a> 계속 사용할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="{{ @loadID(@mainMenu,3) }}">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <h2>Fat-Free</h2>
+                        <p><a href="https://fatfreeframework.com/" title="자세한 내용은 Fat-Free 웹 사이트를 방문하십시오.">Fat-Free</a> 가 가장 <a href="http://www.ifourtechnolab.com/blog/top-10-free-php-frameworks-of-2018-for-web-development" title="A2018년 웹 개발을 위한 상위 10개 무료 PHP 프레임워크에 대한 기사">인기있는 PHP 프레임 워크</a> (<a href="https://laravel.com/" title="자세한 내용은 Laravel 웹 사이트를 방문하십시오.">Laravel 는 아니지만</a>), 공유 호스팅 계획 (Laravel <a href="https://coderseye.com/best-php-frameworks-for-web-developers/#What_are_the_Top_Rated_PHP_Frameworks_of_2018" title="PHP 프레임워크 검토">doesn&rsquo;t</a> 은 쉽지 않음 ) 에서 작동 하며 Fat-Free는 빠른 학습 곡선으로 간주됩니다.</p>
+                        <p>내가 사용하고있는 주요 Fat-Free 구성 요소는 다음과 같습니다.</p>
+                        <ul>
+                            <li class="mb-3"><strong>라우팅 엔진</strong> &ndash; 사용자의 요청을 적절한 제어 기능으로 라우팅 합니다.</li>
+                            <li class="mb-3"><strong>템플릿 엔진</strong> &ndash; HTML 템플릿을 Fat-Free의 "hive"에 저장된 데이터와 결합합니다. 변수는 키 / 값 쌍 형태의 변수를 메모리에 저장하여 웹 페이지를 구성합니다.</li>
+                            <li class="mb-3"><strong>다국어 지원</strong> &ndash; Fat-Free는 키 / 값 쌍을 사용하여 사전 조회 기능을 통해 여러 언어를 지원합니다. 각 언어의 사전 파일은 dict 디렉토리에 있으며 Fat-Free는 템플릿의 토큰 및 LANGUAGE 설정에 따라 사전 파일에서 원하는 언어 문자열을 선택합니다.<ul>
+                                    <li>모든 페이지에서 동일한 내용 (예 : Scroll-to-top 버튼) 또는 모든 언어에서 공통적이고 제한된 텍스트 (예 : 연락처 페이지)가있는 페이지에 대해서는 무 지방 언어 지원을 사용합니다.</li>
+                                </ul></li>
+                            <li class="mb-3"><strong>언어 감지</strong> &ndash; Fat-Free는 사용자의 <code>GET</code> 요청에서 <code>Accept-Language</code> 문자열을 캡처합니다.이 문자열은 사용자가 루트 디렉토리를 요청할 때 적절한 언어 하위 디렉토리 를 선택하는 데 사용됩니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    

@@ -1,0 +1,84 @@
+Options -Indexes
+
+<IfModule mod_deflate.c>
+<filesMatch "\.(js|css|html|php)$">
+SetOutputFilter DEFLATE
+</filesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive on
+ExpiresDefault "now"
+ExpiresByType text/html "now"
+ExpiresByType text/xml "now"
+ExpiresByType text/css "access plus 3 months"
+ExpiresByType text/plain "access plus 3 hours"
+ExpiresByType application/x-javascript "access plus 3 months"
+ExpiresByType text/javascript "access plus 3 months"
+ExpiresByType application/javascript "access plus 3 months"
+ExpiresByType image/png "access plus 3 months"
+ExpiresByType image/jpeg "access plus 3 months"
+ExpiresByType image/x-icon "access plus 3 months"
+</IfModule>
+
+# BROWSER CACHING USING CACHE-CONTROL HEADERS
+<ifModule mod_headers.c> 
+# Three months for image and video files
+<filesMatch ".(flv|gif|ico|jpg|jpeg|mp4|mpeg|png|svg|swf|webp)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+</filesMatch>
+
+# Three months for JavaScript and PDF files
+<filesMatch ".(js|pdf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+</filesMatch>
+
+# Three months for CSS files
+<filesMatch ".(css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+</filesMatch>
+</ifModule>
+
+AddType image/svg+xml .svg .svgz
+AddEncoding gzip svgz
+
+<IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE application/atom+xml \
+                                    application/javascript \
+                                    application/json \
+                                    application/rss+xml \
+                                    application/vnd.ms-fontobject \
+                                    application/x-font-ttf \
+                                    application/x-web-app-manifest+json \
+                                    application/xhtml+xml \
+                                    application/xml \
+                                    font/opentype \
+                                    image/svg+xml \
+                                    image/x-icon \
+                                    text/css \
+                                    text/html \
+                                    text/plain \
+                                    text/x-component \
+                                    text/xml
+</IfModule>
+
+RedirectMatch 301 ^/en/$ https://sbf-bootstrap5.alwaysdata.net/en/home
+RedirectMatch 301 ^/ko/$ https://sbf-bootstrap5.alwaysdata.net/ko/집
+RedirectMatch 301 ^/zh/$ https://sbf-bootstrap5.alwaysdata.net/zh/主页
+
+# Enable rewrite engine and route requests to framework
+RewriteEngine On
+
+# Some servers require you to specify the `RewriteBase` directive
+# In such cases, it should be the path (relative to the document root)
+# containing this .htaccess file
+#
+# RewriteBase /
+
+RewriteRule ^lib - [R=404]
+
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php [L,QSA]
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]

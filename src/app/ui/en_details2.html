@@ -1,0 +1,318 @@
+    <header id="content" class="detail-first-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h1>Fat-Free Framework</h1>
+                    <p>Selecting, installing, and structuring the Fat-Free Framework:</p>
+                    <ul>
+                        <li><a href="#selecting-fatfree" class="same-page-link">Selecting Fat-Free</a> &ndash; the reasons for the choice</li>
+                        <li><a href="#installing-fatfree" class="same-page-link">Installing Fat-Free</a> &ndash; on a server</li>
+                        <li><a href="#structure" class="same-page-link">Defining the site structure</a> &ndash; sans a database</li>
+                        <li><a href="#url-organization" class="same-page-link">URL organization</a> &ndash; structure for the page URLs</li>
+                    </ul>
+                    <p>Language detection, selection, and support:</p>
+                    <ul>
+                        <li><a href="#preferred-language" class="same-page-link">Preferred language</a> &ndash; Select the appropriate language for requests to the root directory</li>
+                        <li><a href="#language-switch" class="same-page-link">Language selector</a> &ndash; Switch to a different language version</li>
+                        <li><a href="#multi-language" class="same-page-link">Built-in language support</a> &ndash; using multiple languages with the same page template</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="selecting-fatfree">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Going with the Fat-Free Framework</h2>
+                    <p>It was a <a href="https://coderseye.com/best-php-frameworks-for-web-developers/#10_Fat_Free" title="11 Best PHP Frameworks for Modern Web Developers in 2018">2018 review of PHP frameworks</a> that listed Fat-Free with 12.5% of the market and noted that Fat-Free has a &ldquo;small learning curve&rdquo; that persuaded me to try it. In 2023, Fat-Free is still one of the <a href="https://raygun.com/blog/top-php-frameworks/" title="12 top PHP frameworks for web developers to consider in 2023">top rated PHP frameworks</a>.</p>
+
+                    <p>The most popular PHP frame work is <a href="https://coderseye.com/best-php-frameworks-for-web-developers/#laravel" title="11 Best PHP Frameworks for Modern Web Developers in 2018">Laravel</a>, but two reasons (besides the <em>small learning curve</em>) that persuaded me to go with Fat-Free over Laravel are: Laravel requires <a href="https://laravel.com/docs/9.x/deployment#server-requirements" title="Laravel system requirements">PHP 8.0 or higher</a>, while Fat-Free (version 3.7) can run on <a href="https://fatfreeframework.com/3.6/system-requirements" title="Fat-Free system requirements">PHP 5.6 or higher</a>; and Laravel requires the command-line package manager utility, <a href="https://getcomposer.org/" title="Composer is a dependency manager for PHP">Composer</a>, for installation. Fat-Free can be installed using Composer or directly.</p>
+                    <p><em>I don&rsquo;t use Composer as I don&rsquo;t want to depend on being able to get command-line access to the server, and I&rsquo;m leery of package managers as I want to control when updates happen.</em></p>
+                    <p class="small"><sup>*</sup>Note: After selecting Fat-Free, I found <a href="https://dev.to/asapabedi/deploying-laravel-5-applications-on-shared-hosting-without-the-use-of-ssh--16a6" title="Post for using Laravel on a shared host">instructions</a> for using Laravel on a shared host, but at that point, I was already well along with using Fat-Free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="installing-fatfree">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Installing the Fat-Free Framework</h2>
+                    <p>The Fat-Free distribution package comes with Fat-Free and some demo files. To install Fat-Free, I copy Fat-Free&rsquo;s <code>lib</code> directory to the server and create the directories for my files:</p>
+                    <ul>
+                        <li><code>root</code> &ndash; for index.php and .htaccess
+                            <ul>
+                                <li><code>app</code> &ndash; for the configuration files
+                                    <ul>
+                                        <li><code>ui</code> &ndash; for HTML template files (as a subdirectory under the app directory)</li>
+                                    </ul>
+                                </li>
+                                <li><code>css</code> &ndash; for the website&rsquo;s CSS files</li>
+                                <li><code>dict</code> &ndash; files for each language with key/value pairs for translated text</li>
+                                <li><code>images</code> &ndash; for the website&rsquo;s image files</li>
+                                <li><code>js</code> &ndash; for the website&rsquo;s JavaScript files</li>
+                                <li><code>lib</code> &ndash; directory for the Fat-Free files</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p><em>I have a copy of Fat-Free on my PC running under <a href="http://www.wampserver.com/en/" title="WampServer website">WAMP</a> using the same structure for development with the addition of a Sass directory under the CSS directory and the node_modules directory (which is created by npm when installing Bootstrap 5) under the root directory.</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="structure">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Site structure</h2>
+                    <p>Many websites use a Model-View-Controller (MVC) pattern with the data for the pages in the model (often in a database).</p>
+                    <p>This site does not utilize a model. Page content is coded directly into the templates (the views) and the controllers, rather than being stored in a database. As the content generally does not change, there is no benefit for defining a storage and retrieval structure for data and then entering the data into a database. It is easier to deal directly with the html style templates.</p>
+                    <p>This site follows (generally) a Supervising Controller Pattern as defined by Derek Greer in a paper published online in 2007 (the paper is now only available through the <a href="https://web.archive.org/web/20201107060523/https:/lostechies.com/derekgreer/2007/08/25/interactive-application-architecture/">Internet Wayback Machine</a>). A routing function defined by <a href="{{ @schemeHost }}{{ 'en_details3' | alias }}#routes" title="Explanation for the routes file">routes.ini</a> sends user requests for pages to the correct PHP controller class, which assembles the required template files with values stored in the controllers to build and deliver the webpage to the user.</p>
+                    <picture>
+                        <source srcset="../images/fatfree-sc-architecture-dark.webp, ../images/fatfree-sc-architecture-lg-dark.webp 2x" media="(prefers-color-scheme: dark)">
+                        <source srcset="../images/fatfree-sc-architecture.webp, ../images/fatfree-sc-architecture-lg.webp 2x">
+                        <img class="scss-diagram mb-3" src="../images/fatfree-sc-architecture.png" alt="Diagram of the supervising controller pattern used to organize the site" width="542" height="376" loading="lazy">
+                    </picture>
+                    <p>Values that are common to multiple pages are stored in a <a href="{{ @schemeHost }}{{ 'en_details3' | alias }}#config" title="Explanation for the config file">config.ini</a> file. This makes the information easy to see and modify, and it helps eliminate the need for a database (along with the code to support one).</p>
+                    <p>Using files (rather than a database) does require discipline in adhering to the site logic and for entering the same information multiple times (e.g. the page slug), but if there is a typo, a page won&rsquo;t load correctly, so the error can be found and corrected.</p>
+                    <p class="hide-for-ie">The structure for using information from the config.ini and routes.ini files is illustrated below:</p>
+                    <div id="structure-carousel-container" class="structure-carousel-container hide-for-ie">
+                        <picture>
+                            <source srcset="../images/fatfree-naming-table-dark.webp, ../images/fatfree-naming-table-lg-dark.webp 2x" media="(prefers-color-scheme: dark)">
+                            <source srcset="../images/fatfree-naming-table.webp, ../images/fatfree-naming-table-lg.webp 2x">
+                            <img class="structure-carousel d-block w-100 h-auto" src="../images/fatfree-naming-table.png" alt="Table showing the naming relationship between the configuration and route data" width="730" height="361" loading="lazy">
+                        </picture>
+    
+                        <div id="carousel-structure" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carousel-structure" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carousel-structure" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carousel-structure" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#carousel-structure" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                            </div>
+    
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-bs-interval="2500">
+                                    <picture>
+                                        <source srcset="../images/fatfree-naming-table-language-dark.webp, ../images/fatfree-naming-table-language-lg-dark.webp 2x" media="(prefers-color-scheme: dark)">
+                                        <source srcset="../images/fatfree-naming-table-language.webp, ../images/fatfree-naming-table-language-lg.webp 2x">
+                                        <img class="d-block w-100 h-auto" src="../images/fatfree-naming-table-language.png" alt="Language prefix naming relationships" width="728" height="359" loading="lazy">
+                                    </picture>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p class="h3">A) Language prefix</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2500">
+                                    <picture>
+                                        <source srcset="../images/fatfree-naming-table-slug-dark.webp, ../images/fatfree-naming-table-slug-lg-dark.webp 2x" media="(prefers-color-scheme: dark)">
+                                        <source srcset="../images/fatfree-naming-table-slug.webp, ../images/fatfree-naming-table-slug-lg.webp 2x">
+                                        <img class="d-block w-100 h-auto" src="../images/fatfree-naming-table-slug.png" alt="Page slug naming relationships" width="728" height="359" loading="lazy">
+                                    </picture>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p class="h3">B) Page slug</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2500">
+                                    <picture>
+                                        <source srcset="../images/fatfree-naming-table-route-dark.webp, ../images/fatfree-naming-table-route-lg-dark.webp 2x" media="(prefers-color-scheme: dark)">
+                                        <source srcset="../images/fatfree-naming-table-route.webp, ../images/fatfree-naming-table-route-lg.webp 2x">
+                                        <img class="d-block w-100 h-auto" src="../images/fatfree-naming-table-route.png" alt="Route naming relationships" width="728" height="359" loading="lazy">
+                                    </picture>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p class="h3">C) Route name</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2500">
+                                    <picture>
+                                        <source srcset="../images/fatfree-naming-table-controller-dark.webp, ../images/fatfree-naming-table-controller-lg-dark.webp 2x" media="(prefers-color-scheme: dark)">
+                                        <source srcset="../images/fatfree-naming-table-controller.webp, ../images/fatfree-naming-table-controller-lg.webp 2x">
+                                        <img class="d-block w-100 h-auto" src="../images/fatfree-naming-table-controller.png" alt="Controller naming relationships" width="728" height="359" loading="lazy">
+                                    </picture>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p class="h3">D) Controller function</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-structure" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-structure" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hide-for-ie">
+                        <h3 class="ml-4 overlay-text">A) Language prefix</h3>
+                        <p class="ml-5">Each language group has the same structure (same number of pages and in the same order) and each component starts with the language prefix, which is defined in the language list.</p>
+                        <h3 class="ml-4 overlay-text">B) Page slug</h3>
+                        <p class="ml-5">The slugs that define the URL for each page are defined in the navigation (dropdown) menu and copied to the routes.</p>
+                        <h3 class="ml-4 overlay-text">C) Route name</h3>
+                        <p class="ml-5">The route name is defined in the route and used as the name of the HTML file for that page. The base route name (the &ldquo;_details1&rdquo; part) is the same across all languages.</p>
+                        <h3 class="ml-4 overlay-text">D) Controller function</h3>
+                        <p class="ml-5">The route names from the controller function are used in the controller file.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="url-organization">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>URL organization</h2>
+                    <p>Requests for the root directory are rerouted to one of the language subdirectories.</p>
+                    <p>The URLs for the pages in each language subdirectory are organized in the same way:</p>
+                    <pre><code class="language-plaintext">https://sbf-bootstrap5.alwaysdata.net/en/home
+https://sbf-bootstrap5.alwaysdata.net/en/bootstrap
+https://sbf-bootstrap5.alwaysdata.net/en/fatfree
+https://sbf-bootstrap5.alwaysdata.net/en/ffconfig
+https://sbf-bootstrap5.alwaysdata.net/en/templates
+https://sbf-bootstrap5.alwaysdata.net/en/details
+https://sbf-bootstrap5.alwaysdata.net/en/contact</code></pre>
+                    <p>The navigation includes same-page links for the home page:</p>
+                    <pre><code class="language-plaintext">https://sbf-bootstrap5.alwaysdata.net/en/home#home
+https://sbf-bootstrap5.alwaysdata.net/en/home#overview
+https://sbf-bootstrap5.alwaysdata.net/en/home#bootstrap
+https://sbf-bootstrap5.alwaysdata.net/en/home#fatfree</code></pre>
+                    <p>Note: A single page website would include same-page links in the navigation, but a multi-page site might not. I included both in the navigation, not as a recommendation for how to setup a site, but to be sure I could do both methods.</p>
+                    <p>I would have preferred to not have needed to designate one page as <em>home</em>, but, unfortunately, Fat-Free does not support a slash at the end of the URL:</p>
+                    <pre><code class="language-plaintext">https://sbf-bootstrap5.alwaysdata.net/en/ &ndash; with a trailing slash &ndash; not supported
+https://sbf-bootstrap5.alwaysdata.net/en &ndash; without a trailing slash &ndash; supported</code></pre>
+                    <p>If a request is made for a URL with a trailing slash, Fat-Free will do an HTTP 302 redirect to the address with the slash removed.</p>
+                    <p>There was a discussion on <a href="https://github.com/bcosca/fatfree/issues/395" title="Suggestion: add option for turning off redirect for GET ending with forward slashes">GitHub</a> in 2013 around trailing slashes, with the decision being to keep Fat-Free as it was (continue removing the trailing slash in the URL).</p>
+                    <p>In that discussion, there was some concern that having both URLs as valid would cause problems with search engines such as Google (the concern seemed to be that having the same content at the different URLs would impact the page&rsquo;s search engine ranking).</p>
+                    <p>For reference, it is possible to modify Fat-Free&rsquo;s code to remove the slash by commenting out part of the code in base.php:</p>
+                    <pre><code class="language-php">if (isset($route[$this-&gt;hive[&apos;VERB&apos;]]) &amp;&amp; !$preflight) {
+/* Comment out the if statement
+if ($this-&gt;hive[&apos;VERB&apos;]==&apos;GET&apos; &&
+    preg_match(&apos;/.+\/$/&apos;,$this-&gt;hive[&apos;PATH&apos;]))
+    $this-&gt;reroute(substr($this-&gt;hive[&apos;PATH&apos;],0,-1).
+        ($this-&gt;hive[&apos;QUERY&apos;]?(&apos;?&apos;.$this-&gt;hive[&apos;QUERY&apos;]):&apos;&apos;)); */
+list($handler,$ttl,$kbps,$alias)=$route[$this-&gt;hive[&apos;VERB&apos;]];</code></pre>
+                    <p>While I don&rsquo;t like having the URL <code>/en/home#home</code>, modifying Fat-Free comes with three drawbacks:
+                    </p>
+                    <ol>
+                        <li>I would need to make this modification every time there&rsquo;s an update to the Fat-Free code.</li>
+                        <li>I would need to include routes for the trailing slash version of each URL in routes.ini as Fat-Free would consider those as valid URLs.</li>
+                        <li>And most importantly, it would create extra work when configuring a new site (sometimes it&rsquo;s important to get a new site configured quickly so a client can see the content right away).</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="preferred-language">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Preferred language</h2>
+                    <p>Requests for the root directory are redirect to a language subdirectory. Determining which subdirectory is done by comparing the Accept-Language string from the browser&rsquo;s request header with the languages available on the site.</p>
+                    <h3>/ (root directory) route</h3>
+                    <p>A GET request for the root directory calls the getLanguage function in UtilitiesController.php:</p>
+                    <pre><code class="language-php">function getLanguage($f3) {
+    $f3->reroute(&apos;@&apos;.\Preflang::instance()->langDirectory($f3).&apos;_home&apos;);
+}</code></pre>
+                    <p>That function calls the langDirectory function in the Preflang class, which checks if there is a match between the languages available on the site and the languages the user prefers, and returns the subdirectory URL for the best match. The getLanguage function then does a 301 reroute to send the user to the appropriate subdirectory</p>
+                    <h3>Preflang->lang&shy;Directory() function operation</h3>
+                    <p>The function uses the language definition array from config.ini and the accept-language string from the browser to make the language selection:</p>
+                    <h4>1 &ndash; Language definition array from config.ini:</h4>
+                    <pre class="ml-4"><code class="language-php">[languages]
+en=en,en,English,default
+zh=zh-CN,zh,中文（简体）,Simple Chinese
+ko=ko,ko,한국어</code></pre>
+                    <p class="ml-4 mb-2">Each line in the array represents one language that the site supports:</p>
+                    <ul class="ml-4">
+                        <li>en: the array key and the language subdirectory &ndash; www.mysite.com/<strong>en</strong>/</li>
+                        <li>en: the two-letter <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" title="List of ISO 639-1 codes">ISO 639-1</a> language code or the two-letter language code with a two-letter <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" title=" Two-letter country codes">ISO-3166</a> country or territory code (e.g. zh-CN)</li>
+                        <li>en: only the two-letter ISO 639-1 language code (no territory code)
+                            <ul>
+                                <li>The Accept-Language string will often list first the user&rsquo;s preferred language with a territory code, followed by just the language code</li>
+                                <li><em>The language code will often be the same as the array key, but in some cases it will be different (e.g. Hong Kong &ndash; hk for the subdirectory and zh for the language code). I use the two-letter version in checking for a user&rsquo;s preferred language.</em></li>
+                            </ul>
+                        </li>
+                        <li>English: the language name (for the language menu)</li>
+                        <li>default: reference note (I don&rsquo;t use this field in the code)</li>
+                    </ul>
+                    <h4>2 &ndash; Accept-Language string from the browser&rsquo;s request header</h4>
+                    <p class="ml-4">The Accept-Language string specifies the languages a user can accept: en-US, en; q=0.7, ko; q=0.3. (<em>People have the option to configure their browser, but most don&rsquo;t.</em>)</p>
+                    <p class="ml-4">The country code is for offering territory specific versions. This is important for Chinese language versions as China uses Simplified Chinese while Hong Kong and Taiwan use Traditional Chinese. By listing the different codes, the system can deliver the right page (if it&rsquo;s available, otherwise it will serve a default zh Chinese language page).</p>
+                    <h4>3 &ndash; Language selection</h4>
+                    <p class="ml-4">The langDirectory function converts the Accept-Language string into an array of language groups using the PHP <a href="https://gist.github.com/ch-gilbert/a376704763629691a828" title="The idea for using preg_match_all came from this GIST">preg_match_all function</a>. For the Accept-Language string en-US,en;q=0.5, the function returns:</p>
+                    <pre class="ml-4"><code class="language-php">array (
+    array(&apos;en-US&apos;,&apos;en&apos;,&apos;-US&apos;,&apos;US&apos;),
+    array(&apos;en&apos;,&apos;en&apos;),
+);</code></pre>
+                    <p class="ml-4">The language values (the first value in each language group array) are compared to the language definitions array.</p>
+                    <p class="ml-4">If there is a match, the function returns the directory prefix for the matching language, otherwise it returns the default language prefix (which is the first value in the language definitions array).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="language-switch">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Language selector</h2>
+                    <picture>
+                        <source srcset="../images/fatfree-lang-menu-dark.webp, ../images/fatfree-lang-menu-lg-dark.webp 2x" media="(prefers-color-scheme: dark)">
+                        <source srcset="../images/fatfree-lang-menu.webp, ../images/fatfree-lang-menu-lg.webp 2x">
+                        <img class="mb-3" src="../images/fatfree-lang-menu.png" alt="Language dropdown menu screen capture" width="178" height="114" loading="lazy">
+                    </picture>
+                    <p>The language selector displays a dropdown menu of links to corresponding pages in other languages.</p>
+                    <p>The selector is always shown in the navbar so users will be aware that there are other language versions available. For large sites like Google or Wikipedia, people assume the site supports other languages, so they&rsquo;ll go looking for the language selector. For a small site, people may not make the same assumption, so it&rsquo;s a good idea to have the language selector visible.</p>
+                    <p>The language selector is built from an array that is created by Controller.php&rsquo;s <a href="{{ @schemeHost }}{{ 'en_details3' | alias }}#afterroute-function" title="">afterroute function</a>:</p>
+                    <pre><code class="language-php">array (
+    (&apos;en_details1&apos;,&apos;en&apos;,&apos;en&apos;,&apos;English&apos;),
+    (&apos;ko_details1&apos;,&apos;ko&apos;&apos;ko&apos;,,&apos;한국어&apos;),
+    (&apos;zh_details1&apos;,&apos;zh&apos;&apos;zh-CN&apos;,,&apos;中文（简体）&apos;)
+)</code></pre>
+                    <p>The array has the route name, subdirectory name (for loading the flags), language code with territory (for the hreflang links in the head section), and language name for each language. The array is used by the head.html template to create the hreflang values and the navigation.html template to create the language dropdown menu:</p>
+                    <pre><code class="language-js">&lt;div class="dropdown navbar-nav lang-dropdown hide-for-ie">
+    &lt;button class="btn btn-link nav-link dropdown-toggle border-0"
+        type="button" id="navbarDropdownLanguageMenu"
+        data-bs-toggle="dropdown" aria-expanded="false"
+        aria-label="&#123;&#123; @dictNavLanguage &#125;&#125;">
+        &lt;span class="flag-icon flag-icon-lg flag-icon-&#123;&#123; @langSubdirectory &#125;&#125;">
+            &lt;/span>
+    &lt;/button>
+    &lt;div class="dropdown-menu dropdown-menu-start dropdown-menu-md-end slide-in">
+&lt;repeat group="@languageLinks" value="@link">
+        &lt;a class="dropdown-item 
+            &#123;&#123; @link[1]===@langSubdirectory ? ' current-language' : '' &#125;&#125;" 
+            href="&#123;&#123; @schemeHost &#125;&#125;&#123;&#123; @link[0] | alias &#125;&#125;">
+            &lt;span class="flag-icon flag-icon-&#123;&#123; @link[1] &#125;&#125;">&lt;/span>&#123;&#123; @link[3] &#125;&#125;
+        &lt;/a>
+&lt;/repeat>
+    &lt;/div>
+&lt;/div></code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="multi-language">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Fat-Free&rsquo;s built-in language support</h2>
+                    <p>Fat-Free supports multiple languages through dictionary files. Fat-Free selects the dictionary file from which to retrieve the required text string based on the LANGUAGE variable.</p>
+                    <p>While the content for the site&rsquo;s main pages is coded directly in each language, I use Fat-Free&rsquo;s language support for pages that have just small amounts of text and that can use the same template file. These are the:</p>
+                    <ul>
+                        <li>Contact page</li>
+                        <li>Page not found page</li>
+                        <li>Error page</li>
+                    </ul>
+                    <p>I also use the dictionaries for phrases that are common to all pages of a language, but are different for each language (e.g. the title for the scroll-to-top button) and for the footer content.</p>
+                </div>
+            </div>
+        </div>
+    </section>

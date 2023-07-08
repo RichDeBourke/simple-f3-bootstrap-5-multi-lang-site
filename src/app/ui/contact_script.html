@@ -1,0 +1,57 @@
+    <script>
+        const form = document.querySelector("#contact-form");
+        const alert = document.querySelector("#contact-result");
+        const use = document.querySelector("#contact-result use"); // to get the SVG use element
+        const textarea = document.querySelector("textarea");
+        const remain = document.querySelector(".characters-remaining");
+
+        const para = document.querySelector("#contact-result p");
+
+        async function processSubmission(event) {
+            event.preventDefault();
+
+            fetch(event.target.action, {
+                body: new FormData(event.target),
+                headers: {
+                    "Accept": "application/json"
+                },
+                method: form.method
+            }).then((response) => {
+                if (response.ok) {  // ok refers to the http 200 status - the server was able to respond
+                    return response.json();
+                }
+                throw new Error("Network error (4xx or 5xx)");
+            }).then((json) => {
+                console.log(json);
+                alert.classList.remove("alert-success", "alert-warning");
+                alert.classList.add(json.alert);
+                alert.ariaLabel = json.label;
+                use.href = "#" + json.alert; // for selecting the SVG image
+                para.innerHTML = json.text;
+                bsCollapse.show();
+                // form.reset() // uncomment to clear the form data
+            }).catch((error) => {
+                alert.classList.remove("alert-success", "alert-warning");
+                alert.classList.add("alert-warning");
+                alert.ariaLabel = "Warning";
+                use.href = "#alert-warning";  // for selecting the SVG image
+                para.innerHTML = "{{ @dictContact15 }}";
+                bsCollapse.show();
+                console.log(error);
+            });
+        }
+
+        form.addEventListener("submit", processSubmission);
+
+        remain.innerHTML = textarea.maxLength;
+        textarea.addEventListener("keyup", function() {
+            let count = textarea.maxLength - textarea.value.length;
+            remain.innerHTML = count;
+            if (count < 20) {
+                remain.classList.add("contact-count-alert");
+            } else {
+                remain.classList.remove("contact-count-alert");
+            }
+        });
+  
+    </script>

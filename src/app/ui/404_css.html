@@ -1,0 +1,175 @@
+    <style>
+        .page-not-found-warning {
+            width: 290px;
+            text-align: center;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .position-relative {
+            position: relative !important;
+        }
+
+        .warning-triangle {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #eyes {
+            position: absolute;
+            top: 7.625rem;
+            left: 5.55rem;
+            width: 7rem;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .eye {
+            opacity: 1;
+            width: 30px;
+            height: 54px;
+            background: #fff;
+            border-radius: 50%;
+            border: 2px solid #000;
+            cursor: none;
+            position: relative;
+            top: 0;
+            overflow: hidden;
+            animation: open-eyes 2.5s ease-out forwards;
+        }
+
+        @keyframes open-eyes {
+            0% {
+                opacity: 0;
+                height: 0;
+                top: 32px;
+            }
+            60% {
+                opacity: 0;
+                height: 0;
+                top: 32px;
+            }
+
+            64% {
+                opacity: 1;
+                height: 0;
+                top: 32px;
+            }
+
+            100% {
+                opacity: 1;
+                height: 54px;
+                top: 0px;
+            }
+        }
+
+        .iris {
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+            border: 2px solid #000;
+            position: absolute;
+            top: 20px;
+            left: 8px;
+            animation: open-irises 1s ease-out 1.5s none, irises-search 4s ease-out 3s none;
+        }
+
+        @keyframes open-irises {
+            0% {
+                top: 0px;
+            }
+
+            10% {
+                top: 0px;
+            }
+
+            100% {
+                top: 20px
+            }
+        }
+
+        @keyframes irises-search {
+            13.6% {
+                top: 12px;
+                left: 0px;
+            }
+
+            22.7% {
+                top: 12px;
+                left: 0px;
+            }
+
+            36.4% {
+                top: 12px;
+                left: 15px;
+            }
+
+            45.5% {
+                top: 12px;
+                left: 15px;
+            }
+
+            59.1% {
+                top: 31px;
+                left: 15px;
+            }
+
+            68.2% {
+                top: 31px;
+                left: 15px;
+            }
+
+            81.8% {
+                top: 31px;
+                left: 0px;
+            }
+
+            90.9% {
+                top: 31px;
+                left: 0px;
+            }
+
+            100.0% {
+                top: 20px;
+                left: 8px;
+            }
+        }
+
+        .mouth {
+            position: absolute;
+            width: 36px;
+            height: 34px;
+            background-color: #000;
+            left: 127px;
+            top: 180px;
+            border-radius: 0;
+            transition: border-radius 500ms ease-in-out, left 500ms ease-in-out, width 500ms ease-in-out;
+        }
+
+        .mouth.oval {
+            width: 34px;
+            left: 128px;
+            border-radius: 50%;
+        }
+
+        .oops {
+            padding-bottom: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .oops.show {
+            opacity: 1;
+        }
+    </style>

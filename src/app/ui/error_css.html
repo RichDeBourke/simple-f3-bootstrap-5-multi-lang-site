@@ -1,0 +1,38 @@
+    <style>
+        .server-error {
+            height: 70vh;
+            max-height: 634px;
+            width: 354px;
+            position: relative;
+            display: block;
+            overflow: hidden;
+            padding: 0.5em 0.625em;
+            color: #212529;
+            font-size: 0.875rem;
+            background: #F5F5F5;
+            border: 1px solid #6C757D;
+            -moz-border-radius: 0.1875rem;
+            -webkit-border-radius: 0.1875rem;
+            border-radius: 0.1875rem;
+            font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Courier New", monospace;
+        }
+
+        #code-text {
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 0.5rem;
+            font-size: 7pt;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .server-error {
+                color: #c9d1d9;
+                background: #0d1117;
+                border-color: #30363d;
+            }
+        }
+
+        .no-animation .server-error, .no-animation .animation-note {
+            display: none !important;
+        }
+    </style>

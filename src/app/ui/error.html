@@ -1,0 +1,27 @@
+    <section id="content" role="main" class="detail-first-section mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="d-none d-lg-block col-lg-4">
+                    <div class="server-error">
+                        <pre id="code-text">
+</pre>
+                    </div>
+                </div>
+                <div class="col-lg-7 offset-lg-1">
+                    <h1>{{ @dict500ServerErrorHeader, @ERROR.code | format, raw }}</h1>
+                    <p>{{ @dict500Notice1 | raw }}</p>
+                    <p class="d-none d-lg-block animation-note">{{ @dict500Notice2 | raw }}</p>
+                    <p>{{ @dict500Notice3 | raw }}</p>
+                    <ul>
+                        <li>{{ @dict500Notice4 | raw }}</li>
+                        <li>{{ @dict500Notice5 | raw }}</li>
+                        <li>{{ @dict500Notice6 | raw }}</li>
+                    </ul>
+                    <p>{{ @dict500Notice7 | raw }}</p>
+                    <h3>Error details:</h3>
+                    <p>Text: {{ @ERROR.text }}</p>
+                    <p>Trace:  {{ @ERROR.trace }}</p>
+                </div>
+            </div>
+        </div>
+    </section>

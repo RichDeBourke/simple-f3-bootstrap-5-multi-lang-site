@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="{{ @langCode }}" id="top" class="h-100" prefix="og: http://ogp.me/ns#" itemscope itemtype="http://schema.org/WebPage">
+
+<include href="head.html" />
+<body id="page-top" class="d-flex flex-column h-100"{{ @isHomePage ? ' data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-root-margin="0px 0px -40%"' : '' }} {{ @isHomePage ? 'data-sc-page-type="home"' : (@isContactPage ? 'data-sc-page-type="contact"' : (@isTermsPage ? 'data-sc-page-type="terms"' : (@isErrorPage ? 'data-sc-page-type="error"' : 'data-sc-page-type="detail"'))) }}>
+<include href="notifications.html" />
+<include href="navigation.html" />
+
+<include href="{{ @pageContent }}" />
+    
+<include href="footer.html" />
+<include href="script.html" />
+</body>
+</html>

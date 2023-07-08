@@ -1,0 +1,154 @@
+        <header id="{{ @loadID(@mainMenu,0) }}" class="w-100 mx-auto">
+            <div class="header-background hide-for-ie">
+                <picture>
+                    <!-- monitors - no hi-density -->
+                    <source srcset="
+                        ../images/Site-hero-1349x691-80.webp 1349w,
+                        ../images/Site-hero-1423x729-80.webp 1423w,
+                        ../images/Site-hero-1583x811-80.webp 1583w,
+                        ../images/Site-hero-1903x975-80.webp 1903w,
+                        ../images/Site-hero-2543x1303-80.webp 2543w" 
+                        sizes="100vw" type="image/webp" media="(min-width: 1200px)"
+                        width="1349" height="691">
+    
+                    <!-- tablets - 1x and 2x -->
+                    <source srcset="
+                        ../images/Site-hero-768x614-80.webp 768w,
+                        ../images/Site-hero-1024x819-80.webp 1024w,
+                        ../images/Site-hero-1536x1229-50.webp 1536w,
+                        ../images/Site-hero-2048x1638-50.webp 2048w" sizes="100vw" type="image/webp" 
+                        media="(min-width: 576px)" width="768" height="614">
+    
+                    <!-- smart phones -->
+                    <source srcset="
+                        ../images/Site-hero-360x480-80.webp 360w,
+                        ../images/Site-hero-390x520-80.webp 390w,
+                        ../images/Site-hero-720x960-50.webp 720w,
+                        ../images/Site-hero-780x1040-50.webp 780w" sizes="100vw" type="image/webp" 
+                        width="360" height="432">
+                    <img class="is-fixed" src="../images/Site-hero-1024x525.jpg" alt="Worker(s) erecting steel for a new building" loading="eager" decoding="sync">
+                </picture>
+                <a href="https://www.flickr.com/photos/timobeamo/9029364224/in/album-72157634089791347/" class="attribution" title="Image used under a 2.0 Creative Commons license">Image: Timo Goodrich, Flickr</a>
+            </div>
+            <div id="content" class="header-text text-center">
+                <h1>
+                    <span class="h3">Constructing a website with</span><br>
+                    <span class="">Bootstrap 5 <br class="d-sm-none"> and the <br class="d-sm-none"> Fat‑Free Framework</span>
+                </h1>
+                <a class="github-link btn btn-outline-dark btn-lg" href="https://github.com/RichDeBourke/simple-f3-bootstrap-5-multi-lang-site" role="button">See the code
+                    on
+                    GitHub
+                </a>
+            </div>
+            <div class="card-section">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+                        <div class="col mb-4">
+                            <div class="card h-100 p-3">
+                                <div class="d-flex align-items-center justify-content-center h-100">
+                                    <h2 class="card-title text-center">Learning</h2>
+                                </div>
+                                <div class="text-center card-img-top mt-3">
+                                    <picture>
+                                        <source srcset="../images/home-card-learn-dark.webp, ../images/home-card-learn-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                                        <source srcset="../images/home-card-learn.webp, ../images/home-card-learn-lg.webp 2x" type="image/webp">
+                                        <img src="../images/home-card-learn.png" alt="Learning – computer generated graphic of three textbooks on programming" width="180" height="180" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="card-body h-100">
+                                    <p>I built this site to get experience with Bootstrap 5 and the Fat-Free Framework.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="card h-100 p-3">
+                                <div class="d-flex align-items-center justify-content-center h-100">
+                                    <h2 class="card-title text-center">Bootstrap 5</h2>
+                                </div>
+                                <div class="text-center card-img-top mt-3">
+                                    <picture>
+                                        <source srcset="../images/home-card-bootstrap-dark.webp, ../images/home-card-bootstrap-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                                        <source srcset="../images/home-card-bootstrap.webp, ../images/home-card-bootstrap-lg.webp 2x" type="image/webp">
+                                        <img src="../images/home-card-bootstrap.png" alt="Bootstrap – the Bootstrap logo" width="180" height="180" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="card-body h-100">
+                                    <p>Bootstrap is a popular front-end framework for building responsive websites.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="card h-100 p-3">
+                                <div class="d-flex align-items-center justify-content-center h-100">
+                                    <h2 class="card-title text-center">Fat-Free Framework</h2>
+                                </div>
+                                <div class="text-center card-img-top mt-3">
+                                    <picture>
+                                        <source srcset="../images/home-card-fatfree-dark.webp, ../images/home-card-fatfree-lg-dark.webp 2x" type="image/webp" media="(prefers-color-scheme: dark)">
+                                        <source srcset="../images/home-card-fatfree.webp, ../images/home-card-fatfree-lg.webp 2x" type="image/webp">
+                                        <img src="../images/home-card-fatfree.png" alt="Fat-Free – the Fat-Free logo" width="180" height="180" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="card-body h-100">
+                                    <p>Fat-Free is ranked in the top ten PHP frameworks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        
+    
+        <section id="{{ @loadID(@mainMenu,1) }}" role="main">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <h2>Overview</h2>
+                        <p>It&rsquo;s easy to create a professional looking website using WordPress or other content management systems (CMS), but if you want your site to look a little different from a stock theme, you have to customize the design. That can get complicated. (<em>I find it easier to modify straight HTML code than to modify a WordPress theme.</em>)</p>
+                        <p>If you&rsquo;re creating an e-commerce site, or need users to login, then WordPress is a good option as it includes the security you&rsquo;ll want.</p>
+                        <p>But, if the most complicated interaction you require with users is a contact form, and you want pages built from shared templates, clean URLs, automatic language selection, and more flexibility in the site design, then the setup demonstrated here could be a good solution.</p>
+                        <p>I&rsquo;ve provided explanations for how I setup the site in the <a href="https://sbf-bootstrap5.alwaysdata.net/en/bootstrap">Detail</a> sections, and all of my files are on <a href="https://github.com/RichDeBourke/simple-f3-bootstrap-5-multi-lang-site">GitHub</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="{{ @loadID(@mainMenu,2) }}">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <h2>Bootstrap 5</h2>
+                        <p>The <a href="https://getbootstrap.com/" title="Visit the Bootstrap website for more information">Bootstrap framework</a> provides a responsive grid that adjusts across different display sizes, and, because of its popularity, there are a large number of code snippets available on the internet.</p>
+                        <p>In 2021, Bootstrap released version 5 of the framework, which utilizes CSS properties such as variables (<code>--sc-navbar-bg: #0024a7;</code>), calc functions (<code>width: calc(100% - 80px);</code>), and many of the pseudo-classes (<code>:is(section, article, aside, nav)</code>). CSS variables are especially helpful for supporting dark mode in <a href="https://getbootstrap.com/docs/5.3/customize/color-modes/" title="New Bootstrap release with support for color mode">Bootstrap 5.3</a>.</p>
+                        <p>In making the switch to utilizing the newer CSS properties, Bootstrap dropped support for Microsoft Internet Explorer (IE), which doesn&rsquo;t support the properties. Support for IE is becoming less important as in 2022, Microsoft ended support for IE and in Q1 2023, they started <a href="https://techcommunity.microsoft.com/t5/windows-it-pro-blog/internet-explorer-11-desktop-app-retirement-faq/ba-p/2366549" title="Microsoft IE announcement">permanently disabling Internet Explorer</a> on some versions of Windows 10.</p>
+                        <p>World-wide, there are still more that 80 million desktop systems running Windows 7 or Windows XP (as of April 2023) that may be using Internet Explorer. For sites that need to support those users, <a href="https://getbootstrap.com/docs/4.6/getting-started/introduction/" title="Bootstrap 4 documentation">Bootstrap 4</a> is still available.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="{{ @loadID(@mainMenu,3) }}">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <h2>Fat-Free Framework</h2>
+                        <p>While the <a href="https://fatfreeframework.com/" title="Visit Fat-Free&rsquo;s website for more information">Fat-Free Framework</a> isn&rsquo;t <em>the</em> most <a href="https://kinsta.com/blog/php-frameworks/#what-are-the-best-php-frameworks-in-2022" title="Article on the top 10 PHP frameworks of 2022 for web development">popular PHP framework</a> (that would be <a href="https://laravel.com/" title="Visit Laravel&rsquo;s website for more information">Laravel)</a>, it <em>does</em> work on shared hosting plans (Laravel <a href="https://coderseye.com/best-php-frameworks-for-web-developers/#What_are_the_Top_Rated_PHP_Frameworks_of_2018" title="Review of PHP frameworks">doesn&rsquo;t</a>, at least not easily) and Fat-Free is considered to have a fast learning curve.</p>
+                        <p>The main Fat-Free components I&rsquo;m using are:</p>
+                        <ul>
+                            <li class="mb-3"><strong>Routing engine</strong> &ndash; <em>Routes</em> a user&rsquo;s request to the appropriate control function.</li>
+                            <li class="mb-3"><strong>Template engine</strong> &ndash; Combines HTML templates with data that has been stored in Fat-Free&rsquo;s &ldquo;hive&rdquo;, the array in memory that holds variables in the form of key / value pairs, to form web pages.</li>
+                            <li class="mb-3"><strong>Multi-language support</strong> &ndash; Fat-Free supports multiple languages through a dictionary lookup function using key/value pairs. Dictionary files for each language are located in the dict directory and Fat-Free selects the desired language string from the dictionary files based on a token in the template and the LANGUAGE setting.<ul>
+                                    <li>I use Fat-Free language support for content that is the same across all pages (e.g., the Scroll-to-top button) or for pages that are common across all languages and that have limited text (e.g., the contact page).</li>
+                                </ul>
+                            </li>
+                            <li class="mb-3"><strong>Language detection</strong> &ndash; Fat-Free captures the <code>Accept-Language</code> string from a user&rsquo;s <code>GET</code> request, which I use for selecting the <a href="http://sbf-testing.byethost7.com/en/fatfree#preferred-language" title="Section on language detection">appropriate language subdirectory</a> when a user requests the root directory.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        
+    
