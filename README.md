@@ -28,7 +28,7 @@ The code from this repository is in operation at [https://sbf-bootstrap5.alwaysd
 
 All of my files for the demo site, Fat-Free configuration, controller, and template files, and the associated SCSS, image, and JavaScript files are in this GitHub repository. The Bootstrap and Fat-Free files are available from [Bootstrap](https://getbootstrap.com/) and [Fat-Free](https://fatfreeframework.com).
 
-It should be easy enough to replace my site specific content with content for a different website.
+It should be possible to replace my site specific content with content for a different website.
 
 ## What's included (not a comprehensive list)
 
@@ -46,8 +46,9 @@ It should be easy enough to replace my site specific content with content for a 
 Bootstrap is easy to structure with its available classes and using Sass. There are a few things I changed from the standard Bootstrap code: 
 
 * For Bootstrap's offcanvas menu:
+  * Use the navbar toggle-button to both open and close the menu (eliminates the need for a close button on the menu)
   * Automatically close the menu when a same-page link is clicked
-  * Added an option for focus to be on the target rather than the menu button – I opened a pull request for the change
+  * Added an option for focus to be on the target rather than the menu button – *requires modifying the module.js source file*
 * For full-screen background images with modals
   * Added `is-fixed` class to the background static image so it works with modals (Bootstrap has the function, but it's not well documented)
 
@@ -57,6 +58,7 @@ Bootstrap is easy to structure with its available classes and using Sass. There 
 
 * Dynamic sitemap generation with xhtml:links for alternate languages
 * Utilize `preload` and `picture` to provide a selection of hero images (4 smartphone, 4 tablet, and 5 laptop/monitor) for the browser to select from to improve page loading speed
+* Uses Fatfree's SMTP plug-in for email messages
 * Custom error response pages
 
 #### Multi-language support
@@ -94,5 +96,6 @@ Bootstrap is provided under an [MIT license](https://github.com/twbs/bootstrap/b
 
 ## Updates
 
-**2023/06/06** – Initial release for Bootstrap 5.3 version.
+**2023/07/09** – Initial release for Bootstrap 5.3 version.
 
+**2024/01/25** – Modified navbar toggler and verified use with Bootstrap 5.3.2.

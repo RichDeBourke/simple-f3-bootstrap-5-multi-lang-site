@@ -7,17 +7,8 @@
                     <img class="d-inline-block align-top w-auto" src="{{ @schemeHost }}/images/site-logo-sm.png" alt="{{ @dictLogoAltText }}" width="188" height="62" loading="eager">
                 </picture>
             </a>
-            <button class="navbar-toggler hide-for-ie" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-navbar" aria-controls="offcanvas-navbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="visually-hidden">({{ @dictMenuToggle }})</span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="offcanvas offcanvas-md offcanvas-end flex-grow-1 px-4" id="offcanvas-navbar" tabindex="-1" aria-labelledby="bdNavbarOffcanvasLabel" data-bs-focus="false">
-                <div class="offcanvas-header justify-content-between">
-                    <p class="offcanvas-title text-white h5" id="bdNavbarOffcanvasLabel">Site Construction</p>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body pt-2 pt-md-0">
+            <div class="offcanvas offcanvas-md offcanvas-end flex-grow-1 px-4" id="offcanvas-navbar" tabindex="-1" data-bs-focus="false">
+                <div class="offcanvas-body pt-md-0" style="padding-top: 46px;">
                     <div id="main-nav" class="nav navbar-nav justify-content-end flex-grow-1">
 <check if="{{ @isHomePage }}"><true>
     <repeat group="@mainMenu" key="@slug" value="@title">
@@ -43,6 +34,14 @@
                     </div>
                 </div>
             </div>
+            <button class="navbar-toggler hide-for-ie" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-navbar" aria-controls="offcanvas-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="visually-hidden">({{ @dictMenuToggle }})</span>
+                <span class="navbar-toggle-icon">
+                    <span class="icon-bar top-bar"></span>
+                    <span class="icon-bar middle-bar"></span>
+                    <span class="icon-bar bottom-bar"></span>
+                </span>
+            </button>
             <div class="dropdown navbar-nav lang-dropdown hide-for-ie">
                 <button class="btn btn-link nav-link dropdown-toggle border-0" type="button" id="navbarDropdownLanguageMenu" data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{ @dictNavLanguage }}">
                     <span class="flag-icon flag-icon-lg flag-icon-{{ @langSubdirectory }}"></span>

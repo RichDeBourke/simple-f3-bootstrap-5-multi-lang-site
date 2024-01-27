@@ -262,13 +262,22 @@
                 <div class="col-lg-9 col-xl-8 col-xxl-7">
                     <h2>Nav changes</h2>
                     <h3>Offcanvas modifications</h3>
-                    <p>Bootstrap 5 supports an <a href="https://getbootstrap.com/docs/5.3/components/navbar/#offcanvas">offcanvas drawer</a> that can be used for navigation using a hamburger-style button to display the navigation menu. Bootstrap does not automatically close the menu directly nor does it set focus to the destination for same-page links (offcanvas works fine for navigation if all of the links are to different pages).</p>
-                    <p><em>Note: For a single-page application, it would be best to always show the menu choices, rather than hiding them behind a hamburger-style button, but that&rsquo;s not always an option.</em></p>
+                    <p>Bootstrap 5&rsquo;s navbar can be configured with an <a href="https://getbootstrap.com/docs/5.3/components/navbar/#offcanvas">offcanvas drawer</a> for navigation. The navbar includes a hamburger-style button to display the navigation menu.</p>
+                    <ul>
+                        <li>Bootstrap&rsquo;s default offcanvas includes a <em>separate</em> button on the canvas to close the menu (most navigation menus use the same button to open and close the menu).</li>
+                        <li>Bootstrap does not automatically close the menu after a link has been clicked. If the link is to the same page, the user needs to manually close the menu (or some JavaScript needs to be added to close the menu).</li>
+                        <li>Bootstrap does not set focus to the destination for same-page links (offcanvas works fine for navigation if all of the links are to different pages).</li>
+                    </ul>
                     <p>I modified Bootstrap&rsquo;s setup to include:</p>
+                    <ul>
+                        <li>Using the same toggle button on the navbar to open and close the offcanvas menu:</li>
+                    </ul>
+                    <p class="ms-5">Bootstrap uses a toggle button on the navbar to open an offcanvas menu and a separate dismiss button on the menu to close it.</p>
+                    <p class="ms-5">To use the navbar button to both open and close the off-canvas menu, I set the button&rsquo;s <code>z-index</code> to 1050 so that it&rsquo;s above the off-canvas menu.</p>
+                    <p class="ms-5">I replaced Bootstrap&rsquo;s static icon with an animated icon to better indicate how to close the off-canvas menu.</p>
                     <ul>
                         <li>Closing the offcanvas menu when a same-page link is clicked:</li>
                     </ul>
-                    <p class="ms-5">Bootstrap uses a toggle button on the navbar to open an offcanvas menu and there is a separate toggle button on the menu to close it.</p>
                     <p class="ms-5">To close the menu when a same-page link is clicked, I add a <code>date-bs-dismiss="offcanvas"</code> attribute to the link in a <code>span</code> tag. Bootstrap ignores data attributes associated with an <code>&lt;a></code> tag, but it will process attributes associated with a <code>&lt;span></code> tag.</p>
                     <pre class="ms-5"><code class="language-html">&lt;a class="nav-link active" href="#home">
     &lt;span data-bs-dismiss="offcanvas">Home&lt;/span>
@@ -285,22 +294,23 @@
                     </ol>
                     <p class="ms-5">To change what element is focused, I modified the offcanvas JavaScript source file to: 1) include a fourth config value (focus); and 2) move the on-end event handler (EventHandler.one is the function that sets focus to the button that triggered the offcanvas display) from the start of the click handler to the end (after the config values are available) and to not call the on-end event handler if the focus value is set to false.</p>
                     <h4 class="ms-5 mt-5">offcanvas.js changes</h4>
-                    <p class="ms-5"><em>I have submitted a <a href="https://github.com/twbs/bootstrap/pull/38514" title="Pull request 38514">pull request</a>, which is pending approval.</em></p>
+                    <p class="ms-5">I use a custom version of Bootstrap&rsquo;s offcanvas.js file that&rsquo;s in the src/js folder. When Webpack builds the bundled JavaScript file, it uses the code from the offcanvas-custom.js file, rather than the offcanvas.js file in the node_modules directory.</p>
+                    <p class="ms-5">The changes include:</p>
                     <ol class="ms-5">
-                        <li>Add a fourth boolean config value, <code>focus</code>. The default value is true, which cause offcanvas to operate as before.</li>
+                        <li>Add a fourth boolean config value, <code>focus</code> to support a <code>data-bs-focus</code> data attribute. The default value is true, which cause offcanvas to operate as normal. False cause offcanvas to not restore focus to the calling switch.</li>
                     </ol>
                     <pre class="ms-5rem"><code class="language-js">const Default = {
     backdrop: true,
     keyboard: true,
     scroll: false,
-    focus: true
+    focus: true  // Modified: add a fourth value, focus
 }
     
 const DefaultType = {
     backdrop: '(boolean|string)',
     keyboard: 'boolean',
     scroll: 'boolean',
-    focus: 'boolean'
+    focus: 'boolean'  // Modified: focus is type boolean
 }</code></pre>
                     
                     <ol class="ms-5" start="2">
@@ -339,6 +349,36 @@ if (data._config.focus) {
 }
 
 data.toggle(this)</code></pre>
+                    <ol class="ms-5" start="3">
+                        <li>Add ARIA expanded attribute to the nav-bar toggler</li>
+                    </ol>
+                    <p class="ms-5rem">Bootstrap&rsquo;s default nav-bar toggler includes an ARIA attribute to indicate if the menu is being displayed (expanded) or not. The offcanvas menu does not include this. These code changes add that function.</p>
+                    <pre class="ms-5rem"><code class="language-js">toggle(relatedTarget) {
+    return this._isShown ?
+        this.hide(relatedTarget) :
+        this.show(relatedTarget)
+}   // Modified: relatedTarget is passed to the hide function
+
+
+show(relatedTarget) {
+        ...
+    this._addAria(relatedTarget, true)  // Modified: added call to ARIA
+        ...
+}
+
+hide(relatedTarget) {
+        ...
+    this._addAria(relatedTarget, false) // Modified: added call to ARIA
+        ...
+}
+
+_addAria(element, isOpen) { // Modified: added ARIA function
+    if (!element) {
+      return
+    }
+
+    element.setAttribute('aria-expanded', isOpen) 
+}</code></pre>
                     <h4 class="ms-5 mt-5">Using data-bs-focus</h4>
                     <p class="ms-5">When there are menu links to the same page, set data-bs-focus to false:</p>
                     <pre class="ms-5"><code class="language-html">&lt;div class="offcanvas offcanvas-md offcanvas-end flex-grow-1 px-4"
@@ -352,6 +392,8 @@ data.toggle(this)</code></pre>
                         <li>Smooth scroll to the target section completes (on Chromium based browsers)</li>
                         <li>The targeted section will have the focus</li>
                     </ul>
+                    <p class="ms-5"><em>I submited a <a href="https://github.com/twbs/bootstrap/pull/38514" title="Pull request 38514">pull request</a> to GitHub, but there was limited interest in the change, so I closed the request.</em></p>
+                    <p><em>Note: For a single-page application, it would be best to always show the menu choices, rather than hiding them behind a hamburger-style button, but that&rsquo;s not always an option due to space limitations.</em></p>
                     <h3 class="mt-5">Nav text alignment</h3>
                     <p>As configured by Bootstrap, the text for the links in the navbar and the text for dropdown menus are off vertically by one pixel.</p>
                     <picture>
