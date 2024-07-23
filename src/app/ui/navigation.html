@@ -9,29 +9,33 @@
             </a>
             <div class="offcanvas offcanvas-md offcanvas-end flex-grow-1 px-4" id="offcanvas-navbar" tabindex="-1" data-bs-focus="false">
                 <div class="offcanvas-body pt-md-0" style="padding-top: 46px;">
-                    <div id="main-nav" class="nav navbar-nav justify-content-end flex-grow-1">
+                    <ul id="main-nav" class="nav navbar-nav justify-content-end flex-grow-1">
 <check if="{{ @isHomePage }}"><true>
     <repeat group="@mainMenu" key="@slug" value="@title">
-                    <a class="nav-link" href="#{{ @slug }}"><span data-bs-dismiss="offcanvas">{{ @title }}</span></a>
+                    <li class="nav-item" data-bs-dismiss="offcanvas">
+                            <a class="nav-link" aria-current="page" href="#{{ @slug }}">{{ @title }}</a>
+                        </li>
     </repeat>
     </true>
     <false>
     <repeat group="@mainMenu" key="@slug" value="@title">
-                    <a class="nav-link" href="{{ @schemeHost }}{{ @langSubdirectory.'_home' | alias }}#{{ @slug }}"><span data-bs-dismiss="offcanvas">{{ @title }}</span></a>
-    </repeat>
-    </false>
-</check>
-                        <div class="nav-item dropdown">
-                            <button class="btn btn-link nav-link dropdown-toggle border-0{{ @isDetailPage ? ' active' : ''  }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item" data-bs-dismiss="offcanvas">
+                            <a class="nav-link" aria-current="page" href="{{ @schemeHost }}{{ @langSubdirectory.'_home' | alias }}#{{ @slug }}">{{ @title }}</a>
+                        </li>
+    </repeat></false>
+</check>                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle{{ @isDetailPage ? ' active' : ''  }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ @dictNavDetails }}
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end slide-in">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end slide-in" data-bs-dismiss="offcanvas">
 <repeat group="@dropdownMenu" key="@slug" value="@title">
-                                <a class="dropdown-item offcanvas-menu-item{{ substr(urldecode(@PATH),4) === @slug ? ' active' : '' }}"{{ substr(urldecode(@PATH),4) === @slug ? ' aria-current="page"' : '' }} href="{{ @schemeHost }}/{{ @langSubdirectory }}/{{ @slug }}"><span data-bs-dismiss="offcanvas">{{ @title }}</span></a>
+                                <li>
+                                    <a class="dropdown-item offcanvas-menu-item{{ substr(urldecode(@PATH),4) === @slug ? ' active' : '' }}"{{ substr(urldecode(@PATH),4) === @slug ? ' aria-current="page"' : '' }} href="{{ @schemeHost }}/{{ @langSubdirectory }}/{{ @slug }}">{{ @title }}</a>
+                                </li>
 </repeat>
-                            </div>
-                        </div>
-                    </div>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <button class="navbar-toggler hide-for-ie" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-navbar" aria-controls="offcanvas-navbar" aria-expanded="false" aria-label="Toggle navigation">

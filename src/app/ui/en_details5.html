@@ -36,8 +36,8 @@
                     <p>The sitemap is generated dynamically through the Fat-Free Framework and includes xhtml:links for alternate language information.</p>
                     <p>To make the sitemap more readable, I include an XSL stylesheet based on one from <a href="https://github.com/pedroborges/xml-sitemap-stylesheet" title="XML sitemap stylesheet by Pedro Borges">GitHub</a>.</p>
                     <!-- The stylesheet is provided under an MIT license - the license is referenced in the style sheet -->
-                    <p>I provide alternate language (hreflang) information only in the sitemap. Previously, I had also included hreflang links in the page head sections, but the major search engines, <a href="https://support.google.com/webmasters/answer/2620865" title="Google international sitemap help">Google</a>, <a href="https://webmaster.yandex.ru/blog/15326" title="Yendex support for multilingual sites">Yendex</a>, and <a href="https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a" title="Bing Webmaster Guidelines">Bing</a> support hreflang links in the sitemap, so there is no point in using both (wastes bandwidth to include the links on every page). The Chinese search engine, Baidu, <a href="https://martinkura.com/baidu-international-websites-hreflang-geographic-target-meta-language-tag/" title="Baidu only focuses on Mandarin Chinese websites">focuses on Chinese websites</a> (sites where the primary language for <em>the domain</em> is Chinese, not just sub-folders), so they&rsquo;re not a concern. The value of a Chinese hreflang is so the other search engines know there is a Chinese site available (i.e. there are pages with the lang attribute on the html tag set to zh-CN).</p>
-                    <p>x-default &ndash; I haven&rsquo;t designated one page as the x-default version as x-default appears <a href="https://moz.com/learn/seo/hreflang-tag" title="General Targeting with x-default">to be used</a> to designate a page with multiple languages or a <a href="https://productforums.google.com/forum/#!topic/webmasters/L0g73tLsHvA" title="Correct usage of hreflang=x-default">language selection page</a>.</p>
+                    <p>I provide alternate language (hreflang) information only in the sitemap. Previously, I had also included hreflang links in the page head sections, but the major search engines, <a href="https://developers.google.com/search/docs/specialty/international/localized-versions" title="Google international sitemap help">Google</a>, <a href="https://webmaster.yandex.ru/blog/15326" title="Yendex support for multilingual sites">Yendex</a>, and <a href="https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a" title="Bing Webmaster Guidelines">Bing</a> support hreflang links in the sitemap, so there is no point in using both (wastes bandwidth to include the links on every page). The Chinese search engine, Baidu, <a href="https://martinkura.com/baidu-international-websites-hreflang-geographic-target-meta-language-tag/" title="Baidu only focuses on Mandarin Chinese websites">focuses on Chinese websites</a> (sites where the primary language for <em>the domain</em> is Chinese, not just sub-folders), so they&rsquo;re not a concern. The value of a Chinese hreflang is so the other search engines know there is a Chinese site available (i.e. there are pages with the lang attribute on the html tag set to zh-CN).</p>
+                    <p>x-default &ndash; I haven&rsquo;t designated one page as the x-default version as x-default appears <a href="https://moz.com/learn/seo/hreflang-tag" title="General Targeting with x-default">to be used</a> to designate a page with multiple languages or a <a href="https://support.google.com/webmasters/thread/256688868" title="Correct usage of hreflang=x-default">language selection page</a>.</p>
                     <p>One complication for creating XML files is some servers are configured to use short tags &ndash; <code>&lt;?</code> in place of <code>&lt;?php</code>. This causes the server to misinterpret the first part of an <code>&lt;?xml</code> tag as being for PHP rather than XML. Some servers will accept the command, <code>php_flag short_open_tag on</code>, in the .htaccess file, and others (like this site&rsquo;s server) want <code>short_open_tag = Off</code> added to a Custom php.ini section in the Environment section.</p>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                     </div>
                     <h3>Google Noto fonts</h3>
                     <p>I previously used Google fonts, but as an EU court (<a class="same-page-link" href="#user-tracking" title="See the section on IP address privacy for information on the EU decision">see below for more information</a>) has ruled against sharing users&rsquo; IP addresses with third-parties (such as Google fonts), I stopped.</p>
-                    <p>It is possible to self-host fonts from Google. Fonts, such as the Noto family of fonts, which includes fonts for Chinese, Japanese, and Korean (CJK) characters, are available under a <a href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL" title="SIL license page">SIL International Open Font License</a>. The problem is the stylesheets. Many of the fonts have been subsetted (broken into a number of files, referenced by character Unicode values). The separate font files and the stylesheets with the unicode-range make it possible for a browser to download just the font files needed for a webpage. Those font files and stylesheets are only available from Google&rsquo;s font API (they are not included under the Open Font License).</p>
+                    <p>It is possible to self-host fonts from Google. Fonts, such as the Noto family of fonts, which includes fonts for Chinese, Japanese, and Korean (CJK) characters, are available under a <a href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL" title="SIL license page">SIL International Open Font License</a>. The problem is the stylesheets. Many of the fonts have been subsetted (broken into a number of files, referenced by character Unicode values). The separate font files and the stylesheets with the Unicode-range make it possible for a browser to download just the font files needed for a webpage. Those font files and stylesheets are only available from Google&rsquo;s font API (they are not included under the Open Font License).</p>
                     
                 </div>
             </div>
@@ -268,7 +268,7 @@ doc.documentElement.focus();</code></pre>
         alt="Learning – computer generated graphic of three textbooks on programming"
         width="180" height="180" loading="lazy">
 &lt;/picture></code></pre>
-                    <p>SVG images are included either in the HTML file or in the CSS file. Some image files are included in the CSS file as <a href="http://freeonlinetools24.com/base64-image" title="Online image-to-base64 converter">Base64</a> files (e.g. the flag icons for the language selector). Embedding the image files makes them available as soon as the page is loaded.</p>
+                    <p>SVG images are included either in the HTML file or in the CSS file. Some image files are included in the CSS file as <a href="https://freeonlinetools24.com/base64-image" title="Online image-to-base64 converter">Base64</a> files (e.g. the flag icons for the language selector). Embedding the image files makes them available as soon as the page is loaded.</p>
                     <p>Images that normally do not show when the page is first loaded have the loading attribute set to <code>lazy</code>.</p>
                 </div>
             </div>
@@ -290,7 +290,7 @@ doc.documentElement.focus();</code></pre>
                             <li class="pb-3"><em>I preload the hero and logo images to avoid any delay in their being displayed.</em></li>
                         </ul></li>
                         <li>Reduced the image file size:<ul>
-                            <li>WebP file types &ndash; WebP are smaller than PNG and JPEG images (AVIF files are even smaller, but Microsoft Edge does not, as yet, support the file type, <a href="https://stackoverflow.com/a/75513738/1011984" title="Stackoverflow answer on AVIF files">reportedly due to a licensing issue</a>).</li>
+                            <li>WebP file types &ndash; WebP are smaller than PNG and JPEG images (AVIF files are even smaller, but Microsoft Edge did not, when I created this site in 2023, support the file type. Edge now supports AVIF files: <a href="https://learn.microsoft.com/pl-pl/deployedge/microsoft-edge-relnote-archive-beta-channel#version-1210227749-january-8-2024" title="Archived release notes for Microsoft Edge">Edge Version 121.0.2277.49: January 8, 2024</a>).</li>
                             <li>Provide different image sizes &ndash; use the <code>picture</code> element to source different image sizes and formats:<ul>
                                 <li>Provide different images for smartphones, tablets, and laptop / monitors. </li>
                                 <li>Provide different sizes based on generally available display sizes.<ul>
@@ -403,7 +403,7 @@ if (document.cookie.indexOf("eu-cookie-notice=true") > -1) {
     document.head.appendChild(gaScript);
 }</code></pre>
                     <p>This code creates a script tag to load the Google Tag Manager JavaScript, and, if the user has previously accepted cookies, the script tag is appended to the page head. This code also sets up a dataLayer array for Google tag information. If the user has or does accept cookies, the tracking information will be sent to Google. If the user rejects tracking, the Google JavaScript will not be downloaded and the tracking information will never be sent.</p>
-                    <p>The second component is in the <a href="{{ @schemeHost }}/js/js-functions.js" target="_blank" title="JavaScript file - link opens in a new tab">js-functions</a> file and handles the cookie notice:</p>
+                    <p>The second component is in the <a href="{{ @schemeHost }}/js/site-js-functions.js" target="_blank" title="JavaScript file - link opens in a new tab">js-functions</a> file and handles the cookie notice:</p>
                     <pre><code class="language-php">// Show the EU cookie modal (if it's the first time to the site or a new session)
 if (document.cookie.indexOf("eu-cookie-notice") &lt; 0) { // no cookie
     if (window.sessionStorage.getItem("eu-opt-out") !== "true") { // no session item
@@ -582,7 +582,7 @@ function loadEmail($f3) {
                 <div class="row justify-content-center">
                     <div class="col-lg-9 col-xl-8 col-xxl-7">
                         <h2>Syntax highlighter</h2>
-                        <p>I&rsquo;m using <a href="https://highlightjs.org/" title="Syntax highlighting for the Web">highlight.js</a> to highlight the code examples. Highlight.js&rsquo;s <a href="https://highlightjs.org/download/" title="Highlight.js download page">download page</a> builds a JavaScript file specific to the types of code to be highlighted, and includes all of the available CSS files in the download file (I went with the GitHub style with a few changes).</p>
+                        <p>I&rsquo;m using <a href="https://highlightjs.org/" title="Syntax highlighting for the Web">highlight.js</a> to highlight the code examples. Highlight.js&rsquo;s <a href="https://highlightjs.org/download" title="Highlight.js download page">download page</a> builds a JavaScript file specific to the types of code to be highlighted, and includes all of the available CSS files in the download file (I went with the GitHub style with a few changes).</p>
                         <p>The class names for the code types that I included in my build are:</p>
                         <ul>
                             <li>php</li>
@@ -617,13 +617,13 @@ function loadEmail($f3) {
             <div class="row justify-content-center">
                 <div class="col-lg-9 col-xl-8 col-xxl-7">
                     <h2>Internet Explorer support</h2>
-                    <p>There are people who still use Microsoft Internet Explorer. While Microsoft has started <a href="https://techcommunity.microsoft.com/t5/windows-it-pro-blog/internet-explorer-11-desktop-app-retirement-faq/ba-p/2366549" title="Microsoft IE announcement">permanently disabling Internet Explorer</a> on some versions of Windows 10, globally there are more than 80 million desktop systems running Windows 7 or Windows XP that may be using Internet Explorer.</p>
+                    <p>There are people who still use Microsoft Internet Explorer. While Microsoft has started <a href="https://techcommunity.microsoft.com/t5/windows-it-pro-blog/internet-explorer-11-desktop-app-retirement-faq/ba-p/2366549" title="Microsoft IE announcement">permanently disabling Internet Explorer</a> on some versions of Windows 10, globally there are more than 45 million desktop systems running Windows 7 or Windows XP that may be using Internet Explorer.</p>
                     <p>While Bootstrap 5 does not support Internet Explorer, it is possible to provide some functionality:</p>
                     <ul>
                         <li><strong>IE Notice</strong> &ndash; at a minimum, let users know that the site does not support IE.</li>
                     </ul>
                     <div class="ie-notice">
-                        <svg viewBox="0 0 24 20">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 20">
                             <style>
                                 rect.notice {
                                     fill: #000;;

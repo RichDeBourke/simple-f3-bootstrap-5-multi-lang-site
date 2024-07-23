@@ -18,6 +18,10 @@
                         <li><a href="#nav-changes" class="same-page-link">Nav changes</a></li>
                         <li><a href="#modal-support" class="same-page-link">Modal support</a></li>
                     </ul>
+                    <p>Configuring Bootstrap&rsquo;s Scrollspy:</p>
+                    <ul>
+                        <li><a href="#scrollspy" class="same-page-link">Scrollspy configuration</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -34,7 +38,7 @@
                     <p>To use Edge to review pages in Internet Explorer:</p>
                     <ol>
                         <li>Open the page in Edge</li>
-                        <li>Reload the page in <a href="https://microsoftedgewelcome.microsoft.com/en-us/mb03?form=M10004&slide=ie-mode" title="Information on Edge needs to be opened with Edge">Internet Explorer mode</a> using Edge&rsquo;s menu or button</li>
+                        <li>Reload the page in <a href="https://support.microsoft.com/en-us/microsoft-edge/internet-explorer-mode-in-microsoft-edge-6604162f-e38a-48b2-acd2-682dbac6f0de" title="Internet Explorer mode in Microsoft Edge">Internet Explorer mode</a> using Edge&rsquo;s menu or button</li>
                         <li>To open IE&rsquo;s Developer Tools:
                             <ol type="i">
                                 <li>Open the Run command window (hold down the Windows key and press R)</li>
@@ -44,8 +48,9 @@
                         </li>
                     </ol>
                     <p><strong>Samsung Galaxy smart&shy;phone</strong> &ndash; for testing mobile browsers. I use <a href="https://developer.android.com/studio/releases/platform-tools" title="Platform-Tools download site">SDK Platform-Tools</a> on my PC, which includes the Android Debug Bridge (adb) that connects Chrome on my PC to Chrome on my phone for <a href="https://developer.chrome.com/docs/devtools/remote-debugging/" title="Chrome developer tools site">Remote Debugging</a>.</p>
+                    <p>I use Google&rsquo;s TalkBack screen reader to ensure the pages (and especially the navigation) work for visually impaired users.</p>
                     <p><em>Note: The Android debug bridge needs to be started first by opening a command window, going to the platform-tools directory, and running</em> <code>adb devices</code><em>.</em></p>
-                    <p><strong><a href="http://www.wampserver.com/en/" title="WampServer website">WAMP software stack</a></strong> &ndash; localhost using Apache, MySQL, and PHP (I don&rsquo;t use the database) &ndash; Apache &amp; PHP are needed for Fat-Free.</p>
+                    <p><strong><a href="https://wampserver.aviatechno.net/" title="WampServer website">WAMP software stack</a></strong> &ndash; localhost using Apache, MySQL, and PHP (I don&rsquo;t use the database) &ndash; Apache &amp; PHP are needed for Fat-Free.</p>
                     <p><strong><a href="https://www.npmjs.com/" title="JavaScript Package Manager">Node.js / npm package manager</a></strong> &ndash; for installing packages (see the package.json file on GitHub for all of the packages):</p>
                     <p><strong><a href="https://code.visualstudio.com/" title="Open source code editor">Visual Studio Code</a></strong> &ndash; (A.K.A. VS Code) for writing the code.</p>
                     <p><strong><a href="https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass" title="Sass compiler for VS Code.">Live Sass Compiler</a></strong> &ndash; Glenn Marks&rsquo; VS Code extension for compiling Sass code into CSS during development. </p>
@@ -249,7 +254,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p>When hovering, Bootstrap switches to a lighter color &ndash; I keep the color the same, and Bootstrap does not use a different color for links that have previously been visited.</p>
+                        <p>When hovering on a link, Bootstrap switches to a lighter color for the link text and underline &ndash; I keep the color the same while removing the underline.Bootstrap does not use a different color for links that have previously been visited (I do).</p>
                     </div>
                 </div>
             </div>
@@ -265,8 +270,8 @@
                     <p>Bootstrap 5&rsquo;s navbar can be configured with an <a href="https://getbootstrap.com/docs/5.3/components/navbar/#offcanvas">offcanvas drawer</a> for navigation. The navbar includes a hamburger-style button to display the navigation menu.</p>
                     <ul>
                         <li>Bootstrap&rsquo;s default offcanvas includes a <em>separate</em> button on the canvas to close the menu (most navigation menus use the same button to open and close the menu).</li>
-                        <li>Bootstrap does not automatically close the menu after a link has been clicked. If the link is to the same page, the user needs to manually close the menu (or some JavaScript needs to be added to close the menu).</li>
-                        <li>Bootstrap does not set focus to the destination for same-page links (offcanvas works fine for navigation if all of the links are to different pages).</li>
+                        <li>Bootstrap does not automatically close the menu after a link has been clicked. If the link is to the same page, the user would need to manually close the menu or some JavaScript would need to be added to close the menu.</li>
+                        <li>Bootstrap does not set focus to the destination for same-page links &ndash; focus is returned to the offcanvas button (offcanvas works fine for navigation if all of the links are to different pages).</li>
                     </ul>
                     <p>I modified Bootstrap&rsquo;s setup to include:</p>
                     <ul>
@@ -278,12 +283,12 @@
                     <ul>
                         <li>Closing the offcanvas menu when a same-page link is clicked:</li>
                     </ul>
-                    <p class="ms-5">To close the menu when a same-page link is clicked, I add a <code>date-bs-dismiss="offcanvas"</code> attribute to the link in a <code>span</code> tag. Bootstrap ignores data attributes associated with an <code>&lt;a></code> tag, but it will process attributes associated with a <code>&lt;span></code> tag.</p>
-                    <pre class="ms-5"><code class="language-html">&lt;a class="nav-link active" href="#home">
-    &lt;span data-bs-dismiss="offcanvas">Home&lt;/span>
-&lt;/a></code></pre>
-                    <p class="ms-5">The <code>date-bs-dismiss="offcanvas"</code> attribute triggers Bootstrap to close the parent offcanvas element.</p>
-                    <p class="ms-5"><em>Note: It&rsquo;s also possible to close the menu using JavaScript by getting the offcanvas instance when a link is clicked. The instance can be used to hide the menu.</em></p>
+                    <p class="ms-5">To close the menu when a same-page link is clicked, I add a <code>data-bs-dismiss="offcanvas"</code> attribute to the list item. The dismiss data attribute needs to be on the list item rather than the <code>&lt;a></code> tag as Bootstrap ignores data attributes associated with an <code>&lt;a></code> tag.</p>
+                    <pre class="ms-5"><code class="language-html">&lt;li class="nav-item" data-bs-dismiss="offcanvas">
+    &lt;a class="nav-link" aria-current="page" href="#home">Home&lt;a>
+&lt;/li></code></pre>
+                    <p class="ms-5">The <code>data-bs-dismiss="offcanvas"</code> attribute triggers Bootstrap to close the parent offcanvas element.</p>
+                    <p class="ms-5"><em>Note: It would also possible to close the menu using JavaScript by getting the offcanvas instance when a link is clicked. The instance could be used to hide the menu.</em></p>
                     <ul>
                         <li>Setting focus to the section a same-page link points to, rather than to the offcanvas toggle button:</li>
                     </ul>
@@ -293,6 +298,7 @@
                         <li>Second is that on Chromium based browsers (Google Chrome &amp; MS Edge), setting the focus to an element on the page terminates any scroll animations that are in process. Firefox will complete the scroll. (I do not have information on Safari.)</li>
                     </ol>
                     <p class="ms-5">To change what element is focused, I modified the offcanvas JavaScript source file to: 1) include a fourth config value (focus); and 2) move the on-end event handler (EventHandler.one is the function that sets focus to the button that triggered the offcanvas display) from the start of the click handler to the end (after the config values are available) and to not call the on-end event handler if the focus value is set to false.</p>
+                    <p class="ms-5">A simpler method would be to comment out the <code>this.focus()</code> call &ndash; the details are provided <a href="#simple-fix">below</a>.</p>
                     <h4 class="ms-5 mt-5">offcanvas.js changes</h4>
                     <p class="ms-5">I use a custom version of Bootstrap&rsquo;s offcanvas.js file that&rsquo;s in the src/js folder. When Webpack builds the bundled JavaScript file, it uses the code from the offcanvas-custom.js file, rather than the offcanvas.js file in the node_modules directory.</p>
                     <p class="ms-5">The changes include:</p>
@@ -312,7 +318,7 @@ const DefaultType = {
     scroll: 'boolean',
     focus: 'boolean'  // Modified: focus is type boolean
 }</code></pre>
-                    
+
                     <ol class="ms-5" start="2">
                         <li>Move the on-end event handler and only call if needed</li>
                     </ol>
@@ -393,6 +399,15 @@ _addAria(element, isOpen) { // Modified: added ARIA function
                         <li>The targeted section will have the focus</li>
                     </ul>
                     <p class="ms-5"><em>I submited a <a href="https://github.com/twbs/bootstrap/pull/38514" title="Pull request 38514">pull request</a> to GitHub, but there was limited interest in the change, so I closed the request.</em></p>
+                    <h4 id="simple-fix" class="ms-5">Simpler focus fix</h4>
+                    <p class="ms-5">If having the focus function is not needed, the code can be commented out:</p>
+                    <pre class="ms-5"><code class="language-html">EventHandler.one(target, EVENT_HIDDEN, () => {
+    // focus on trigger when it is closed
+    // Modified - always ignore refocus
+    // if (isVisible(this)) {
+    //   this.focus()
+    // }
+})</code></pre>
                     <p><em>Note: For a single-page application, it would be best to always show the menu choices, rather than hiding them behind a hamburger-style button, but that&rsquo;s not always an option due to space limitations.</em></p>
                     <h3 class="mt-5">Nav text alignment</h3>
                     <p>As configured by Bootstrap, the text for the links in the navbar and the text for dropdown menus are off vertically by one pixel.</p>
@@ -437,6 +452,88 @@ _addAria(element, isOpen) { // Modified: added ARIA function
                     <p>By adding the class <code>is-fixed</code> to the img, Bootstrap will also add padding to the image. I&rsquo;m not sure why Bootstrap has this option as it&rsquo;s not in the documentation, but it works.</p>
                     <p>From the <a href="https://github.com/twbs/bootstrap/blob/main/js/src/util/scrollbar.js" title="Bootstrap scrollbar.js file on GitHub">scrollbar.js</a> file:</p>
                     <pre><code class="language-js">const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="scrollspy">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-7">
+                    <h2>Bootstrap scrollspy configuration</h2>
+                    <p>Scrollspy&rsquo;s normal configuration is to have the navigation linked to the <em>headings</em> for each section rather than to each complete section. This results in the navigation links being active when the heading is within the root element&rsquo;s bounding box as set by the rootMargin. If there is no heading within the root element, there is no active navigation link.</p>
+                    <p>My preference is to have some navigation link active at all times so the user will have a point of reference as to where they are within the content.</p>
+                    <p>Rather than applying the id attribute to a heading tag, I apply it to the entire div or section. Scrollspy is okay with this when scrolling down the page &mdash; as each div or section crosses the first threshold value for the root, scrollspy applies the active class to the associated navigation link. There is a complication when scrolling back up the page. As a section leaves the root area (is no longer intersecting), scrollspy removes the active class from the associated navigation link, <em>but</em> scrollspy does not automatically apply the active class to the prior navigation link. That only happens when the prior section crosses a threshold point.</p>
+                    <p>To ensure that the next section does cross a threshold point after the prior section leaves the root area, I configure the threshold setting to have 41 values from 1% to 100% in increments of 0.25% (Bootstrap&rsquo;s default threshold setting is three values, 10%, 50%, and 100%).</p>
+                    <p>I do set the rootMargin bottom value to -67% so there is a narrower window towards the top of the root area for switching to the next navigation link. The rootMargin values are illustrated in the examples below by the red lines.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-xxl-3">
+                    <div class="text-center">
+                        <h4>Bootstrap method</h4>
+                    </div>
+                    <div class="border rounded-2 p-2 position-relative">
+                        <nav id="navbar-example1" class="navbar bg-body-tertiary px-3 mb-3 rounded-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#scrollspyHeading1a">First</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#scrollspyHeading2a">Second</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#scrollspyHeading3a">Third</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="scrollspy-example bg-body-tertiary p-3 rounded-2 overflow-auto" data-bs-spy="scroll" data-bs-target="#navbar-example1" data-bs-root-margin="0px 0px -25%" data-bs-smooth-scroll="true" tabindex="0" style="height: 300px;">
+                            <h4 id="scrollspyHeading1a">First heading</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus nibh, ultrices eu nunc eu, elementum cursus velit. Aenean pellentesque leo id rhoncus condimentum. Vivamus dignissim posuere lectus, venenatis cursus enim tempor vitae.</p>
+                            <h4 id="scrollspyHeading2a">Second heading</h4>
+                            <p>Praesent hendrerit tempor vehicula. In vel vehicula mauris. Ut molestie tortor mi, in interdum mi semper id. Duis malesuada lorem mollis nulla lobortis, ac auctor purus vehicula. Aenean et risus diam. Nulla facilisi. Nunc facilisis efficitur commodo. Sed tempus lacus porta augue feugiat, sit amet vehicula massa accumsan.</p>
+                            <h4 id="scrollspyHeading3a">Third heading</h4>
+                            <p>Nunc nec metus porttitor, interdum lacus id, varius diam. Donec nunc magna, feugiat nec eros ac, tempor vulputate leo. Maecenas odio justo, volutpat in nunc at, fermentum venenatis nulla. Cras non luctus enim, eget tristique nibh. Cras sed semper lorem. Mauris tempus eu quam nec placerat. Sed aliquam blandit sapien, et tempor lectus euismod id. Nunc efficitur vitae magna eget faucibus. Donec rhoncus, ipsum nec vehicula porta, lorem enim auctor dolor, sit amet porta magna ligula sed nulla. Nullam ornare condimentum volutpat. Etiam eleifend hendrerit auctor. Vivamus lobortis ornare diam vel porttitor.</p>
+                        </div>
+                        <div style="position: absolute; top: 74px; left: 0; width: 100%; height: 225px; border-top: 1px solid red; border-bottom: 1px solid red; z-index: 1050; pointer-events: none; /* so I can click through the layer */"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xxl-3">
+                    <div class="text-center">
+                        <h4>My method</h4>
+                    </div>
+                    <div class="border rounded-2 p-2 position-relative">
+                        <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3 rounded-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#scrollspyHeading1b">First</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#scrollspyHeading2b">Second</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#scrollspyHeading3b">Third</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="scrollspy-example bg-body-tertiary p-3 rounded-2 overflow-auto" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -67%" data-bs-threshold="0.010,0.025,0.050,0.075,0.100,0.125,0.150,0.175,0.200,0.225,0.250,0.275,0.300,0.325,0.350,0.375,0.400,0.425,0.450,0.475,0.500,0.525,0.550,0.575,0.600,0.625,0.65,0.700,0.725,0.75,0.775,0.800,0.825,0.85,0.875,0.900,0.925,0.950,0.975,0.990,1.000" data-bs-smooth-scroll="true" tabindex="0" style="height: 300px;">
+                            <div id="scrollspyHeading1b">
+                                <h4>First heading</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus nibh, ultrices eu nunc eu, elementum cursus velit. Aenean pellentesque leo id rhoncus condimentum. Vivamus dignissim posuere lectus, venenatis cursus enim tempor vitae.</p>
+                            </div>
+                            <div id="scrollspyHeading2b">
+                                <h4>Second heading</h4>
+                                <p>Praesent hendrerit tempor vehicula. In vel vehicula mauris. Ut molestie tortor mi, in interdum mi semper id. Duis malesuada lorem mollis nulla lobortis, ac auctor purus vehicula. Aenean et risus diam. Nulla facilisi. Nunc facilisis efficitur commodo. Sed tempus lacus porta augue feugiat, sit amet vehicula massa accumsan.</p>
+                            </div>
+                            <div id="scrollspyHeading3b">
+                                <h4>Third heading</h4>
+                                <p>Nunc nec metus porttitor, interdum lacus id, varius diam. Donec nunc magna, feugiat nec eros ac, tempor vulputate leo. Maecenas odio justo, volutpat in nunc at, fermentum venenatis nulla. Cras non luctus enim, eget tristique nibh. Cras sed semper lorem. Mauris tempus eu quam nec placerat. Sed aliquam blandit sapien, et tempor lectus euismod id. Nunc efficitur vitae magna eget faucibus. Donec rhoncus, ipsum nec vehicula porta, lorem enim auctor dolor, sit amet porta magna ligula sed nulla. Nullam ornare condimentum volutpat. Etiam eleifend hendrerit auctor. Vivamus lobortis ornare diam vel porttitor.</p>
+                            </div>
+                            
+                        </div>
+                        <div style="position: absolute; top: 74px; left: 0; width: 100%; height: 100px; border-top: 1px solid red; border-bottom: 1px solid red; z-index: 1050; pointer-events: none; /* so I can click through the layer */"></div>
+                    </div>
                 </div>
             </div>
         </div>

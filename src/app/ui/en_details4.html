@@ -34,7 +34,7 @@ itemscope itemtype="http://schema.org/WebPage">
 &lt;include href="head.html" />
 &lt;body id="page-top" class="d-flex flex-column h-100"
     &#123;&#123; @isHomePage ? ' data-bs-spy="scroll" data-bs-target="#main-nav"
-        data-bs-root-margin="0px 0px -40%"' : '' &#125;&#125;
+        data-bs-root-margin="0px 0px -53.28%" data-bs-threshold="0,0.5,1"' : '' &#125;&#125;
     &#123;&#123; @isHomePage ? 'data-sc-page-type="home"' :
         (@isContactPage ? 'data-sc-page-type="contact"' :
         (@isTermsPage ? 'data-sc-page-type="terms"' :
@@ -173,7 +173,7 @@ itemscope itemtype="http://schema.org/WebPage">
 );</code></pre>
                         <p>Calling the function from the sitemap template:</p>
 <pre><code class="language-php">&lt;lastmod&gt;&#123;&#123; @fdate(@route_name) &#125;&#125;&lt;/lastmod&gt;</code></pre>
-                        <p>For each route, the template loops through the array of languages from config.ini and generates a list of all of the alternate languages for that route (including the route itself per <a href="https://support.google.com/webmasters/answer/189077?visit_id=0-636678457351003097-4051720032&rd=1" title="Google info from Webmaster forum">Google&rsquo;s information on sitemaps</a>).</p>
+                        <p>For each route, the template loops through the array of languages from config.ini and generates a list of all of the alternate languages for that route (including the route itself per <a href="https://developers.google.com/search/docs/specialty/international/localized-versions" title="Google info from Webmaster forum">Google&rsquo;s information on sitemaps</a>).</p>
                         <p>The sitemap control function is in the UtilitiesController rather than the CommonPageController as the sitemap function calls its own instance for the Fat-Free Framework render function.</p>
                         <p><em>Note: Google (and other search engines) will be able to locate the pages I&rsquo;m leaving off of the sitemap as there will be links to those pages in the navigation menu and the footer, but as those pages all have the tag</em> <code>&lt;meta name="robots" content="noindex,nofollow"&gt;</code><em>, Google will not index those pages. (Google is polite about complying with the robots meta tag, but not all search engines may be as nice.)</em></p>
                     </div>

@@ -2,22 +2,38 @@
     "short_name": "Site Demo",
     "name": "Site Construction",
     "icons": [{
-            "src": "https://sbf-bootstrap5.alwaysdata.net/icon-196.png",
-            "type": "image/png",
-            "sizes": "196x196",
-            "purpose": "any"
-        },
-        {
-            "src": "https://sbf-bootstrap5.alwaysdata.net/icon-196.png",
+            "src": "https://sbf-bootstrap5.alwaysdata.net/icon-196-a.png",
             "type": "image/png",
             "sizes": "196x196",
             "purpose": "maskable"
+        },
+        {
+            "src": "https://sbf-bootstrap5.alwaysdata.net/icon-196-a.png",
+            "type": "image/png",
+            "sizes": "196x196",
+            "purpose": "any"
         },
         {
             "src": "https://sbf-bootstrap5.alwaysdata.net/icon-512.png",
             "type": "image/png",
             "sizes": "512x512",
             "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshotmobile.webp",
+            "sizes": "480x1066",
+            "type": "image/webp",
+            "form_factor": "narrow",
+            "label": "Site Construction Intro"
+        },
+        {
+            "src": "screenshotdesktop.webp",
+            "sizes": "1468x700",
+            "type": "image/webp",
+            "form_factor": "wide",
+            "label": "Site Construction Intro"
         }
     ],
     "id": "https://sbf-bootstrap5.alwaysdata.net/en/home",

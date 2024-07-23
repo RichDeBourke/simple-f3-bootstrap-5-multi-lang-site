@@ -5,7 +5,7 @@
     --bs-link-color: #{$sc-link-color};
     --bs-link-color-rgb: #{$sc-link-color-rgb};
     --bs-link-hover-color-rgb: #{$sc-link-color-rgb};
-    --sc-link-visted-color: #{$sc-link-visited-color};
+    --sc-link-visited-color: #{$sc-link-visited-color};
 
 }
 
@@ -15,7 +15,7 @@
         --bs-link-color: #{$sc-link-color-dark};
         --bs-link-color-rgb: #{$sc-link-color-dark-rgb};
         --bs-link-hover-color-rgb: #{$sc-link-color-dark-rgb};
-        --sc-link-visted-color: #{$sc-link-visited-color-dark};
+        --sc-link-visited-color: #{$sc-link-visited-color-dark};
     }
 }
 
@@ -39,7 +39,7 @@ header a, section a, .modal a {
     }
     
     &:visited{
-        color: var(--sc-link-visted-color);
+        color: var(--sc-link-visited-color);
     }
 }
 
@@ -86,7 +86,7 @@ header a, section a, .modal a {
     --bs-link-hover-color-rgb: 158, 197, 254;
 
     --bs-navbar-toggler-border-color: #{$md-med-strong-white-text};
-    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M2 4h22M2 12h22M2 21h22'/%3e%3c/svg%3e");
+    
     --bs-btn-close-color: #{$md-full-white-text};
     --sc-flag-border: #{$gray-900}; // use a dark color to outline the flags against a light (white) background
 }
@@ -98,6 +98,53 @@ header a, section a, .modal a {
 
 .navbar-toggler {
     order: 3;
+    z-index: 1050;
+}
+
+.navbar-toggle-icon {
+    margin: 0.25rem 0;
+    display: inline-block;
+}
+
+.icon-bar {
+	width: 1.5rem;
+	height: 0.125rem;
+	border-radius: 1rem;
+	background-color: $white;
+	display: block;
+	transition: all 0.2s;
+}
+
+.top-bar {
+    transform: rotate(0);
+}
+.middle-bar {
+    margin-top: 0.375rem;
+    opacity: 1;
+}
+.bottom-bar {
+    margin-top: 0.375rem;
+    transform: rotate(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .icon-bar {
+        transition: all 0s;
+    }
+}
+
+.showing + .navbar-toggler, .show:not(.hiding) + .navbar-toggler {
+	.top-bar {
+		transform: translate(0.25rem)rotate(45deg);
+		transform-origin: 1.5% 1.5%;
+	}
+	.middle-bar {
+		opacity: 0;
+	}
+	.bottom-bar {
+		transform: translate(0.25rem)rotate(-45deg);
+		transform-origin: 1.5% 98.5%;
+	}
 }
 
 @include media-breakpoint-up(md) {
@@ -131,7 +178,11 @@ header a, section a, .modal a {
     color: var(--bs-navbar-active-color);
 }
 
-.navbar .offcanvas-md {
+.offcanvas-body {
+    padding-top: 2.875rem;
+}
+
+.offcanvas-md {
     background-color: #{$sc-theme-light};
     border-left: 0;
 }
@@ -170,18 +221,10 @@ header a, section a, .modal a {
         --bs-btn-active-color: #{$md-strong-white-text};
     }
 
-    .navbar .offcanvas-md {
+    .offcanvas-md {
         background-color: #{$sc-navbar-bg-dark};
         border-left: 0;
     }
-}
-
-.offcanvas-header .btn-close {
-    background-size: contain;
-    box-sizing: border-box;
-    width: 1.5rem;
-    height: 1.5rem;
-    opacity: 0.87;
 }
 
 #navbarDropdownLanguageMenu {
@@ -401,7 +444,7 @@ footer {
     font-size: 87.5%;
     z-index: 0;
     --sc-link-color: #{$sc-link-color-dark};
-    --sc-link-visted-color: #{$sc-link-visited-color-dark};
+    --sc-link-visited-color: #{$sc-link-visited-color-dark};
 
     & a,
     a:link {
@@ -411,7 +454,7 @@ footer {
     }
 
     & a:visited {
-        color: var(--sc-link-visted-color);
+        color: var(--sc-link-visited-color);
     }
 
     & a:hover {
