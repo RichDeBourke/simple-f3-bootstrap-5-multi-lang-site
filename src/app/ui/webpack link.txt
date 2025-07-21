@@ -1,1 +1,0 @@
-<a href="{{ @schemeHost}}{{ @langSubdirectory.'_webpack' | alias }}" title="Using Webpack" >My notes on using Webpack are here.</a>

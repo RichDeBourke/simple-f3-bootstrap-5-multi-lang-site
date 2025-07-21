@@ -1,0 +1,28 @@
+    <script nonce="{{ @nonce }}">
+        // Check for Internet Explorer to post a warning banner
+        var ieCSS;
+        var ieJS;
+
+        if (/MSIE|Trident/.test(navigator.userAgent)) {
+            ieCSS = document.createElement("link");
+            ieCSS.rel = "stylesheet";
+            ieCSS.href = "https://localhost/f3-5a/css/ie_overrides.min.css";
+            document.getElementsByTagName("head")[0].appendChild(ieCSS);
+
+            ieJS = document.createElement("script");
+            ieJS.src = "https://localhost/f3-5a/js/ie_overrides.js";
+            ieJS.nonce = "{{ @nonce }}";
+
+            if (document.addEventListener) {
+                window.addEventListener("load", function() {
+                    document.body.appendChild(ieJS);
+                });
+            } else {
+                window.attachEvent("onload", function() {
+                    document.body.appendChild(ieJS);
+                });
+            }
+        }
+    </script>
+
+    

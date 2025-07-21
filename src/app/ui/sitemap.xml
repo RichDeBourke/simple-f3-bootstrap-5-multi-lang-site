@@ -7,6 +7,9 @@
 <repeat group="@languages" key="@prefix" value="@values">
   <xhtml:link rel="alternate" hreflang="{{ @values[0] }}" href="{{ @schemeHost }}{{ @prefix.substr(@route_name,2) | alias }}" />
 </repeat>
+<check if="{{ substr(@route_name,0,2)==array_key_first(@languages) }}">
+  <xhtml:link rel="alternate" hreflang="x-default" href="{{ @schemeHost }}{{ 'en'.substr(@route_name,2) | alias }}" />
+</check>
 </url>
 </repeat>
 </urlset>

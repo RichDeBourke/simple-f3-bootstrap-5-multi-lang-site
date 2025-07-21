@@ -92,13 +92,11 @@
                     <h2>How to Contact Us</h2>
                     <p>
                         If you have any questions or concerns about these Terms of Use or Privacy Policy, you may contact us by email at: <span>
-                        <script>
-                            var name = "{{ @emailName | raw }}";
-                            var host = "{{ @emailHost | raw }}";
+                        <script nonce="{{ @nonce }}">
                             var linktext;
                             var subject = "?subject=Inquiry%20via%20Website";
-                            linktext = name + "&#64;" + host + subject;
-                            document.write('<a class="email break-all" title="{{ @dictFooterContent3c | raw }}" href="' + 'mai' + 'lto:' + linktext + '">' + name + "&#64;" + host + '</a>');
+                            linktext = window.F3.emailName + "&#64;" + window.F3.emailHost + subject;
+                            document.write('<a class="email break-all" title="{{ @dictFooterContent3c | raw }}" href="' + 'mai' + 'lto:' + linktext + '">' + window.F3.emailName + "&#64;" + window.F3.emailHost + '</a>');
                         </script>
                         </span>.
                     </p>
@@ -110,7 +108,7 @@
         </div>
     </section>
 
-    <script>
+    <script nonce="{{ @nonce }}">
         /* similar button functions as on the EU Cookie modal */
         document.getElementById("btn-cookie-accept").addEventListener("click", function() {
             try {

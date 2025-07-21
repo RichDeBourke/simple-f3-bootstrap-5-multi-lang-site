@@ -2,7 +2,7 @@
     
     <a href="#top" id="scroll-to-top" title="{{ @dictScrollTitleValue }}" aria-label="{{ @dictScrollTitleValue }}">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 116">
-            <style>
+            <style nonce="{{ @nonce }}">
                 rect {
                     fill: #0024a7;
                 }
@@ -34,20 +34,18 @@
                 <div class="col-12 col-md-4 contact">
                     <h2 class="text-center">{{ @dictFooterHeading3 }}</h2>
                     <p>{{ @dictFooterContent3a | raw }}<span>
-                        <script>
-                            var name = "{{ @emailName | raw }}";
-                            var host = "{{ @emailHost | raw }}";
+                        <script nonce="{{ @nonce }}">
                             var linktext;
                             var subject = "?subject=Inquiry%20via%20Website";
-                            linktext = name + "&#64;" + host + subject;
-                            document.write('<a class="email break-all" title="{{ @dictFooterContent3c | raw }}" href="' + 'mai' + 'lto:' + linktext + '">' + name + "&#64;" + host + '</a>');
+                            linktext = window.F3.emailName + "&#64;" + window.F3.emailHost + subject;
+                            document.write('<a class="email break-all" title="{{ @dictFooterContent3c | raw }}" href="' + 'mai' + 'lto:' + linktext + '">' + window.F3.emailName + "&#64;" + window.F3.emailHost + '</a>');
                         </script>
                     </span>{{ @dictFooterContent3b | raw }}</p>
                 </div>              
             </div>
             <div class="row">
                 <div class="col-12 pt-3 terms-link">
-                    <p class="text-center mb-0"><a href="{{ @schemeHost}}{{ @langSubdirectory.'_termsx' | alias }}" title="{{ @dictFooterTermsTitle }}">{{ @dictFooterTerms}}</a></p>
+                    <p class="text-center mb-0"><a href="{{ @schemeHost}}{{ @langSubdirectory.'_termsx' | alias }}" title="{{ @dictFooterTermsTitle }}" rel="nofollow">{{ @dictFooterTerms}}</a></p>
                 </div>
             </div>
             <div class="row">

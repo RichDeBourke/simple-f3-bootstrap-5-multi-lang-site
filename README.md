@@ -48,9 +48,12 @@ Bootstrap is easy to structure with its available classes and using Sass. There 
 * For Bootstrap's offcanvas menu:
   * Use the navbar toggle-button to both open and close the menu (eliminates the need for a close button on the menu)
   * Automatically close the menu when a same-page link is clicked
-  * Added an option for focus to be on the target rather than the menu button – *requires modifying the module.js source file*
+  * Added an option for focus to be on the target rather than the menu button – *requires replacing the offcanvas.js source file*
+    * I did [fork Bootstrap](https://github.com/RichDeBourke/bootstrap) and applied the offcanvas changes to the fork
 * For full-screen background images with modals
-  * Added `is-fixed` class to the background static image so it works with modals (Bootstrap has the function, but it's not well documented)
+  * Added `is-fixed` class to the background static image so it works with modals (Bootstrap has the class, but its availability and use are not included in the documentation – it's only referenced in the scrollbar.js file: SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top').
+
+* *For updating to Bootstrap 5.3.7, I update my webpack.sass.js file to switch from the deprecated legacy JavaScript API to the modern Sass API and silenced warnings about SASS depreciations.*
 
 *The Bootstrap files are not included – those files are available from [Bootstrap](https://getbootstrap.com/)*
 
@@ -98,4 +101,8 @@ Bootstrap is provided under an [MIT license](https://github.com/twbs/bootstrap/b
 
 **2023/07/09** – Initial release for Bootstrap 5.3 version.
 
-**2024/01/25** – Modified navbar toggler and verified use with Bootstrap 5.3.2.
+**2024/01/27** – Verified use with Bootstrap 5.3.2, changed to an offcanvas-custom.js file, and modified the navbar toggler.
+
+**2024/07/23** – Verified use with Bootstrap 5.3.3 and made some changes to the demo website.
+
+**2025/07/21** – Verified use with Bootstrap 5.3.7 and Fat-free 3.9, made some changes to the demo website, and updated the files using AI.

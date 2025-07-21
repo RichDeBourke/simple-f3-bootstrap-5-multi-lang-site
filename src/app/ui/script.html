@@ -1,8 +1,8 @@
 
 <check if="{{ @highlighterJavaScript }}">
     <!-- Code highlighter -->
-    <script src="{{ @schemeHost }}/js/highlight.min.js?{{ @cacheUpdate }}"></script>
-    <script>
+    <script src="{{ @schemeHost }}/js/highlight.min.js?{{ @cacheUpdate }}" nonce="{{ @nonce }}"></script>
+    <script nonce="{{ @nonce }}">
         hljs.highlightAll();
     </script>
 </check>

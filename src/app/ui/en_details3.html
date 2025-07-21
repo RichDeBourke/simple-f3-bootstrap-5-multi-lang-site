@@ -5,7 +5,7 @@
                 <h1>Configuring the Fat-Free Framework</h1>
                 <p>Configuring the Fat-Free Framework requires:</p>
                 <ul>
-                    <li><a href="#htacess" class="same-page-link">htaccess</a> &ndash; Routes page requests to index.php</li>
+                    <li><a href="#htaccess" class="same-page-link">.htaccess</a> &ndash; Routes page requests to index.php</li>
                     <li><a href="#indexphp" class="same-page-link">index.php</a> &ndash; Gets the instance of Fat-Free and executes it</li>
                     <li><a href="#config" class="same-page-link">config.ini</a> &ndash; Configuration information and site data</li>
                     <li><a href="#routes" class="same-page-link">routes.ini</a> &ndash; Sets the controller for each page</li>
@@ -20,12 +20,12 @@
     </div>
 </header>
 
-<section id="htacess">
+<section id="htaccess">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-9 col-xl-8 col-xxl-7">
-                <h2>htaccess</h2>
-                <p><code>htaccess</code> routes requests for pages to index.php.</p>
+                <h2>.htaccess</h2>
+                <p><code>.htaccess</code> routes requests for pages to index.php.</p>
                 <pre><code class="language-php"># Enable rewrite engine and route requests to framework
 
 php_flag short_open_tag Off
@@ -47,7 +47,7 @@ RewriteRule .* index.php [L,QSA]
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]</code></pre>
                 <p><em>Note: These instructions are placed after redirects for https &amp; www (or no www), and changed and deleted pages.</em></p>
                 <h3>What&rsquo;s happening:</h3>
-                <p><code>htaccess</code> tells an Apache server to:</p>
+                <p><code>.htaccess</code> tells Apache to:</p>
                 <ul>
                     <li>check if the request contains the string <code>tmp/</code> or ends in <code>.ini</code> &ndash; if it does, reject the request with a <code>404 Page not found</code> response
                         <ul>
@@ -129,7 +129,7 @@ contactAddress = "customer.service@mywebsite.com"
 ; Limit for # of characters in the message for a contact form
 contactMessageLimit = 500
 ; CSS / JavaScript revision date (change whenever a file is updated)
-cacheUpdate = "20230628"
+cacheUpdate = "20250716"
 ----- There is more in the file on GitHub -----
 </code></pre>
                 <h3>What&rsquo;s happening:</h3>
@@ -198,6 +198,15 @@ GET /en/index.php=UtilitiesController-&gt;indexOverride</code></pre>
                 <h3>beforeroute &ndash; Controller.php</h3>
                 <pre><code class="language-php">// HTTP route pre-processor
 function beforeroute($f3) {
+    $nonce = base64_encode(random_bytes(16));
+    $f3-&gt;set('nonce', $nonce);
+    header('X-Content-Type-Options: nosniff');
+    header("Referrer-Policy: strict-origin-when-cross-origin");
+    header('X-Frame-Options: DENY');
+    header("Content-Security-Policy: default-src 'self'; style-src 'self'
+         'nonce-$nonce'; script-src 'self' 'nonce-$nonce'; img-src 'self'
+         data: https:; object-src 'none'; base-uri 'self'; frame-ancestors
+         'self';");
     $f3-&gt;set(&apos;googleNoIndex&apos;,false); // Set to true when needed
     $f3-&gt;set(&apos;isHomePage&apos;,false); // Set to true for home pages
     $f3-&gt;set(&apos;isDetailPage&apos;,false); // Set to true for detail pages
@@ -206,6 +215,8 @@ function beforeroute($f3) {
     $f3-&gt;set(&apos;pageJavaScript&apos;,false); // Add file name if needed
 }</code></pre>
                 <h3>What&rsquo;s happening:</h3>
+                <p>Generate a <code>nonce</code> &ndash; used by the Content Security Policy (CSP) to help mitigate Cross-site scripting (XSS).</p>
+                <p>Setup the security related headers for HTML files.</p>
                 <p>Set flags for things that are not required for most pages and change the flag in that page&rsquo;s controller function when needed:</p>
                 <ul>
                     <li><code>googleNoIndex</code>: normally false &ndash; the only pages not indexed are the <em>Contact</em> and <em>Terms of Use</em> pages and the error pages (404 and 500).</li>
@@ -287,7 +298,7 @@ function afterroute($f3) {
     // Render HTML layout
     echo \Template::instance()-&gt;render(&apos;layout.html&apos;,&apos;text/html&apos;);</code></pre>
                 <h3>What&rsquo;s happening:</h3>
-                <p class="pl-3">Set page specific items in the after function:</p>
+                <p class="pl-3">Set page specific items in the afterroute function:</p>
                 <ul>
                     <li>Setup an array of the corresponding language pages for the preflang links and the language switcher:
                         <ul>

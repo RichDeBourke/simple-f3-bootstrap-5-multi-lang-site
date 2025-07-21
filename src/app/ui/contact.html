@@ -1,5 +1,5 @@
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <style>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+        <style nonce="{{ @nonce }}">
             .svg-container {
                 fill: var(--bs-alert-color);
             }
@@ -30,11 +30,11 @@
     <section id="content" role="main" class="contact-us hide-for-ie">
         <div class="container">
             <div class="row justify-content-center">
-                <div class=" col-12 col-sm-10 col-md-8 col-lg-7">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-7">
                     <h1>{{ @dictContact01 }}</h1>
                     <div class="collapse" id="collapseAlert">
                         <div id="contact-result" class="alert alert-success alert-dismissible d-flex" role="alert" aria-label="Success" >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="exclamation-triangle-fill flex-shrink-0 me-4" role="img" style="width: 56px; height: 56px;"><use href="#alert-success"></use></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="exclamation-triangle-fill flex-shrink-0 me-4" role="img"><use href="#alert-success"></use></svg>
                             <div class="flex-grow-1">
                                 <p></p>
                             </div>
@@ -49,33 +49,33 @@
                                     <legend>{{ @dictContact02 }}</legend>
                                     <!-- Name input-->
                                     <div class="row mb-3">
-                                        <label class="col-md-3 mb-2" for="name">{{ @dictContact03 }}&nbsp;<span class="contact-required" aria-hidden="true">*</span></label>
+                                        <label class="col-md-3 mb-2" for="name">{{ @dictContact03 }}<span class="contact-required" aria-hidden="true">&nbsp;*</span></label><span id="name-required" class="visually-hidden">{{ @dictContact18 }}</span>
                                         <div class="col-md-9">
-                                            <input id="name" name="name" type="text" placeholder="{{ @dictContact04 }}" value="" class="form-control" required="required">
+                                            <input id="name" name="name" type="text" autocomplete="name" aria-describedby="name-required" aria-invalid="false" placeholder="{{ @dictContact04 }}" value="" class="form-control" minlength="3" maxlength="100" required="required" aria-required="true">
                                         </div>
                                     </div>
 
                                     <!-- E-mail input-->
                                     <div class="row mb-3">
-                                        <label class="col-md-3 mb-2" for="email">{{ @dictContact05 }}&nbsp;<span class="contact-required" aria-hidden="true">*</span></label>
+                                        <label class="col-md-3 mb-2" for="email">{{ @dictContact05 }}<span class="contact-required" aria-hidden="true">&nbsp;*</span></label><span id="email-required" class="visually-hidden">{{ @dictContact18 }}</span>
                                         <div class="col-md-9">
-                                            <input id="email" name="email" type="email" placeholder="{{ @dictContact06 }}" value="" class="form-control" required="required">
+                                            <input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-required" aria-invalid="false" placeholder="{{ @dictContact06 }}" value="" class="form-control" required="required" aria-required="true" maxlength="254">
                                         </div>
                                     </div>
 
                                     <!-- Subject -->
                                     <div class="row mb-3">
-                                        <label class="col-md-3 mb-2" for="subject">{{ @dictContact07  }}&nbsp;<span class="contact-required" aria-hidden="true">*</span></label>
+                                        <label class="col-md-3 mb-2" for="subject">{{ @dictContact07 }}<span class="contact-required" aria-hidden="true">&nbsp;*</span></label><span id="subject-required" class="visually-hidden">{{ @dictContact18 }}</span>
                                         <div class="col-md-9">
-                                            <input id="subject" name="subject" type="text" placeholder="{{ @dictContact08 }}" value="" class="form-control" required="required" maxlength="75">
+                                            <input id="subject" name="subject" type="text" aria-describedby="subject-required" aria-invalid="false" placeholder="{{ @dictContact08 }}" value="" class="form-control" required="required" aria-required="true" minlength="3" maxlength="75">
                                         </div>
                                     </div>
 
                                     <!-- Message body -->
                                     <div class="row mb-3">
-                                        <label class="col-md-3 mb-2 pe-0" for="message">{{ @dictContact09 }}&nbsp;<span class="contact-required" aria-hidden="true">*</span></label>
+                                        <label class="col-md-3 mb-2 pe-0" for="message">{{ @dictContact09 }}<span class="contact-required" aria-hidden="true">&nbsp;*</span></label><span id="message-required" class="visually-hidden">{{ @dictContact18 }}</span>
                                         <div class="col-md-9">
-                                            <textarea class="form-control" id="message" name="message" placeholder="{{ @dictContact10 }}..." rows="5" maxlength="{{ @contactMessageLimit }}" required="required"></textarea>
+                                            <textarea class="form-control" id="message" name="message" aria-describedby="message-required" aria-invalid="false" placeholder="{{ @dictContact09a | raw }}{{ @contactMessageLimit }}{{ @dictContact09b }}" placeholder="{{ @dictContact10 }}..." rows="5" minlength="20" maxlength="{{ @contactMessageLimit }}" required="required" aria-required="true"></textarea>
                                         </div>
                                     </div>
 
@@ -87,8 +87,9 @@
                                         </div>
                                     </div>
                                     <div class="row justify-content-center">
-                                        <div class="col-md-12">
-                                            <p class="mb-0" aria-hidden="true"><span class="contact-required">*</span>&nbsp;{{ @dictContact12 }}</p>
+                                        <!-- Required -->
+                                        <div class="col-md-12" aria-hidden="true">
+                                            <p class="mb-0"><span class="contact-required">*&nbsp;</span>{{ @dictContact12 }}</p>
                                         </div>
                                     </div>
                                 </fieldset>

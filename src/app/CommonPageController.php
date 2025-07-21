@@ -9,7 +9,7 @@ class CommonPageController extends Controller {
 
     // Note: F3 uses all uppercase names for Hive variables, so no risk with using 
     
-    function contactNew($f3) {
+    public function contactNew($f3) {
         /*
             For contact, I can use route names, so can have alternate languages
         */
@@ -20,6 +20,10 @@ class CommonPageController extends Controller {
         $f3->set('pageDescription',$f3->get('dictContactPageDescription'));
         $f3->set('isDetailPage',true);
         $f3->set('isContactPage',true);
+        if (!$f3->get('SESSION.csrf_token')) {
+            $f3->set('SESSION.csrf_token', bin2hex(random_bytes(32)));
+        }
+        $f3->set('csrfToken', $f3->get('SESSION.csrf_token'));
         $f3->set('contactName','');
         $f3->set('contactEmail','');
         $f3->set('contactSubject','');
@@ -34,7 +38,7 @@ class CommonPageController extends Controller {
     }
 
 
-    function renderTerms($f3) {
+    public function renderTerms($f3) {
         /*
             The Terms of Use / Privacy page is in just one language (the site's primary language), but the header/menus and the footer are provided in the user's selected language
         */
@@ -47,7 +51,7 @@ class CommonPageController extends Controller {
         $f3->set('pageContent','terms.html');
     }
 
-    function error($f3) {
+    public function error($f3) {
         /*
             For error, there is no route name, so the language menu should point to the home pages
         */

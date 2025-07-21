@@ -1,4 +1,4 @@
-    <script>
+    <script nonce="{{ @nonce }}">
         var textBlock = document.getElementById("code-text"),
             codePoint = 0,
             newCharacter = '',
@@ -58,7 +58,7 @@
             //     setTimeout("type_text()",15);
             // }
             
-            setTimeout("type_text()",15);
+            setTimeout(type_text,15);
         }
 
         if (typeof window.matchMedia === 'function') {

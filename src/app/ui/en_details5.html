@@ -21,7 +21,6 @@
                         <li><a class="same-page-link" href="#highlighter">Syntax highlighter</a></li>
                         <li><a class="same-page-link" href="#language-flags">Language flags</a></li>
                         <li><a class="same-page-link" href="#ie-support">Internet Explorer support</a></li>
-                        <li><a class="same-page-link" href="#firefox">Firefox flash of unstyled content</a></li>
                     </ul>
                 </div>
             </div>
@@ -37,7 +36,7 @@
                     <p>To make the sitemap more readable, I include an XSL stylesheet based on one from <a href="https://github.com/pedroborges/xml-sitemap-stylesheet" title="XML sitemap stylesheet by Pedro Borges">GitHub</a>.</p>
                     <!-- The stylesheet is provided under an MIT license - the license is referenced in the style sheet -->
                     <p>I provide alternate language (hreflang) information only in the sitemap. Previously, I had also included hreflang links in the page head sections, but the major search engines, <a href="https://developers.google.com/search/docs/specialty/international/localized-versions" title="Google international sitemap help">Google</a>, <a href="https://webmaster.yandex.ru/blog/15326" title="Yendex support for multilingual sites">Yendex</a>, and <a href="https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a" title="Bing Webmaster Guidelines">Bing</a> support hreflang links in the sitemap, so there is no point in using both (wastes bandwidth to include the links on every page). The Chinese search engine, Baidu, <a href="https://martinkura.com/baidu-international-websites-hreflang-geographic-target-meta-language-tag/" title="Baidu only focuses on Mandarin Chinese websites">focuses on Chinese websites</a> (sites where the primary language for <em>the domain</em> is Chinese, not just sub-folders), so they&rsquo;re not a concern. The value of a Chinese hreflang is so the other search engines know there is a Chinese site available (i.e. there are pages with the lang attribute on the html tag set to zh-CN).</p>
-                    <p>x-default &ndash; I haven&rsquo;t designated one page as the x-default version as x-default appears <a href="https://moz.com/learn/seo/hreflang-tag" title="General Targeting with x-default">to be used</a> to designate a page with multiple languages or a <a href="https://support.google.com/webmasters/thread/256688868" title="Correct usage of hreflang=x-default">language selection page</a>.</p>
+                    <p>x-default &ndash; the English pages are listed as the x-default version as those are the pages I&rsquo;ll serve if I do not support any of the user&rsquo;s preferred languages.</p>
                     <p>One complication for creating XML files is some servers are configured to use short tags &ndash; <code>&lt;?</code> in place of <code>&lt;?php</code>. This causes the server to misinterpret the first part of an <code>&lt;?xml</code> tag as being for PHP rather than XML. Some servers will accept the command, <code>php_flag short_open_tag on</code>, in the .htaccess file, and others (like this site&rsquo;s server) want <code>short_open_tag = Off</code> added to a Custom php.ini section in the Environment section.</p>
                 </div>
             </div>
@@ -203,7 +202,7 @@ doc.documentElement.focus();</code></pre>
             <div class="row justify-content-center">
                 <div class="col-lg-9 col-xl-8 col-xxl-7">
                     <h2>Dark mode</h2>
-                    <p>More than 80% of smartphone users, according to <a href="https://earthweb.com/how-many-people-use-dark-mode/" title="How Many People Use Dark Mode in 2022?,">one website</a>,  use dark mode, and these users expect websites to have a dark theme. While 80% seems high, it is clear that sites do need to consider having two modes, light and dark.</p>
+                    <p>More than 80% of smartphone users, according to <a href="https://web.archive.org/web/20250220012148/https://earthweb.com/blog/how-many-people-use-dark-mode" title="How Many People Use Dark Mode in 2022?,">one website</a>,  use dark mode, and those users expect websites to have a dark theme. While 80% seems high, it is clear that sites do need to consider having two modes, light and dark.</p>
                     <p>I&rsquo;ve implemented dark mode by using CSS custom properties (variables). CSS custom properties wasn&rsquo;t an option before as Internet Explorer did not support them. Now that Microsoft is no longer supporting Internet Explorer, there is less of a need to fully support the older browser. For more details on how I&rsquo;m implementing dark mode, please see the <a href="{{ @schemeHost }}{{ 'en_details1' | alias }}#dark-mode" title="Dark mode implementation details">Dark mode section</a> on the Bootstrap 5 details page.</p>
                     <h3>Dark mode design</h3>
                     <p>I've based my dark mode design on Google&rsquo;s Material Design concept &mdash; starting from a dark gray background (#121212) and use increasingly lighter shades of gray for secondary <em>surfaces</em> (e.g. dropdown menus). While Material Design suggests pure grays, I&rsquo;ve gone with a more steel-blue color (#16191c).</p>
@@ -358,7 +357,8 @@ doc.documentElement.focus();</code></pre>
                     <p><em>Note: The hero image used on the demo site is used under a Creative Commons license. The image used for the <a href="https://github.com/RichDeBourke/simple-f3-bootstrap-5-multi-lang-site" title="Demo source files on GitHub">GitHub</a> files is a graphic to emulate the image.</em></p>
                     <h3>Hero image and modals</h3>
                     <p>When Bootstrap displays a modal, it disables the scrollbars for the page by adding <code>overflow: hidden</code> and <code>padding-right</code> to the body. <em>The amount of padding depends on the browser.</em></p>
-                    <p>This additional space can cause an image set to <code>width: 100%</code> to expand. If the <code>is-fixed</code> class is added to the image, Bootstrap adds <code>padding-right</code> to the image, which stops the image from changing size.</p>
+                    <p>This additional space can cause an image set to <code>position: fixed; width: 100%;</code> to expand. By adding the <code>is-fixed</code> class to the image, Bootstrap adds the same <code>padding-right</code> value to the image when a modal is opened, which stops the image from changing size.</p>
+                    <p class="fst-italic"><small>Note: The <code>is-fixed</code> class is not covered in the Bootstrap documentation, nor is it used for styling. It is only used by the <a href="https://github.com/twbs/bootstrap/blob/5c2f2e7e0ec41daae3819106efce20e2568b19d2/js/src/util/scrollbar.js#L16">scrollbar.js module</a> to identify elements that should have padding added to make up for the scrollbar width when the scrollbar is hidden by applying <code>overflow: hidden</code>.</small></p>
                 </div>
             </div>
         </div>
@@ -381,8 +381,8 @@ doc.documentElement.focus();</code></pre>
                         <li>and switched to downloading the JavaScript file for Google Analytics only if the user has agreed to accept tracking cookies.</li>
                     </ul>
                     <h3>Google analytics</h3>
-                    <p>I use <a href="https://analytics.google.com/analytics/web/" title="Google Analytics homepage">Google Analytics</a> (along with <a href="https://search.google.com/search-console/about" title="What used to be Google Webmaster Tools and is now Google Search Console">Google Search Console</a>) to understand how my sites are being used. Previously, to enable users to opt-out of their data being sent to Google, I used Google&rsquo;s <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/user-opt-out" title="Google Analytics User Opt-out">ga-disable cookie</a> method, <em>but</em> that method still required the browser to download a JavaScript file <em>from</em> Google to read the cookie that said whether the user had opted out or not. The browser was still sending the user&rsquo;s IP address to Google in order to get the JavaScript file.</p>
-                    <p>I switched from using Google&rsquo;s ga-disable cookie method to using either my own cookie or a sessionStorage value. When someone visits the site for the first time, they are presented with a cookie notice where they can either accept cookies (and allow the use of Google Analytics) or they can opt-out.</p>
+                    <p>I use <a href="https://analytics.google.com/analytics/web/" title="Google Analytics homepage">Google Analytics</a> (along with <a href="https://search.google.com/search-console/about" title="What used to be Google Webmaster Tools and is now Google Search Console">Google Search Console</a>) to understand how my sites are being used. Previously, to enable users to opt-out of their data being sent to Google, I had used Google&rsquo;s <code>ga-disable</code> cookie method, <em>but</em> that method still required the browser to download a JavaScript file <em>from</em> Google to read the cookie that said whether the user had opted out or not. The browser was still sending the user&rsquo;s IP address to Google in order to get the JavaScript file.</p>
+                    <p>I switched from using Google&rsquo;s <code>ga-disable</code> cookie method to using either my own cookie or a sessionStorage value. When someone visits the site for the first time, they are presented with a cookie notice where they can either accept cookies (and allow the use of Google Analytics) or they can opt-out.</p>
                     <p>If the visitor accepts the use of cookies (and the use of Google Analytics), I create a cookie, valid for one year, to record their choice. After that, when they visit the site, the page reads the cookie and does not display the cookie notice.</p>
                     <p>If  the visitor rejects the use of cookies (and the use of Google Analytics), I store a value in sessionStorage to record their choice. After that, when the visitor views any other site page during the current browser session (the browser and the tab remain open), the pages will read the sessionStorage value and not display the cookie notice. If the visitor returns to the site in a different session, they will again be shown the cookie notice.</p>
                     <p>To make this work, I use three JavaScript code components to manage user tracking. The first is in the head section of the page:</p>
@@ -510,14 +510,13 @@ function loadEmail($f3) {
                     <p>The email information is added to the page using a <code>&lt;script></code> tag that uses <code>document.write</code> to add the code to the page.</p>
                     <pre><code class="language-js">&lt;span>
     &lt;script>
-        var name = "&#123;&#123; @emailName | raw &#125;&#125;";
-        var host = "{{ @emailHost | raw }}";
         var linktext;
         var subject = "?subject=Inquiry%20via%20Website";
-        linktext = name + "&#64;" + host + subject;
+        linktext = window.F3.emailName + "&#64;" + window.F3.emailHost + subject;
         document.write('&lt;a class="email break-all"
             title="&#123;&#123; @dictFooterContent3c | raw &#125;&#125;"
-            href="' + 'mai' + 'lto:' + linktext + '">' + name + "&#64;" + host + '&lt;/a>');
+            href="' + 'mai' + 'lto:' + linktext + '">' + window.F3.emailName + 
+                "&#64;" + window.F3.emailHost + '&lt;/a>');
     &lt;/script>
 &lt;/span></code></pre>
                     <p>I use <code>var</code> rather than <code>const</code> so the email address will show in Internet Explorer.</p>
@@ -617,14 +616,14 @@ function loadEmail($f3) {
             <div class="row justify-content-center">
                 <div class="col-lg-9 col-xl-8 col-xxl-7">
                     <h2>Internet Explorer support</h2>
-                    <p>There are people who still use Microsoft Internet Explorer. While Microsoft has started <a href="https://techcommunity.microsoft.com/t5/windows-it-pro-blog/internet-explorer-11-desktop-app-retirement-faq/ba-p/2366549" title="Microsoft IE announcement">permanently disabling Internet Explorer</a> on some versions of Windows 10, globally there are more than 45 million desktop systems running Windows 7 or Windows XP that may be using Internet Explorer.</p>
+                    <p>There are people who still use Microsoft Internet Explorer. While Microsoft has started <a href="https://techcommunity.microsoft.com/blog/windows-itpro-blog/internet-explorer-11-desktop-app-retirement-faq/2366549" title="Microsoft IE announcement">permanently disabling Internet Explorer</a> on some versions of Windows 10, globally there are still more than 32 million desktop systems running Windows 7 or Windows XP that <em>may</em> be using Internet Explorer.</p>
                     <p>While Bootstrap 5 does not support Internet Explorer, it is possible to provide some functionality:</p>
                     <ul>
                         <li><strong>IE Notice</strong> &ndash; at a minimum, let users know that the site does not support IE.</li>
                     </ul>
                     <div class="ie-notice">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 20">
-                            <style>
+                            <style nonce="{{ @nonce }}">
                                 rect.notice {
                                     fill: #000;;
                                 }
@@ -642,26 +641,10 @@ function loadEmail($f3) {
                         <ul>
                             <li>Shows content that is specific to IE (e.g. the IE notice)</li>
                             <li>Hides content that is not necessary or doesn&rsquo;t work on IE</li>
-                            <li>Adds or changes styles to work with IE</li>
+                            <li>Adds or changes some styles to work with IE</li>
                         </ul></li>
-                        <li><strong>Add IE only JavaScript</strong> &ndash; I add a separate JS file, <code>js/ie_overrides.js</code> for IE that enables dropdowns to work for IE11.</li>
                     </ul>
                     <p>Microsoft Edge&rsquo;s Internet Explorer mode can be used to check pages.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="firefox">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-9 col-xl-8 col-xxl-7">
-                    <h2>Firefox flash of unstyled content</h2>
-                    <p>I use the Firefox browser as I like its separate search bar. Firefox was showing a <em>flash of unstyled content (FOUC)</em> if I loaded the page with an empty cache. To fix the problem, I applied the hack from this <a href="https://stackoverflow.com/a/64158043/1011984">Stackoverflow answer</a> at the end of the head section to resolve the issue:</p>
-                    <pre><code class="language-css">&lt;script&gt;
-    /*to prevent Firefox FOUC*/
-    var FF_FOUC_FIX;
-&lt;/script&gt;</code></pre>
                 </div>
             </div>
         </div>

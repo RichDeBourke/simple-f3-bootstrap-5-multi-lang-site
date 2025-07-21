@@ -56,11 +56,16 @@ header .btn-outline-dark {
     &:hover {
         color: #{$md-strong-white-text};
     }
+    &:visited {
+        color: #ffffff;
+    }
 }
 
 .small-logo .attribution {
     opacity: 0;
 }
+
+
 
 @include media-breakpoint-up(sm) {
     .github-link {

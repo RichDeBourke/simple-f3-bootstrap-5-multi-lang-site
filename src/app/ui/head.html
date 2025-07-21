@@ -1,18 +1,96 @@
 <head>
     <meta charset="utf-8">
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
     <title>{{ @pageTitle }}</title>
     <meta name="description" content="{{ @pageDescription }}">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<check if="{{ @googleNoIndex }}">
-    <meta name="robots" content="noindex,nofollow">
+
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+
+    <link href="{{ @schemeHost }}/css/style.purged.css?{{ @cacheUpdate }}" rel="stylesheet">
+
+    <!-- Browser configuration -->
+    <meta name="color-scheme" content="light dark">
+<check if="{{ @isContactPage }}">
+    <true>
+    <meta name="csrf-token" content="{{ @csrfToken }}">
+
+    <!-- Application JavaScript -->
+    <script nonce="{{ @nonce }}">
+        // JavaScript consts from F3
+        window.F3 = {
+            emailName: "{{ @emailName | raw }}",
+            emailHost: "{{ @emailHost | raw}}",
+            contactSending: "{{ @dictContact16 }}",
+            contactCount: "{{ @dictContact17 }}"
+        };
+    </script>
+    </true><false>
+        <!-- Application JavaScript -->
+    <script nonce="{{ @nonce }}">
+        // JavaScript consts from F3
+        window.F3 = {
+            emailName: "{{ @emailName | raw }}",
+            emailHost: "{{ @emailHost | raw}}"
+        };
+    </script>
+</false></check>
+
+    <style  nonce="{{ @nonce }}">
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #12161a;
+            }
+        }
+    </style>
+
+    <!-- Logo preload -->
+    <link rel="preload" as="image" imagesrcset="
+        {{ @schemeHost }}/images/site-logo-sm-dark.webp 1x,
+        {{ @schemeHost }}/images/site-logo-lg-dark.webp 2x"
+        media="(prefers-color-scheme: dark)">
+    <link rel="preload" as="image" imagesrcset="
+        {{ @schemeHost }}/images/site-logo-sm.webp 1x,
+        {{ @schemeHost }}/images/site-logo-lg.webp 2x"
+        media="not (prefers-color-scheme: dark)">
+
+<check if="{{ @isHomePage }}">
+    <!-- Hero image preloads -->
+    <link rel="preload" as="image" imagesrcset="
+        {{ @schemeHost }}/images/Site-hero-360x480-80.webp 360w, 
+        {{ @schemeHost }}/images/Site-hero-390x520-80.webp 390w, 
+        {{ @schemeHost }}/images/Site-hero-720x960-50.webp 720w, 
+        {{ @schemeHost }}/images/Site-hero-780x1040-50.webp 780w" imagesizes="100vw" media="(max-width: 575.98px)">
+
+    <link rel="preload" as="image" imagesrcset="
+        {{ @schemeHost }}/images/Site-hero-768x614-80.webp 768w, 
+        {{ @schemeHost }}/images/Site-hero-1024x819-80.webp 1024w, 
+        {{ @schemeHost }}/images/Site-hero-1536x1229-50.webp 1536w, 
+        {{ @schemeHost }}/images/Site-hero-2048x1638-50.webp 2048w" imagesizes="100vw" media="(min-width: 576px) and (max-width: 1199.98px)">
+
+    <link rel="preload" as="image" imagesrcset="
+        {{ @schemeHost }}/images/Site-hero-1349x691-80.webp 1349w, 
+        {{ @schemeHost }}/images/Site-hero-1423x729-80.webp 1423w, 
+        {{ @schemeHost }}/images/Site-hero-1583x811-80.webp 1583w, 
+        {{ @schemeHost }}/images/Site-hero-1903x975-80.webp 1903w,
+        {{ @schemeHost }}/images/Site-hero-2543x1303-80.webp 2543w" imagesizes="100vw" media="(min-width: 1200px)">
+        
 </check>
 
-<check if="{{ !@googleNoIndex }}">
+    <!-- SEO and metadata -->
+<check if="{{ @googleNoIndex }}">
+<true>
+    <meta name="robots" content="noindex,nofollow">
+</true>
+<false>
     <link rel="canonical" href="{{ @schemeHost }}{{ urldecode(@PATH) }}">
+<repeat group="@languageLinks" value="@link">
+    <link rel="alternate" hreflang="{{ @link[2] }}" href="{{ @schemeHost }}{{ @link[0] | alias }}">
+</repeat>
+<check if="{{ @langCode==array_key_first(@languages) }}">
+    <link rel="alternate" hreflang="x-default" href="{{ @schemeHost }}{{ @xDefault[0] | alias }}">
 </check>
+</false></check>
 
     <!-- Page microdata for use by search engines -->
     <meta itemprop="url" content="{{ @schemeHost }}{{ urldecode(@PATH) }}">
@@ -44,8 +122,23 @@
     <meta name="twitter:title" content="{{ @siteOwner }} – {{ @pageTitle }}">
     <meta name="twitter:image" content="{{ @schemeHost }}/images/{{ @socialMedia.twitterImage }}">
 
+    <!-- Site microdata for use by search engines -->
+    <script type="application/ld+json" nonce="{{ @nonce }}">
+        {
+            "@context": "https://www.schema.org",
+            "@type": "WebSite",
+            "name": "{{ @siteName }}",
+            "description": "Building a frontend / backend setup for a simple, multi-language website using Bootstrap 5 with the Fat-Free PHP framework.",
+            "url": "http://sbf-testing.byethost7.com",
+            "creator": {
+                "@type": "organization",
+                "name": "{{ @siteOwner }}"
+            }
+        }
+    </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script>
+    <script nonce="{{ @nonce }}">
         var gaScript;
         var googleAnalyticsID = "{{ @googleAnalyticsID }}";
         gaScript = document.createElement("script");
@@ -68,93 +161,12 @@
             document.head.appendChild(gaScript);
         }
     </script>
-
-    <!-- Site microdata for use by search engines -->
-    <script type='application/ld+json'>
-        {
-            "@context": "http://www.schema.org",
-            "@type": "WebSite",
-            "name": "{{ @siteName }}",
-            "description": "Building a frontend / backend setup for a simple, multi-language website using Bootstrap 4 with the Fat-Free PHP framework.",
-            "url": "http://sbf-testing.byethost7.com",
-            "creator": {
-                "@type": "organization",
-                "name": "{{ @siteOwner }}"
-            }
-        }
-    </script>
-
-    <link rel="preload" as="image" imagesrcset="
-        ../images/site-logo-sm-dark.webp 1x,
-        ../images/site-logo-lg-dark.webp 2x"
-        media="(prefers-color-scheme: dark)">
-    <link rel="preload" as="image" imagesrcset="
-        ../images/site-logo-sm.webp 1x,
-        ../images/site-logo-lg.webp 2x"
-        media="not (prefers-color-scheme: dark)">
-
-<check if="{{ @isHomePage }}">
-    <link rel="preload" as="image" imagesrcset="
-        ../images/Site-hero-360x480-80.webp 360w, 
-        ../images/Site-hero-390x520-80.webp 390w, 
-        ../images/Site-hero-720x960-50.webp 720w, 
-        ../images/Site-hero-780x1040-50.webp 780w" imagesizes="100vw" media="(max-width: 575.98px)">
-
-    <link rel="preload" as="image" imagesrcset="
-        ../images/Site-hero-768x614-80.webp 768w, 
-        ../images/Site-hero-1024x819-80.webp 1024w, 
-        ../images/Site-hero-1536x1229-50.webp 1536w, 
-        ../images/Site-hero-2048x1638-50.webp 2048w" imagesizes="100vw" media="(min-width: 576px) and (max-width: 1199.98px)">
-
-    <link rel="preload" as="image" imagesrcset="
-        ../images/Site-hero-1349x691-80.webp 1349w, 
-        ../images/Site-hero-1423x729-80.webp 1423w, 
-        ../images/Site-hero-1583x811-80.webp 1583w, 
-        ../images/Site-hero-1903x975-80.webp 1903w,
-        ../images/Site-hero-2543x1303-80.webp 2543w" imagesizes="100vw" media="(min-width: 1200px)">
-        
-</check>
-    <script src="{{ @schemeHost }}/js/main.min.js?{{ @cacheUpdate }}" defer></script>
-
-    <meta name="color-scheme" content="light dark">
-
-    <style>
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #12161a;
-            }
-        }
-    </style>
-
-    <link href="{{ @schemeHost }}/css/style.min.css?{{ @cacheUpdate }}" rel="stylesheet">
+    
+    <script src="{{ @schemeHost }}/js/main.min.js?{{ @cacheUpdate }}" defer nonce="{{ @nonce }}"></script>
 
 <check if="{{ @pageCSS }}">
     <include href="{{ @pageCSS }}" />
 </check>
-
-    <script>
-        var ieCSS;
-        var ieJS;
-
-        if (navigator.userAgent.indexOf("MSIE") > -1 || navigator.userAgent.indexOf("Trident") > -1) {
-            ieCSS = document.createElement("link");
-            ieCSS.rel = "stylesheet";
-            ieCSS.href = "../css/ie_overrides.min.css";
-            document.getElementsByTagName("head")[0].appendChild(ieCSS);
-            ieJS = document.createElement("script")
-            ieJS.src = "../js/ie_overrides.js";
-            
-            if (document.addEventListener) {
-                window.addEventListener("load", function() {
-                    document.body.appendChild(ieJS);
-                });
-            } else {
-                document.attachEvent("load", function() {
-                    document.body.appendChild(ieJS);
-                });
-            }
-        }
-    </script>
 
     <!-- Favicon / Mobile icons -->
     <link rel="icon" href="{{ @schemeHost }}/favicon.ico" sizes="any"><!-- 32×32 -->

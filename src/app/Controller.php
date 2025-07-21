@@ -17,6 +17,12 @@ class Controller {
     
 	// HTTP route pre-processor
 	function beforeroute($f3) {
+        $nonce = base64_encode(random_bytes(16));
+        $f3->set('nonce', $nonce);
+        header('X-Content-Type-Options: nosniff');
+        header("Referrer-Policy: strict-origin-when-cross-origin");
+        header('X-Frame-Options: DENY');
+        header("Content-Security-Policy: default-src 'self'; style-src 'self' 'nonce-$nonce'; script-src 'self' 'nonce-$nonce'; img-src 'self' data: https:; object-src 'none'; base-uri 'self'; frame-ancestors 'self';");
         $f3->set('googleNoIndex',false); // Set to true when needed
         $f3->set('isHomePage',false); // Set to true for home pages
         $f3->set('isDetailPage',false); // Set to true for detail pages
@@ -50,6 +56,7 @@ class Controller {
                 [$key.$alias_base,$key,$details[0],$details[2]]);
         }
         $f3->set('languageLinks',$language_links_array);
+        $f3->set('xDefault', $language_links_array[0]);
         $pageLanguage = explode(',',$f3->get('LANGUAGE'));
         $f3->set('langCode',$pageLanguage[0]); // Use langCode for the html lang tag
         $lang_prefix = $f3->get('langSubdirectory'); // for local use in this function
@@ -59,10 +66,4 @@ class Controller {
         echo \Template::instance()->render('layout.html','text/html');
         
 	}
-
-	// Instantiate class
-	function __construct() {
-		$f3=\Base::instance();
-	}
-
 }

@@ -1,9 +1,9 @@
 /* Styles for contact page */
-$sc-contact-error-color: #d14;
-$sc-contact-error-color-dark: #FFA1A1;
+$sc-contact-red-color: #d14;
+$sc-contact-red-color-dark: #FFA1A1;
 
 .contact-us {
-    --sc-contact-error: #{$sc-contact-error-color};
+    --sc-contact-red: #{$sc-contact-red-color};
     margin-top: 0;
     padding: 6rem 0;
     background-clip: content-box;
@@ -17,7 +17,7 @@ $sc-contact-error-color-dark: #FFA1A1;
 
 @media (prefers-color-scheme: dark) {
     .contact-us {
-        --sc-contact-error: #{$sc-contact-error-color-dark};
+        --sc-contact-red: #{$sc-contact-red-color-dark};
     }
     .form-control {
         background-color: #{$sc-sub-level-bg-dark};
@@ -30,11 +30,11 @@ $sc-contact-error-color-dark: #FFA1A1;
 }
 
 .contact-error, .contact-count-alert {
-	color: var(--sc-contact-error);
+	color: var(--sc-contact-red);
 }
 
 .contact-required {
-	color: var(--sc-contact-error);
+	color: var(--sc-contact-red);
     font-size: 2rem;
     line-height: 0.5rem;
     vertical-align: middle;
@@ -43,4 +43,13 @@ $sc-contact-error-color-dark: #FFA1A1;
 .characters-remaining {
     float: right;
     margin-top: -0.75rem;
+}
+
+.characters-remaining-warning {
+    color: var(--sc-contact-red);
+}
+
+#contact-result svg {
+    width: 56px;
+    height: 56px;
 }

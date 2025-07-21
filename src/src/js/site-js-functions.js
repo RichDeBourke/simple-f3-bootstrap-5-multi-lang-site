@@ -1,25 +1,19 @@
 /*  JavaScript functions for the Site Construction website (for Bootstrap 5)
-Copyright 2018-2022 Rich DeBourke
+Copyright 2018-2025 Rich DeBourke
 Code may be used under an MIT License:
 https://github.com/RichDeBourke/simple-f3-bootstrap-5-multi-lang-site/blob/main/LICENSE */
 
 /* Use ES6 - import, rather than require (commonjs) style */
 
-// const {Offcanvas, Modal} = require("bootstrap");
-// import {
-//     Offcanvas,
-//     Modal
-// } from "bootstrap";
+// import Modal from "bootstrap/js/src/modal";
+// import Collapse from "bootstrap/js/src/collapse";
+import { Modal, Collapse } from './bootstrap-components.js';
 
-import Modal from "bootstrap/js/src/modal";
-import Collapse from "bootstrap/js/src/collapse";
-
-
-window.addEventListener("load", function() {
+window.addEventListener("DOMContentLoaded", function() {
     let scrollTimer = null;
 
     function scrollHandler() {
-        const scrollTop = window.pageYOffset;
+        const scrollTop = window.scrollY;
         const windowHeight = window.innerHeight;
         const scrollToTop = document.getElementById("scroll-to-top");
 
@@ -39,10 +33,10 @@ window.addEventListener("load", function() {
     // Queue gets processed every 33ms (30fps)
     function scrollThrottler() {
         if (!scrollTimer) {
-            scrollTimer = window.setTimeout(function() {
-                scrollTimer = null;
+            scrollTimer = requestAnimationFrame(function() {
                 scrollHandler();
-            }, 33);
+                scrollTimer = null;
+            });
         }
     }
 
@@ -70,23 +64,19 @@ window.addEventListener("load", function() {
             }
 
             document.getElementById("btn-cookie-accept").addEventListener("click", function() {
-                let date = new Date();
-                date.setTime(date.getTime() + 31536000000);
-                document.cookie = "eu-cookie-notice=true; expires=" + date.toGMTString() + ";path=/";
+                let expires = new Date();
+                expires.setFullYear(expires.getFullYear() + 1); // Set for one year ahead
+                document.cookie = `eu-cookie-notice=true; expires=${expires.toUTCString()};path=/`;
                 euModal.hide();
-            }, {
-                passive: true
             });
 
             document.getElementById("btn-cookie-opt-out").addEventListener("click", function() {
                 try {
                     window.sessionStorage.setItem("eu-opt-out", "true");
                 } catch (error) {
-                    console.error(error);
+                    console.error("Failed to set session storage for EU opt-out: ", error);
                 }
                 euModal.hide();
-            }, {
-                passive: true
             });
         }
     }
@@ -97,8 +87,6 @@ window.addEventListener("load", function() {
             document.documentElement.tabIndex = 0;
             document.documentElement.focus();
         }, 1000);
-    }, {
-        passive: true
     });
 
     // Display an overlay when changing to a new URL
@@ -107,13 +95,21 @@ window.addEventListener("load", function() {
 
     externalLinks.forEach((link) => {
         link.addEventListener("click", function(event) {
-            overlay.classList.add("show");
+            if (!link.hasAttribute("target") || link.target !== "_blank") {
+                overlay.classList.add("show");
+            }
         });
     });
 
     if (document.body.dataset.scPageType === "contact") {
-        window.bsCollapse = new Collapse('#collapseAlert', {
+        window.bsCollapse = new Collapse("#collapseAlert", {
             toggle: false
         });
     }
 });
+
+// Clear the overlay when returning to a page
+window.addEventListener("pageshow", () => {
+    document.querySelector("#overlay").classList.remove("show");
+});
+    

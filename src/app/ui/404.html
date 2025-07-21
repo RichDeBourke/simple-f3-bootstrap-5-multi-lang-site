@@ -1,8 +1,11 @@
     <section id="content" role="main" class="detail-first-section">
         <div class="container">
+            <div class="mx-auto py-4 px-3">
+                <h1 class="text-center">{{ @dict404NotFoundHeader }}</h1>
+            </div>
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-4">
-                    <div class="page-not-found-warning position-relative mx-auto mt-4">
+                    <div class="page-not-found-warning position-relative mx-auto">
                         <img class="warning-triangle" src="{{ @schemeHost }}/images/404-Triangle.png" alt="Warning symbol" width="290" height="258">
                         <div id="eyes">
                             <div class="eye left">
@@ -19,7 +22,6 @@
                     </div>
                 </div>
                 <div class="col-lg-7 offset-lg-1">
-                    <h1>{{ @dict404NotFoundHeader }}</h1>
                     <p>{{ @dict404PageURL, @schemeHost.urldecode(@PATH) | format,raw }}</p>
 
                     <p>{{ @dict404Notice1 }}</p>

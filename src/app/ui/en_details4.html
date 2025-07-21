@@ -3,7 +3,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-9 col-xl-8 col-xxl-7">
                         <h1>Putting the pages together</h1>
-                        <p>The Fat-Free Framework pulls together template files to create the pages:</p>
+                        <p>The Fat-Free Framework&rsquo;s own template engine pulls together template files to create the pages:</p>
                         <ul>
                             <li><a href="#layout" class="same-page-link">layout.html</a> &ndash; primary template that pulls in the other templates:<ul>
                                 <li><a href="#head" class="same-page-link">head.html</a> &ndash; the HTML head section &ndash; same template for all pages</li>
@@ -32,7 +32,7 @@
 itemscope itemtype="http://schema.org/WebPage">
 
 &lt;include href="head.html" />
-&lt;body id="page-top" class="d-flex flex-column h-100"
+&lt;body id="page-top" class="vh-100 d-flex flex-column"
     &#123;&#123; @isHomePage ? ' data-bs-spy="scroll" data-bs-target="#main-nav"
         data-bs-root-margin="0px 0px -53.28%" data-bs-threshold="0,0.5,1"' : '' &#125;&#125;
     &#123;&#123; @isHomePage ? 'data-sc-page-type="home"' :
@@ -106,7 +106,7 @@ itemscope itemtype="http://schema.org/WebPage">
                             <li>Error pages: 404 and 5XX pages &ndash; the directory will vary</li>
                         </ul>
                         <p>All addresses (href and src) use absolute links as it avoids any problem with being in the wrong directory for a relative link to work (e.g. the 404 response page).</p>
-                        <p>One complication – when on the home page, the home page links need to be in the form <code>href=&quot;#overview&quot;</code> (just the page links). They can&rsquo;t be <code>href=&quot;../en/home#overview&quot;</code> or <code>href=&quot;https://www.mysite.com/en/home#overview&quot;</code> as Bootstrap 4&rsquo;s <a href="https://getbootstrap.com/docs/4.1/components/scrollspy/" title="Bootstrap 4 Scrollspy component">Scrollspy</a> seems to have a problem with anything other than just the page link. When on any other page, the home page links should be absolute links in the form <code>href=&quot;https://www.mysite.com/en/home#overview&quot;</code>.</p>
+                        <p>One complication – when on the home page, the home page links need to be in the form <code>href=&quot;#overview&quot;</code> (just the page links). They can&rsquo;t be <code>href=&quot;../en/home#overview&quot;</code> or <code>href=&quot;https://www.mysite.com/en/home#overview&quot;</code> as Bootstrap&rsquo;s <a href="https://getbootstrap.com/docs/5.3/components/scrollspy/" title="Bootstrap 5 Scrollspy component">Scrollspy</a> seems to have a problem with anything other than just the page link. When on any other page, the home page links should be absolute links in the form <code>href=&quot;https://www.mysite.com/en/home#overview&quot;</code>.</p>
                         <p>My solution is to set in index.php a hive variable, <code>schemeHost</code>, for the scheme and the host together (e.g. http:// <em>and</em> www.mysite.com) that I use for links to things like CSS files and images, and I assemble that value with the langSubdirectory variable (set in the language controllers) to form a base address for the language pages. When assembling addresses for the home pages, I use the isHomePage flag to control how the addresses are handled.</p>
                     </div>
                 </div>

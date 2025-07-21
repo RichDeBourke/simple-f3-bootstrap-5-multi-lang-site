@@ -8,28 +8,28 @@
                 </picture>
             </a>
             <div class="offcanvas offcanvas-md offcanvas-end flex-grow-1 px-4" id="offcanvas-navbar" tabindex="-1" data-bs-focus="false">
-                <div class="offcanvas-body pt-md-0" style="padding-top: 46px;">
-                    <ul id="main-nav" class="nav navbar-nav justify-content-end flex-grow-1">
+                <div class="offcanvas-body pt-md-0">
+                    <ul id="main-nav" role="menu" class="nav navbar-nav justify-content-end flex-grow-1">
 <check if="{{ @isHomePage }}"><true>
     <repeat group="@mainMenu" key="@slug" value="@title">
-                    <li class="nav-item" data-bs-dismiss="offcanvas">
+                    <li class="nav-item" role="menuitem" data-bs-dismiss="offcanvas">
                             <a class="nav-link" aria-current="page" href="#{{ @slug }}">{{ @title }}</a>
                         </li>
     </repeat>
     </true>
     <false>
     <repeat group="@mainMenu" key="@slug" value="@title">
-                    <li class="nav-item" data-bs-dismiss="offcanvas">
+                    <li role="menuitem" class="nav-item" data-bs-dismiss="offcanvas">
                             <a class="nav-link" aria-current="page" href="{{ @schemeHost }}{{ @langSubdirectory.'_home' | alias }}#{{ @slug }}">{{ @title }}</a>
                         </li>
     </repeat></false>
 </check>                    <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle{{ @isDetailPage ? ' active' : ''  }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="nav-link dropdown-toggle{{ @isDetailPage ? ' active' : ''  }}" href="#" role="button" data-bs-toggle="dropdown" type="button" aria-expanded="false">
                                 {{ @dictNavDetails }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end slide-in" data-bs-dismiss="offcanvas">
+                            </button>
+                            <ul role="menu" class="dropdown-menu dropdown-menu-end slide-in" data-bs-dismiss="offcanvas">
 <repeat group="@dropdownMenu" key="@slug" value="@title">
-                                <li>
+                                <li role="menuitem">
                                     <a class="dropdown-item offcanvas-menu-item{{ substr(urldecode(@PATH),4) === @slug ? ' active' : '' }}"{{ substr(urldecode(@PATH),4) === @slug ? ' aria-current="page"' : '' }} href="{{ @schemeHost }}/{{ @langSubdirectory }}/{{ @slug }}">{{ @title }}</a>
                                 </li>
 </repeat>
@@ -50,9 +50,9 @@
                 <button class="btn btn-link nav-link dropdown-toggle border-0" type="button" id="navbarDropdownLanguageMenu" data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{ @dictNavLanguage }}">
                     <span class="flag-icon flag-icon-lg flag-icon-{{ @langSubdirectory }}"></span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-start dropdown-menu-md-end slide-in">
+                <div role="menu" class="dropdown-menu dropdown-menu-start dropdown-menu-md-end slide-in">
 <repeat group="@languageLinks" value="@link">
-                    <a class="dropdown-item {{ @link[1]===@langSubdirectory ? ' current-language' : '' }}" href="{{ @schemeHost }}{{ @link[0] | alias }}">
+                    <a role="menuitem" class="dropdown-item {{ @link[1]===@langSubdirectory ? ' current-language' : '' }}" href="{{ @schemeHost }}{{ @link[0] | alias }}">
                         <span class="flag-icon flag-icon-{{ @link[1] }}"></span>{{ @link[3] }}</a>
 </repeat>
                 </div>

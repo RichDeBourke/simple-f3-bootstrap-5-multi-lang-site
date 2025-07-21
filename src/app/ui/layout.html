@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ @langCode }}" id="top" class="h-100" prefix="og: http://ogp.me/ns#" itemscope itemtype="http://schema.org/WebPage">
+<html lang="{{ @langCode }}" id="top" prefix="og: http://ogp.me/ns#" itemscope itemtype="http://schema.org/WebPage">
 
 <include href="head.html" />
-<body id="page-top" class="d-flex flex-column h-100"{{ @isHomePage ? ' data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-root-margin="-28px 0px -67%" data-bs-threshold="0.010,0.025,0.050,0.075,0.100,0.125,0.150,0.175,0.200,0.225,0.250,0.275,0.300,0.325,0.350,0.375,0.400,0.425,0.450,0.475,0.500,0.525,0.550,0.575,0.600,0.625,0.65,0.700,0.725,0.75,0.775,0.800,0.825,0.85,0.875,0.900,0.925,0.950,0.975,0.990,1.000"' : '' }} {{ @isHomePage ? 'data-sc-page-type="home"' : (@isContactPage ? 'data-sc-page-type="contact"' : (@isTermsPage ? 'data-sc-page-type="terms"' : (@isErrorPage ? 'data-sc-page-type="error"' : 'data-sc-page-type="detail"'))) }}>
+<body id="page-top" class="vh-100 d-flex flex-column"{{ @isHomePage ? ' data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-root-margin="-28px 0px -67%" data-bs-threshold="0.010,0.025,0.050,0.075,0.100,0.125,0.150,0.175,0.200,0.225,0.250,0.275,0.300,0.325,0.350,0.375,0.400,0.425,0.450,0.475,0.500,0.525,0.550,0.575,0.600,0.625,0.65,0.700,0.725,0.75,0.775,0.800,0.825,0.85,0.875,0.900,0.925,0.950,0.975,0.990,1.000"' : '' }} {{ @isHomePage ? 'data-sc-page-type="home"' : (@isContactPage ? 'data-sc-page-type="contact"' : (@isTermsPage ? 'data-sc-page-type="terms"' : (@isErrorPage ? 'data-sc-page-type="error"' : 'data-sc-page-type="detail"'))) }}>
 <include href="notifications.html" />
 <include href="navigation.html" />
 
 <include href="{{ @pageContent }}" />
     
 <include href="footer.html" />
+<include href="ie_script.html" />
 <include href="script.html" />
 </body>
 </html>

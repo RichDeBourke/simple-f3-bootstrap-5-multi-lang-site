@@ -1,4 +1,8 @@
-    <style>
+    <style nonce="{{ @nonce }}">
+        #content {
+            padding-top: 6rem;
+        }
+
         .page-not-found-warning {
             width: 290px;
             text-align: center;
@@ -21,17 +25,12 @@
 
         #eyes {
             position: absolute;
-            top: 7.625rem;
-            left: 5.55rem;
-            width: 7rem;
-        }
-
-        .left {
-            float: left;
-        }
-
-        .right {
-            float: right;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6.5rem;
+            display: flex;
+            justify-content: space-between;
         }
 
         .eye {
@@ -41,7 +40,6 @@
             background: #fff;
             border-radius: 50%;
             border: 2px solid #000;
-            cursor: none;
             position: relative;
             top: 0;
             overflow: hidden;
@@ -83,6 +81,7 @@
             top: 20px;
             left: 8px;
             animation: open-irises 1s ease-out 1.5s none, irises-search 4s ease-out 3s none;
+            transition: left 0.1s, top 0.1s;
         }
 
         @keyframes open-irises {
@@ -171,5 +170,20 @@
 
         .oops.show {
             opacity: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .eye {
+                animation: none;
+                display: none;
+            }
+
+            .iris {
+                animation: none;
+            }
+
+            .oops {
+                visibility: hidden;
+            }
         }
     </style>

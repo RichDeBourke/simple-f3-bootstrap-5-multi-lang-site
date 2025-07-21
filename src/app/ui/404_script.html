@@ -1,4 +1,4 @@
-    <script>
+    <script nonce="{{ @nonce }}">
         (function() {
             "use strict";
 
@@ -39,29 +39,49 @@
             }
 
             Eye.prototype.follow = function(mouse) {
-                mouse.x = mouse.x - this.pos.x;
-                mouse.y = mouse.y - this.pos.y;
+                const localMouse = {
+                    x: mouse.x - this.pos.x,
+                    y: mouse.y - this.pos.y
+                };
 
                 this.iris.resetOffset();
 
-                const degree = Math.atan((mouse.y - this.iris.offset.y) / (mouse.x - this.iris.offset.x));
-                const direction = (this.iris.offset.x > mouse.x) ? -1 : 1;
-                const newX = Math.cos(degree) * ((this.width - this.iris.width) / 2 - this.padding) * direction;
-                const newY = Math.sin(degree) * ((this.height - this.iris.height) / 2 - this.padding) * direction;
-                const radius = Math.sqrt(Math.pow(newX, 2) + Math.pow(newY, 2));
-                const distance = Math.sqrt(Math.pow(mouse.y - this.iris.offset.y, 2) + Math.pow(mouse.x - this.iris.offset.x, 2));
-
-                if (radius > distance) {
-                    this.iris.iris.style.setProperty("left", (mouse.x - this.iris.offset.x + this.pos.x) + "px");
-                    this.iris.iris.style.setProperty("top", (mouse.y - this.iris.offset.y + this.pos.y) + "px");
+                const deltaX = localMouse.x - this.iris.offset.x;
+                const deltaY = localMouse.y - this.iris.offset.y;
+                
+                // Avoid division by zero
+                if (deltaX === 0 && deltaY === 0) return;
+                
+                const degree = Math.atan2(deltaY, deltaX);
+                const maxRadius = (Math.min(this.width, this.height) - Math.max(this.iris.width, this.iris.height)) / 2 - this.padding;
+                
+                const newX = Math.cos(degree) * maxRadius;
+                const newY = Math.sin(degree) * maxRadius;
+                
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                
+                if (distance <= maxRadius) {
+                    // Mouse is within the eye boundary
+                    this.iris.iris.style.left = (localMouse.x - this.iris.offset.x + this.pos.x) + "px";
+                    this.iris.iris.style.top = (localMouse.y - this.iris.offset.y + this.pos.y) + "px";
                 } else {
-                    this.iris.iris.style.setProperty("left", this.pos.x + newX + "px");
-                    this.iris.iris.style.setProperty("top", this.pos.y + newY + "px");
+                    // Mouse is outside, position iris at the boundary
+                    this.iris.iris.style.left = (this.pos.x + newX) + "px";
+                    this.iris.iris.style.top = (this.pos.y + newY) + "px";
                 }
             };
 
             Xeyes.prototype.init = function(irises, padding, lastMouse) {
+                let eyes = [];
+                let mousePos = {x: 0, y: 0};
+                let animationFrame = null;
 
+
+                function updateEyes() {
+                    eyes.forEach((eye) => eye.follow(mousePos));
+                    animationFrame = null;
+                }
+                
                 for (const irisEl of irises) {
                     const eye = new Eye(irisEl);
                     eye.padding = padding;
@@ -69,48 +89,60 @@
                     eye.iris.iris.style.setProperty("left", eye.pos.x + "px");
                     eye.iris.iris.style.setProperty("top", eye.pos.y + "px");
 
-                    window.addEventListener("mousemove", function(event) {
-                        eye.follow({
-                            x: event.pageX,
-                            y: event.pageY
-                        });
-                    });
+                    eyes.push(eye);
 
                     if (lastMouse && (Object.keys(lastMouse).length === 2)) {
                         eye.follow(lastMouse);
                     }
                 }
 
+                window.addEventListener("mousemove", function(event) {
+                    mousePos.x = event.pageX;
+                    mousePos.y = event.pageY;
+
+                    if (!animationFrame) {
+                        animationFrame = requestAnimationFrame(updateEyes);
+                    }
+                    
+                });
+
             };
             window.Xeyes = Xeyes;
         }());
 
-        if (typeof window.matchMedia === 'function') {
-            motionReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+        if (typeof window.matchMedia === "function") {
+            const motionReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+            let lastMouse = {};
+
+            function mousePosition (event) {
+                lastMouse = {
+                    x: event.pageX,
+                    y: event.pageY
+                }
+            }
 
             if (motionReduce.matches === false) {
                 const irises = document.querySelectorAll(".iris");
-                let eyesOpen = false; // setup to listen for the end of the second iris animation
-                let lastMouse = {};
+                let eyesOpen = false; // setup to listen for the end of the iris animation sequence
+                // there are two animations (open & search), so act on the second end.
+                
+                window.addEventListener("mousemove", mousePosition);
 
-                window.addEventListener("mousemove", function(event) {
-                    lastMouse = {
-                        x: event.pageX,
-                        y: event.pageY
-                    }
-                });
-
-                irises[0].addEventListener("animationend", function() {
-                    if (!eyesOpen) {
-                        eyesOpen = true;
-                    } else {
-                        document.querySelector(".mouth").classList.add("oval");
-                        setTimeout(() => {
-                            document.querySelector(".oops").classList.add("show");
-                            const xeyes = new Xeyes(irises, 0, lastMouse);
-                        }, 500);
-                    }
-                });
+                if (irises.length > 0) { // just to be sure there is an iris, otherwise skip the animation
+                    irises[0].addEventListener("animationend", function() {
+                        if (!eyesOpen) { // ignore the first end
+                            eyesOpen = true;
+                        } else {
+                            document.querySelector(".mouth").classList.add("oval");
+                            setTimeout(() => {
+                                document.querySelector(".oops").classList.add("show");
+                                const xeyes = new Xeyes(irises, 0, lastMouse);
+                                window.removeEventListener("mousemove", mousePosition);
+                            }, 500);
+                        }
+                    });
+                }
             }
         }
     </script>

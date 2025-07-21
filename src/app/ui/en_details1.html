@@ -47,14 +47,15 @@
                             </ol>
                         </li>
                     </ol>
-                    <p><strong>Samsung Galaxy smart&shy;phone</strong> &ndash; for testing mobile browsers. I use <a href="https://developer.android.com/studio/releases/platform-tools" title="Platform-Tools download site">SDK Platform-Tools</a> on my PC, which includes the Android Debug Bridge (adb) that connects Chrome on my PC to Chrome on my phone for <a href="https://developer.chrome.com/docs/devtools/remote-debugging/" title="Chrome developer tools site">Remote Debugging</a>.</p>
+                    <p><strong>Samsung Galaxy smart&shy;phone</strong> &ndash; for testing mobile browsers. I use <a href="https://developer.android.com/tools/releases/platform-tools" title="Platform-Tools download site">SDK Platform-Tools</a> on my PC, which includes the Android Debug Bridge (adb) that connects Chrome on my PC to Chrome on my phone for <a href="https://developer.chrome.com/docs/devtools/remote-debugging/" title="Chrome developer tools site">Remote Debugging</a>.</p>
                     <p>I use Google&rsquo;s TalkBack screen reader to ensure the pages (and especially the navigation) work for visually impaired users.</p>
-                    <p><em>Note: The Android debug bridge needs to be started first by opening a command window, going to the platform-tools directory, and running</em> <code>adb devices</code><em>.</em></p>
+                    <p><em>Note: The Android debug bridge needs to be started first by opening a command window, going to the platform-tools directory (for my setup, it&rsquo;s in the Android-tools directory in my wamp64 folder), and running</em> <code>&ldquo;.\adb devices</code>&rdquo;<em>.</em></p>
                     <p><strong><a href="https://wampserver.aviatechno.net/" title="WampServer website">WAMP software stack</a></strong> &ndash; localhost using Apache, MySQL, and PHP (I don&rsquo;t use the database) &ndash; Apache &amp; PHP are needed for Fat-Free.</p>
                     <p><strong><a href="https://www.npmjs.com/" title="JavaScript Package Manager">Node.js / npm package manager</a></strong> &ndash; for installing packages (see the package.json file on GitHub for all of the packages):</p>
                     <p><strong><a href="https://code.visualstudio.com/" title="Open source code editor">Visual Studio Code</a></strong> &ndash; (A.K.A. VS Code) for writing the code.</p>
-                    <p><strong><a href="https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass" title="Sass compiler for VS Code.">Live Sass Compiler</a></strong> &ndash; Glenn Marks&rsquo; VS Code extension for compiling Sass code into CSS during development. </p>
-                    <p><strong><a href="https://webpack.js.org/" title="Module bundler">Webpack 5</a></strong> &ndash; for bundling multiple JavaScript files into a single file and for compiling production versions of the Sass to CSS file (file size is smaller). The Webpack files are available on GitHub.</p>
+                    <p><strong><a href="https://webpack.js.org/" title="Module bundler">Webpack 5</a></strong> &ndash; for bundling multiple JavaScript files into a single file and for compiling Sass to CSS. The Webpack file is available on GitHub.</p>
+                    <p><strong><a href="https://purgecss.com/" title="Tool to remove unused CSS">PurgeCSS</a></strong> &ndash; strips unused CSS that Bootstrap normally includes, reducing the CSS file from 220kb to 76kb. Bootstrap includes, for example, 42 variations of margin-top selectors: <code>mt-0</code> through <code>mt-5</code> plus breakpoint variations <code>mt-sm-0</code> through <code>mt-xxl-auto</code> in the standard CSS file. I use only four styles, <code>mt-0</code>, <code>mt-3</code>, <code>mt-5</code>, and <code>mt-auto</code>. Selectors that are used, but cannot be detected by PurgeCSS are safelisted in the purgecss-run.js file.</p>
+                    <p><strong>Artificial Intelligence (AI)</strong> &ndash; For the 2025 update, I used AI to validate and improve PHP and JavaScript code and enhance page performance, especially for the contact page, the .htaccess file, and reordering the document head. I used the free versions of ChatGPT, Claude, Perplexity, Gemini, and Microsoft&rsquo;s Copilot for the work.</p>
                     <h3>Development file structure</h3>
                     <!-- https://www.htmlsymbols.xyz/box-drawing/light-lines -->
                     <pre><code class="hljs language-plaintext">/
@@ -208,7 +209,7 @@
                                     <td>#212529;</td>
                                     <td>#ADB5BD;</td>
                                     <td>#212529;</td>
-                                    <td style="white-space: pre-line;">rgba(255, 255,
+                                    <td>rgba(255, 255,
                                         255, 0.6);</td>
                                 </tr>
                                 <tr>
@@ -218,6 +219,13 @@
                                     <td>#FFFFFF;</td>
                                     <td>#16191C;</td>
                                 </tr>
+                                <tr class="sc-table-contrast">
+                                    <td>body-color to body-bg contrast</td>
+                                    <td>15.4:1</td>
+                                    <td>7.4:1</td>
+                                    <td>15.4:1</td>
+                                    <td>7.0:1</td>
+                                </tr>
                                 <tr>
                                     <td>--bs-secondary-bg</td>
                                     <td>#E9ECEF;</td>
@@ -225,12 +233,26 @@
                                     <td>#E9ECEF;</td>
                                     <td>#2F3337;</td>
                                 </tr>
+                                <tr class="sc-table-contrast">
+                                    <td>body-color to secondary-bg contrast</td>
+                                    <td>13.0:1</td>
+                                    <td>5.5:1</td>
+                                    <td>13.0:1</td>
+                                    <td>5.7:1</td>
+                                </tr>
                                 <tr>
                                     <td>--bs-tertiary-bg</td>
                                     <td>#F8F9FA;</td>
                                     <td>#2B3035;</td>
                                     <td>#F8F9FA;</td>
                                     <td>#414549;</td>
+                                </tr>
+                                <tr class="sc-table-contrast">
+                                    <td>body-color to tertiary-bg contrast</td>
+                                    <td>14.6:1</td>
+                                    <td>6.4:1</td>
+                                    <td>14.6:1</td>
+                                    <td>4.7:1<sup><a href="#fn1" id="ref1" aria-describedby="fn1">1</a></sup></td>
                                 </tr>
                                 <tr>
                                     <td>--bs-link-color</td>
@@ -254,8 +276,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p>When hovering on a link, Bootstrap switches to a lighter color for the link text and underline &ndash; I keep the color the same while removing the underline.Bootstrap does not use a different color for links that have previously been visited (I do).</p>
+                        
+                        <ol class="sc-table-footnote">
+                            <li id="fn1">I use white text with the #414549 footer background-color &ndash; the contrast ratio is 9.7:1. <a href="#ref1" aria-label="Back to reference" title="Back to reference">&#x21A9;</a></li> <!-- Unicode for return arrow ↩ -->
+                        </ol>
                     </div>
+                    <p>When hovering on a link, Bootstrap switches to a lighter color for the link text and underline &ndash; I keep the color the same while removing the underline. Bootstrap does not use a different color for links that have previously been visited (I do).</p>
                 </div>
             </div>
         </div>
@@ -488,7 +514,7 @@ _addAria(element, isOpen) { // Modified: added ARIA function
                                 </li>
                             </ul>
                         </nav>
-                        <div class="scrollspy-example bg-body-tertiary p-3 rounded-2 overflow-auto" data-bs-spy="scroll" data-bs-target="#navbar-example1" data-bs-root-margin="0px 0px -25%" data-bs-smooth-scroll="true" tabindex="0" style="height: 300px;">
+                        <div class="scrollspy-example bg-body-tertiary p-3 rounded-2 overflow-auto" data-bs-spy="scroll" data-bs-target="#navbar-example1" data-bs-root-margin="0px 0px -25%" data-bs-smooth-scroll="true" tabindex="0">
                             <h4 id="scrollspyHeading1a">First heading</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus nibh, ultrices eu nunc eu, elementum cursus velit. Aenean pellentesque leo id rhoncus condimentum. Vivamus dignissim posuere lectus, venenatis cursus enim tempor vitae.</p>
                             <h4 id="scrollspyHeading2a">Second heading</h4>
@@ -496,7 +522,7 @@ _addAria(element, isOpen) { // Modified: added ARIA function
                             <h4 id="scrollspyHeading3a">Third heading</h4>
                             <p>Nunc nec metus porttitor, interdum lacus id, varius diam. Donec nunc magna, feugiat nec eros ac, tempor vulputate leo. Maecenas odio justo, volutpat in nunc at, fermentum venenatis nulla. Cras non luctus enim, eget tristique nibh. Cras sed semper lorem. Mauris tempus eu quam nec placerat. Sed aliquam blandit sapien, et tempor lectus euismod id. Nunc efficitur vitae magna eget faucibus. Donec rhoncus, ipsum nec vehicula porta, lorem enim auctor dolor, sit amet porta magna ligula sed nulla. Nullam ornare condimentum volutpat. Etiam eleifend hendrerit auctor. Vivamus lobortis ornare diam vel porttitor.</p>
                         </div>
-                        <div style="position: absolute; top: 74px; left: 0; width: 100%; height: 225px; border-top: 1px solid red; border-bottom: 1px solid red; z-index: 1050; pointer-events: none; /* so I can click through the layer */"></div>
+                        <div class="root-margin-1"></div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-xxl-3">
@@ -517,7 +543,7 @@ _addAria(element, isOpen) { // Modified: added ARIA function
                                 </li>
                             </ul>
                         </nav>
-                        <div class="scrollspy-example bg-body-tertiary p-3 rounded-2 overflow-auto" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -67%" data-bs-threshold="0.010,0.025,0.050,0.075,0.100,0.125,0.150,0.175,0.200,0.225,0.250,0.275,0.300,0.325,0.350,0.375,0.400,0.425,0.450,0.475,0.500,0.525,0.550,0.575,0.600,0.625,0.65,0.700,0.725,0.75,0.775,0.800,0.825,0.85,0.875,0.900,0.925,0.950,0.975,0.990,1.000" data-bs-smooth-scroll="true" tabindex="0" style="height: 300px;">
+                        <div class="scrollspy-example bg-body-tertiary p-3 rounded-2 overflow-auto" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -67%" data-bs-threshold="0.010,0.025,0.050,0.075,0.100,0.125,0.150,0.175,0.200,0.225,0.250,0.275,0.300,0.325,0.350,0.375,0.400,0.425,0.450,0.475,0.500,0.525,0.550,0.575,0.600,0.625,0.65,0.700,0.725,0.75,0.775,0.800,0.825,0.85,0.875,0.900,0.925,0.950,0.975,0.990,1.000" data-bs-smooth-scroll="true" tabindex="0">
                             <div id="scrollspyHeading1b">
                                 <h4>First heading</h4>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus nibh, ultrices eu nunc eu, elementum cursus velit. Aenean pellentesque leo id rhoncus condimentum. Vivamus dignissim posuere lectus, venenatis cursus enim tempor vitae.</p>
@@ -532,7 +558,7 @@ _addAria(element, isOpen) { // Modified: added ARIA function
                             </div>
                             
                         </div>
-                        <div style="position: absolute; top: 74px; left: 0; width: 100%; height: 100px; border-top: 1px solid red; border-bottom: 1px solid red; z-index: 1050; pointer-events: none; /* so I can click through the layer */"></div>
+                        <div class="root-margin-2"></div>
                     </div>
                 </div>
             </div>

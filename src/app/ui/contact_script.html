@@ -1,57 +1,255 @@
-    <script>
+    <script nonce="{{ @nonce }}">
         const form = document.querySelector("#contact-form");
         const alert = document.querySelector("#contact-result");
         const use = document.querySelector("#contact-result use"); // to get the SVG use element
         const textarea = document.querySelector("textarea");
         const remain = document.querySelector(".characters-remaining");
-
         const para = document.querySelector("#contact-result p");
+        const maxLen = textarea?.maxLength || 500;
 
-        async function processSubmission(event) {
-            event.preventDefault();
+        // Get all required form inputs for accessibility
+        const inputs = form?.querySelectorAll('input[required], textarea[required]') || [];
 
-            fetch(event.target.action, {
-                body: new FormData(event.target),
-                headers: {
-                    "Accept": "application/json"
-                },
-                method: form.method
-            }).then((response) => {
-                if (response.ok) {  // ok refers to the http 200 status - the server was able to respond
-                    return response.json();
-                }
-                throw new Error("Network error (4xx or 5xx)");
-            }).then((json) => {
-                console.log(json);
-                alert.classList.remove("alert-success", "alert-warning");
-                alert.classList.add(json.alert);
-                alert.ariaLabel = json.label;
-                use.href = "#" + json.alert; // for selecting the SVG image
-                para.innerHTML = json.text;
-                bsCollapse.show();
-                // form.reset() // uncomment to clear the form data
-            }).catch((error) => {
-                alert.classList.remove("alert-success", "alert-warning");
-                alert.classList.add("alert-warning");
-                alert.ariaLabel = "Warning";
-                use.href = "#alert-warning";  // for selecting the SVG image
-                para.innerHTML = "{{ @dictContact15 }}";
-                bsCollapse.show();
-                console.log(error);
-            });
+        // Rate limiting on client side
+        let lastSubmissionTime = 0;
+        const SUBMISSION_COOLDOWN = 5000; // 5 seconds between submissions
+
+        // ===== ACCESSIBILITY FUNCTIONS =====
+
+        // Function to update aria-invalid based on validity
+        function updateAriaInvalid(element) {
+            const isValid = element.validity.valid;
+            element.setAttribute('aria-invalid', isValid ? 'false' : 'true');
         }
 
-        form.addEventListener("submit", processSubmission);
+        // Function to update character counter with accessibility - warning when at 480 characters
+        function updateCharacterCounter() {
+            if (!textarea || !remain) return;
 
-        remain.innerHTML = textarea.maxLength;
-        textarea.addEventListener("keyup", function() {
-            let count = textarea.maxLength - textarea.value.length;
-            remain.innerHTML = count;
-            if (count < 20) {
-                remain.classList.add("contact-count-alert");
-            } else {
-                remain.classList.remove("contact-count-alert");
+            const remaining = maxLen - textarea.value.length;
+            remain.textContent = remaining;
+            remain.classList.toggle("characters-remaining-warning", remaining < 20);
+
+            // Update aria-label for better screen reader feedback
+            remain.setAttribute('aria-label', `${remaining}${window.F3.contactCount}`);
+        }
+
+        // Optional: Add live validation feedback announcements
+        function announceValidationError(element) {
+            const fieldName = element.getAttribute('name');
+            const message = element.validationMessage;
+
+            // Create temporary announcement for screen readers
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'assertive');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.className = 'sr-only';
+            announcement.textContent = `${fieldName}: ${message}`;
+
+            document.body.appendChild(announcement);
+
+            // Remove after announcement
+            setTimeout(() => {
+                if (document.body.contains(announcement)) {
+                    document.body.removeChild(announcement);
+                }
+            }, 1000);
+        }
+
+        // ===== VALIDATION FUNCTIONS =====
+
+        // Silent validation functions - return false for invalid input
+        function validateEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const suspiciousPatterns = [
+                /php:\/\//i,
+                /convert\./i,
+                /filter\//i,
+                /base64/i,
+                /&#\d+;/,
+                /<script/i,
+                /javascript:/i
+            ];
+
+            if (!emailRegex.test(email) || email.length > 254) {
+                return false;
             }
-        });
-  
+
+            return !suspiciousPatterns.some((pattern) => pattern.test(email));
+        }
+
+        function validateName(name) {
+            const nameRegex = /^[a-zA-Z\s\'-]+$/;
+            const suspiciousPatterns = [
+                /php:\/\//i,
+                /convert\./i,
+                /filter\//i,
+                /base64/i,
+                /<script/i,
+                /javascript:/i,
+                /&#\d+;/
+            ];
+
+            if (name.length > 100 || name.length < 1) {
+                return false;
+            }
+
+            return nameRegex.test(name) && !suspiciousPatterns.some((pattern) => pattern.test(name));
+        }
+
+        function validateMessage(message) {
+            const suspiciousPatterns = [
+                /php:\/\//i,
+                /convert\./i,
+                /filter\//i,
+                /base64-/i,
+                /<script/i,
+                /javascript:/i,
+                /&#\d+;/,
+                /data:/i,
+                /file:/i
+            ];
+
+            if (message.length > 500 || message.length < 20) {
+                return false;
+            }
+
+            return !suspiciousPatterns.some((pattern) => pattern.test(message));
+        }
+
+        function sanitizeInput(input) {
+            // Remove null bytes and control characters
+            return input.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '').trim();
+        }
+
+        // ===== FORM SUBMISSION =====
+            async function processSubmission(event) {
+                event.preventDefault();
+
+                // Update aria-invalid for all fields before processing
+                let hasErrors = false;
+                inputs.forEach(input => {
+                    updateAriaInvalid(input);
+                    if (!input.validity.valid) {
+                        hasErrors = true;
+                    }
+                });
+
+                // If there are browser validation errors, focus the first invalid field
+                if (hasErrors) {
+                    const firstInvalid = form.querySelector('[aria-invalid="true"]');
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    }
+                    return; // Don't proceed with submission
+                }
+
+                // Rate limiting check
+                const currentTime = Date.now();
+                if (currentTime - lastSubmissionTime < SUBMISSION_COOLDOWN) {
+                    // Silent rejection - no message to user
+                    return;
+                }
+
+                // Get form data
+                const formData = new FormData(event.target);
+                const name = sanitizeInput(formData.get('name') || '');
+                const email = sanitizeInput(formData.get('email') || '');
+                const subject = sanitizeInput(formData.get('subject') || '');
+                const message = sanitizeInput(formData.get('message') || '');
+
+                // Add CSRF token
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+                if (csrfToken) {
+                    formData.set('csrf_token', csrfToken);
+                }
+
+                // Show loading state
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+                submitButton.textContent = window.F3.contactSending;
+                submitButton.disabled = true;
+
+                try {
+                    const response = await fetch(event.target.action, {
+                        body: formData,
+                        headers: {
+                            "Accept": "application/json",
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        method: form.method
+                    });
+
+                    if (response.ok) {
+                        const json = await response.json();
+                        
+                        // Email was sent successfully
+                        console.log(json);
+                        alert.classList.remove("alert-success", "alert-warning");
+                        alert.classList.add(json.alert);
+                        alert.ariaLabel = json.label;
+                        use.setAttribute("href", "#" + json.alert); // for selecting the SVG image
+                        para.textContent = json.text;
+                        // bsCollapse function is defined in site-js-functions.js
+                        bsCollapse.show();
+                        if (json.status === 'success') {
+                            form.reset() // comment to keep the form data
+                            updateCharacterCounter(); // Update counter after reset
+                            lastSubmissionTime = currentTime;
+                            // Reset aria-invalid for all fields after successful submission
+                            inputs.forEach(input => {
+                                input.setAttribute('aria-invalid', 'false');
+                            });
+                        }
+                    }
+                } catch (error) {
+                    // Network or other error - show failure message
+                    alert.classList.remove("alert-success", "alert-warning");
+                    alert.classList.add("alert-warning");
+                    alert.ariaLabel = "Warning";
+                    use.setAttribute("href", "#alert-warning"); // for selecting the SVG image
+                    para.textContent = "{{ @dictContact15 }}";
+                    // bsCollapse function is defined in site-js-functions.js
+                    bsCollapse.show();
+                    console.log(error);
+                } finally {
+                    // Restore button state
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                }
+            }
+
+        if (form && alert && use && textarea && remain) {
+            // Initialize character counter
+            updateCharacterCounter();
+
+            // Character counting with accessibility
+            textarea.addEventListener('input', updateCharacterCounter);
+
+            // Add accessibility event listeners to all required fields
+            inputs.forEach(input => {
+                // Check validity on blur (when user leaves the field)
+                input.addEventListener('blur', function() {
+                    updateAriaInvalid(this);
+                });
+
+                // Also check on input for immediate feedback (optional)
+                input.addEventListener('input', function() {
+                    // Only update if the field has been interacted with
+                    if (this.value.length > 0) {
+                        updateAriaInvalid(this);
+                    }
+                });
+
+                // Optional: Enhanced error announcements on invalid events
+                input.addEventListener('invalid', function(e) {
+                    announceValidationError(this);
+                });
+            });
+
+            // Form submission
+            form.addEventListener("submit", processSubmission);
+        } else {
+            console.error("Required elements not found.");
+        }
     </script>
